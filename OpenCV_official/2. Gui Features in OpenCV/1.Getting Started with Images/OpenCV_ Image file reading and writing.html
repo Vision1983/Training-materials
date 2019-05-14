@@ -1,0 +1,712 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0093)https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga288b8b3da0892bd651fce07b3bbd3a56 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta content="IE=9" http-equiv="X-UA-Compatible">
+<meta content="Doxygen 1.8.12" name="generator">
+<title>OpenCV: Image file reading and writing</title>
+<link href="https://docs.opencv.org/3.4.1/opencv.ico" rel="shortcut icon" type="image/x-icon">
+<link href="./OpenCV_ Image file reading and writing_files/tabs.css" rel="stylesheet" type="text/css">
+<script async="" src="./OpenCV_ Image file reading and writing_files/async-ads.js.stažený soubor"></script><script type="text/javascript" async="" src="./OpenCV_ Image file reading and writing_files/f.txt"></script><script src="./OpenCV_ Image file reading and writing_files/jquery.js.stažený soubor" type="text/javascript"></script>
+<script src="./OpenCV_ Image file reading and writing_files/dynsections.js.stažený soubor" type="text/javascript"></script>
+<script src="./OpenCV_ Image file reading and writing_files/tutorial-utils.js.stažený soubor" type="text/javascript"></script>
+<link href="./OpenCV_ Image file reading and writing_files/search.css" rel="stylesheet" type="text/css">
+<script src="./OpenCV_ Image file reading and writing_files/searchdata.js.stažený soubor" type="text/javascript"></script>
+<script src="./OpenCV_ Image file reading and writing_files/search.js.stažený soubor" type="text/javascript"></script>
+<script type="text/x-mathjax-config;executed=true">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+//<![CDATA[
+MathJax.Hub.Config(
+{
+  TeX: {
+      Macros: {
+          matTT: [ "\\[ \\left|\\begin{array}{ccc} #1 & #2 & #3\\\\ #4 & #5 & #6\\\\ #7 & #8 & #9 \\end{array}\\right| \\]", 9],
+          fork: ["\\left\\{ \\begin{array}{l l} #1 & \\mbox{#2}\\\\ #3 & \\mbox{#4}\\\\ \\end{array} \\right.", 4],
+          forkthree: ["\\left\\{ \\begin{array}{l l} #1 & \\mbox{#2}\\\\ #3 & \\mbox{#4}\\\\ #5 & \\mbox{#6}\\\\ \\end{array} \\right.", 6],
+          forkfour: ["\\left\\{ \\begin{array}{l l} #1 & \\mbox{#2}\\\\ #3 & \\mbox{#4}\\\\ #5 & \\mbox{#6}\\\\ #7 & \\mbox{#8}\\\\ \\end{array} \\right.", 8],
+          vecthree: ["\\begin{bmatrix} #1\\\\ #2\\\\ #3 \\end{bmatrix}", 3],
+          vecthreethree: ["\\begin{bmatrix} #1 & #2 & #3\\\\ #4 & #5 & #6\\\\ #7 & #8 & #9 \\end{bmatrix}", 9],
+          hdotsfor: ["\\dots", 1],
+          mathbbm: ["\\mathbb{#1}", 1],
+          bordermatrix: ["\\matrix{#1}", 1]
+      }
+  }
+}
+);
+//]]>
+</script><script src="./OpenCV_ Image file reading and writing_files/MathJax.js.stažený soubor" type="text/javascript"></script><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style>
+<link href="./OpenCV_ Image file reading and writing_files/doxygen.css" rel="stylesheet" type="text/css">
+<link href="./OpenCV_ Image file reading and writing_files/stylesheet.css" rel="stylesheet" type="text/css">
+<script src="./OpenCV_ Image file reading and writing_files/jsapi" type="text/javascript"></script><link type="text/css" href="./OpenCV_ Image file reading and writing_files/default+en.css" rel="stylesheet"><link type="text/css" href="./OpenCV_ Image file reading and writing_files/default.css" rel="stylesheet"><script type="text/javascript" src="./OpenCV_ Image file reading and writing_files/default+en.I.js.stažený soubor"></script><style type="text/css">.gsc-control-cse{font-family:arial, sans-serif}.gsc-control-cse .gsc-table-result{font-family:arial, sans-serif}.gsc-control-cse{border-color:#FFFFFF;background-color:#FFFFFF}input.gsc-input,.gsc-input-box,.gsc-input-box-hover,.gsc-input-box-focus{border-color:#D9D9D9}.gsc-search-button-v2,.gsc-search-button-v2:hover,.gsc-search-button-v2:focus{border-color:#666666;background-color:#CECECE;background-image:none;filter:none}.gsc-search-button-v2 svg{fill:#FFFFFF}.gsc-tabHeader.gsc-tabhInactive{border-color:#E9E9E9;background-color:#E9E9E9}.gsc-tabHeader.gsc-tabhActive{border-color:#FF9900;border-bottom-color:#FFFFFF;background-color:#FFFFFF}.gsc-tabsArea{border-color:#FF9900}.gsc-webResult.gsc-result,.gsc-results .gsc-imageResult{border-color:#FFFFFF;background-color:#FFFFFF}.gsc-webResult.gsc-result:hover,.gsc-imageResult:hover{border-color:#FFFFFF;background-color:#FFFFFF}.gs-webResult.gs-result a.gs-title:link,.gs-webResult.gs-result a.gs-title:link b,.gs-imageResult a.gs-title:link,.gs-imageResult a.gs-title:link b{color:#0000CC}.gs-webResult.gs-result a.gs-title:visited,.gs-webResult.gs-result a.gs-title:visited b,.gs-imageResult a.gs-title:visited,.gs-imageResult a.gs-title:visited b{color:#0000CC}.gs-webResult.gs-result a.gs-title:hover,.gs-webResult.gs-result a.gs-title:hover b,.gs-imageResult a.gs-title:hover,.gs-imageResult a.gs-title:hover b{color:#0000CC}.gs-webResult.gs-result a.gs-title:active,.gs-webResult.gs-result a.gs-title:active b,.gs-imageResult a.gs-title:active,.gs-imageResult a.gs-title:active b{color:#0000CC}.gsc-cursor-page{color:#0000CC}a.gsc-trailing-more-results:link{color:#0000CC}.gs-webResult .gs-snippet,.gs-imageResult .gs-snippet,.gs-fileFormatType{color:#000000}.gs-webResult div.gs-visibleUrl,.gs-imageResult div.gs-visibleUrl{color:#008000}.gs-webResult div.gs-visibleUrl-short{color:#008000}.gs-webResult div.gs-visibleUrl-short{display:none}.gs-webResult div.gs-visibleUrl-long{display:block}.gs-promotion div.gs-visibleUrl-short{display:none}.gs-promotion div.gs-visibleUrl-long{display:block}.gsc-cursor-box{border-color:#FFFFFF}.gsc-results .gsc-cursor-box .gsc-cursor-page{border-color:#E9E9E9;background-color:#FFFFFF;color:#0000CC}.gsc-results .gsc-cursor-box .gsc-cursor-current-page{border-color:#FF9900;background-color:#FFFFFF;color:#0000CC}.gsc-webResult.gsc-result.gsc-promotion{border-color:#336699;background-color:#FFFFFF}.gsc-completion-title{color:#0000CC}.gsc-completion-snippet{color:#000000}.gs-promotion a.gs-title:link,.gs-promotion a.gs-title:link *,.gs-promotion .gs-snippet a:link{color:#0000CC}.gs-promotion a.gs-title:visited,.gs-promotion a.gs-title:visited *,.gs-promotion .gs-snippet a:visited{color:#0000CC}.gs-promotion a.gs-title:hover,.gs-promotion a.gs-title:hover *,.gs-promotion .gs-snippet a:hover{color:#0000CC}.gs-promotion a.gs-title:active,.gs-promotion a.gs-title:active *,.gs-promotion .gs-snippet a:active{color:#0000CC}.gs-promotion .gs-snippet,.gs-promotion .gs-title .gs-promotion-title-right,.gs-promotion .gs-title .gs-promotion-title-right *{color:#000000}.gs-promotion .gs-visibleUrl,.gs-promotion .gs-visibleUrl-short{color:#008000}.gcsc-find-more-on-google{color:#0000CC}.gcsc-find-more-on-google-magnifier{fill:#0000CC}</style><style type="text/css">.gscb_a{display:inline-block;font:27px/13px arial,sans-serif}.gsst_a .gscb_a{color:#a1b9ed;cursor:pointer}.gsst_a:hover .gscb_a,.gsst_a:focus .gscb_a{color:#36c}.gsst_a{display:inline-block}.gsst_a{cursor:pointer;padding:0 4px}.gsst_a:hover{text-decoration:none!important}.gsst_b{font-size:16px;padding:0 2px;position:relative;user-select:none;-webkit-user-select:none;white-space:nowrap}.gsst_e{opacity:0.55;}.gsst_a:hover .gsst_e,.gsst_a:focus .gsst_e{opacity:0.72;}.gsst_a:active .gsst_e{opacity:1;}.gsst_f{background:white;text-align:left}.gsst_g{background-color:white;border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-webkit-box-shadow:0 2px 4px rgba(0,0,0,0.2);margin:-1px -3px;padding:0 6px}.gsst_h{background-color:white;height:1px;margin-bottom:-1px;position:relative;top:-1px}.gsib_a{width:100%;padding:4px 6px 0}.gsib_a,.gsib_b{vertical-align:top}.gssb_c{border:0;position:absolute;z-index:989}.gssb_e{border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-webkit-box-shadow:0 2px 4px rgba(0,0,0,0.2);cursor:default}.gssb_f{visibility:hidden;white-space:nowrap}.gssb_k{border:0;display:block;position:absolute;top:0;z-index:988}.gsdd_a{border:none!important}.gsq_a{padding:0}.gsq_a{padding:0}.gscsep_a{display:none}.gssb_a{padding:0 7px}.gssb_a,.gssb_a td{white-space:nowrap;overflow:hidden;line-height:22px}#gssb_b{font-size:11px;color:#36c;text-decoration:none}#gssb_b:hover{font-size:11px;color:#36c;text-decoration:underline}.gssb_g{text-align:center;padding:8px 0 7px;position:relative}.gssb_h{font-size:15px;height:28px;margin:0.2em;-webkit-appearance:button}.gssb_i{background:#eee}.gss_ifl{visibility:hidden;padding-left:5px}.gssb_i .gss_ifl{visibility:visible}a.gssb_j{font-size:13px;color:#36c;text-decoration:none;line-height:100%}a.gssb_j:hover{text-decoration:underline}.gssb_l{height:1px;background-color:#e5e5e5}.gssb_m{color:#000;background:#fff}.gsfe_a{border:1px solid #b9b9b9;border-top-color:#a0a0a0;box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1);-moz-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1);-webkit-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1);}.gsfe_b{border:1px solid #4d90fe;outline:none;box-shadow:inset 0px 1px 2px rgba(0,0,0,0.3);-moz-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.3);-webkit-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.3);}.gssb_a{padding:0 9px}.gsib_a{padding-right:8px;padding-left:8px}.gsst_a{padding-top:5.5px}.gssb_e{border:0}.gssb_l{margin:5px 0}input.gsc-input::-webkit-input-placeholder{font-size:14px}input.gsc-input:-moz-placeholder{font-size:14px}input.gsc-input::-moz-placeholder{font-size:14px}input.gsc-input:-ms-input-placeholder{font-size:14px}input.gsc-input:focus::-webkit-input-placeholder{color:transparent}input.gsc-input:focus:-moz-placeholder{color:transparent}input.gsc-input:focus::-moz-placeholder{color:transparent}input.gsc-input:focus:-ms-input-placeholder{color:transparent}.gssb_c .gsc-completion-container{position:static}.gssb_c{z-index:5000}.gsc-completion-container table{background:transparent;font-size:inherit;font-family:inherit}.gssb_c > tbody > tr,.gssb_c > tbody > tr > td,.gssb_d,.gssb_d > tbody > tr,.gssb_d > tbody > tr > td,.gssb_e,.gssb_e > tbody > tr,.gssb_e > tbody > tr > td{padding:0;margin:0;border:0}.gssb_a table,.gssb_a table tr,.gssb_a table tr td{padding:0;margin:0;border:0}</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<script>
+  (function() {
+    var cx = '002541620211387084530:kaexgxg7oxu';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<div id="___gcse_0"><div class="gsc-control-cse gsc-control-cse-en"><div class="gsc-control-wrapper-cse" dir="ltr"><form class="gsc-search-box gsc-search-box-tools" accept-charset="utf-8"><table cellspacing="0" cellpadding="0" class="gsc-search-box"><tbody><tr><td class="gsc-input"><div class="gsc-input-box" id="gsc-iw-id1"><table cellspacing="0" cellpadding="0" id="gs_id50" class="gstl_50 " style="width: 100%; padding: 0px;"><tbody><tr><td id="gs_tti50" class="gsib_a"><input autocomplete="off" type="text" size="10" class="gsc-input" name="search" title="search" id="gsc-i-id1" x-webkit-speech="" x-webkit-grammar="builtin:search" lang="en" dir="ltr" spellcheck="false" placeholder="Custom Search" style="width: 100%; padding: 0px; border: none; margin: 0px; height: auto; outline: none; background: url(&quot;https://www.google.com/cse/static/images/1x/googlelogo_lightgrey_46x16dp.png&quot;) left center no-repeat rgb(255, 255, 255); text-indent: 48px;"></td><td class="gsib_b"><div class="gsst_b" id="gs_st50" dir="ltr"><a class="gsst_a" href="javascript:void(0)" style="display: none;"><span class="gscb_a" id="gs_cb50">×</span></a></div></td></tr></tbody></table></div></td><td class="gsc-search-button"><button class="gsc-search-button gsc-search-button-v2"><svg width="13" height="13" viewBox="0 0 13 13"><title>search</title><path d="m4.8495 7.8226c0.82666 0 1.5262-0.29146 2.0985-0.87438 0.57232-0.58292 0.86378-1.2877 0.87438-2.1144 0.010599-0.82666-0.28086-1.5262-0.87438-2.0985-0.59352-0.57232-1.293-0.86378-2.0985-0.87438-0.8055-0.010599-1.5103 0.28086-2.1144 0.87438-0.60414 0.59352-0.8956 1.293-0.87438 2.0985 0.021197 0.8055 0.31266 1.5103 0.87438 2.1144 0.56172 0.60414 1.2665 0.8956 2.1144 0.87438zm4.4695 0.2115 3.681 3.6819-1.259 1.284-3.6817-3.7 0.0019784-0.69479-0.090043-0.098846c-0.87973 0.76087-1.92 1.1413-3.1207 1.1413-1.3553 0-2.5025-0.46363-3.4417-1.3909s-1.4088-2.0686-1.4088-3.4239c0-1.3553 0.4696-2.4966 1.4088-3.4239 0.9392-0.92727 2.0864-1.3969 3.4417-1.4088 1.3553-0.011889 2.4906 0.45771 3.406 1.4088 0.9154 0.95107 1.379 2.0924 1.3909 3.4239 0 1.2126-0.38043 2.2588-1.1413 3.1385l0.098834 0.090049z"></path></svg></button></td><td class="gsc-clear-button"><div class="gsc-clear-button" title="clear results">&nbsp;</div></td></tr></tbody></table></form><div class="gsc-results-wrapper-overlay"><div class="gsc-results-close-btn" tabindex="0"></div><div class="gsc-tabsAreaInvisible"><div class="gsc-tabHeader gsc-inline-block gsc-tabhActive">Custom Search</div><span class="gs-spacer"> </span></div><div class="gsc-tabsAreaInvisible"></div><div class="gsc-above-wrapper-area-invisible"><table cellspacing="0" cellpadding="0" class="gsc-above-wrapper-area-container"><tbody><tr><td class="gsc-result-info-container"><div class="gsc-result-info-invisible"></div></td><td class="gsc-orderby-container"><div class="gsc-orderby-invisible"><div class="gsc-orderby-label gsc-inline-block">Sort by:</div><div class="gsc-option-menu-container gsc-inline-block"><div class="gsc-selected-option-container gsc-inline-block"><div class="gsc-selected-option">Relevance</div><div class="gsc-option-selector"></div></div><div class="gsc-option-menu-invisible"><div class="gsc-option-menu-item gsc-option-menu-item-highlighted"><div class="gsc-option">Relevance</div></div><div class="gsc-option-menu-item"><div class="gsc-option">Date</div></div></div></div></div></td></tr></tbody></table></div><div class="gsc-adBlockInvisible"></div><div class="gsc-wrapper"><div class="gsc-adBlockInvisible"></div><div class="gsc-resultsbox-invisible"><div class="gsc-resultsRoot gsc-tabData gsc-tabdActive"><table cellspacing="0" cellpadding="0" class="gsc-resultsHeader"><tbody><tr><td class="gsc-twiddleRegionCell"><div class="gsc-twiddle"><div class="gsc-title">Web</div></div><div class="gsc-stats"></div><div class="gsc-results-selector gsc-all-results-active"><div class="gsc-result-selector gsc-one-result" title="show one result">&nbsp;</div><div class="gsc-result-selector gsc-more-results" title="show more results">&nbsp;</div><div class="gsc-result-selector gsc-all-results" title="show all results">&nbsp;</div></div></td><td class="gsc-configLabelCell"></td></tr></tbody></table><div><div class="gsc-expansionArea"></div></div></div></div></div></div><div class="gsc-modal-background-image" tabindex="0"></div></div></div></div>
+<script type="text/javascript" src="./OpenCV_ Image file reading and writing_files/version.js.stažený soubor"></script>
+
+<table cellpadding="0" cellspacing="0">
+<tbody>
+<tr style="height: 56px;">
+<td id="projectlogo"><img alt="Logo" src="./OpenCV_ Image file reading and writing_files/opencv-logo-small.png"></td>
+<td style="padding-left: 0.5em;">
+<div id="projectname">OpenCV
+   &nbsp;<span id="projectnumber"><select><option value="4.0.0-pre">4.0.0-pre</option><option value="4.0.0-beta">4.0.0-beta</option><option value="4.0.0-alpha">4.0.0-alpha</option><option value="3.4.3-dev">3.4.3-dev</option><option value="3.4.3">3.4.3</option><option value="3.4.2">3.4.2</option><option value="3.4.1" selected="selected">3.4.1</option><option value="3.4.0">3.4.0</option><option value="3.3.1">3.3.1</option><option value="3.3.0">3.3.0</option><option value="3.2.0">3.2.0</option><option value="3.1.0">3.1.0</option><option value="3.0.0">3.0.0</option></select></span>
+</div>
+<div id="projectbrief">Open Source Computer Vision</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.8.12 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
+</script>
+<script src="./OpenCV_ Image file reading and writing_files/menudata.js.stažený soubor" type="text/javascript"></script>
+<script src="./OpenCV_ Image file reading and writing_files/menu.js.stažený soubor" type="text/javascript"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('../../',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"><ul class="sm sm-dox" id="main-menu" data-smartmenus-id="15404764698355776"><li><a href="https://docs.opencv.org/3.4.1/index.html">Main Page</a></li><li><a href="https://docs.opencv.org/3.4.1/pages.html">Related Pages</a></li><li><a href="https://docs.opencv.org/3.4.1/modules.html">Modules</a></li><li><a href="https://docs.opencv.org/3.4.1/namespaces.html" class="has-submenu" id="sm-15404764698355776-1" aria-haspopup="true" aria-controls="sm-15404764698355776-2" aria-expanded="false"><span class="sub-arrow">+</span>Namespaces</a><ul id="sm-15404764698355776-2" role="group" aria-hidden="true" aria-labelledby="sm-15404764698355776-1" aria-expanded="false"><li><a href="https://docs.opencv.org/3.4.1/namespaces.html">Namespace List</a></li></ul></li><li><a href="https://docs.opencv.org/3.4.1/annotated.html" class="has-submenu" id="sm-15404764698355776-3" aria-haspopup="true" aria-controls="sm-15404764698355776-4" aria-expanded="false"><span class="sub-arrow">+</span>Classes</a><ul id="sm-15404764698355776-4" role="group" aria-hidden="true" aria-labelledby="sm-15404764698355776-3" aria-expanded="false"><li><a href="https://docs.opencv.org/3.4.1/annotated.html">Class List</a></li><li><a href="https://docs.opencv.org/3.4.1/classes.html">Class Index</a></li></ul></li><li><a href="https://docs.opencv.org/3.4.1/files.html" class="has-submenu" id="sm-15404764698355776-5" aria-haspopup="true" aria-controls="sm-15404764698355776-6" aria-expanded="false"><span class="sub-arrow">+</span>Files</a><ul id="sm-15404764698355776-6" role="group" aria-hidden="true" aria-labelledby="sm-15404764698355776-5" aria-expanded="false"><li><a href="https://docs.opencv.org/3.4.1/files.html">Files index</a></li><li><a href="https://docs.opencv.org/3.4.1/globals.html" class="has-submenu" id="sm-15404764698355776-7" aria-haspopup="true" aria-controls="sm-15404764698355776-8" aria-expanded="false"><span class="sub-arrow">+</span>Global objects</a><ul id="sm-15404764698355776-8" role="group" aria-hidden="true" aria-labelledby="sm-15404764698355776-7" aria-expanded="false"><li><a href="https://docs.opencv.org/3.4.1/globals.html" class="has-submenu" id="sm-15404764698355776-9" aria-haspopup="true" aria-controls="sm-15404764698355776-10" aria-expanded="false"><span class="sub-arrow">+</span>All</a><ul id="sm-15404764698355776-10" role="group" aria-hidden="true" aria-labelledby="sm-15404764698355776-9" aria-expanded="false"><li><a href="https://docs.opencv.org/3.4.1/globals.html#index__">_</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_a.html#index_a">a</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_c.html#index_c">c</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_d.html#index_d">d</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_f.html#index_f">f</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_g.html#index_g">g</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_h.html#index_h">h</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_i.html#index_i">i</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_k.html#index_k">k</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_l.html#index_l">l</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_m.html#index_m">m</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_n.html#index_n">n</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_o.html#index_o">o</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_p.html#index_p">p</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_r.html#index_r">r</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_s.html#index_s">s</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_t.html#index_t">t</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_u.html#index_u">u</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_v.html#index_v">v</a></li></ul></li><li><a href="https://docs.opencv.org/3.4.1/globals_func.html" class="has-submenu" id="sm-15404764698355776-11" aria-haspopup="true" aria-controls="sm-15404764698355776-12" aria-expanded="false"><span class="sub-arrow">+</span>Functions</a><ul id="sm-15404764698355776-12" role="group" aria-hidden="true" aria-labelledby="sm-15404764698355776-11" aria-expanded="false"><li><a href="https://docs.opencv.org/3.4.1/globals_func.html#index__">_</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_func_a.html#index_a">a</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_func_c.html#index_c">c</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_func_g.html#index_g">g</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_func_h.html#index_h">h</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_func_m.html#index_m">m</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_func_n.html#index_n">n</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_func_p.html#index_p">p</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_func_t.html#index_t">t</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_func_u.html#index_u">u</a></li></ul></li><li><a href="https://docs.opencv.org/3.4.1/globals_vars.html">Variables</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_type.html" class="has-submenu" id="sm-15404764698355776-13" aria-haspopup="true" aria-controls="sm-15404764698355776-14" aria-expanded="false"><span class="sub-arrow">+</span>Typedefs</a><ul id="sm-15404764698355776-14" role="group" aria-hidden="true" aria-labelledby="sm-15404764698355776-13" aria-expanded="false"><li><a href="https://docs.opencv.org/3.4.1/globals_type.html#index_c">c</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_type.html#index_i">i</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_type.html#index_n">n</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_type.html#index_s">s</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_type.html#index_u">u</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_type.html#index_v">v</a></li></ul></li><li><a href="https://docs.opencv.org/3.4.1/globals_enum.html">Enumerations</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_eval.html" class="has-submenu" id="sm-15404764698355776-15" aria-haspopup="true" aria-controls="sm-15404764698355776-16" aria-expanded="false"><span class="sub-arrow">+</span>Enumerator</a><ul id="sm-15404764698355776-16" role="group" aria-hidden="true" aria-labelledby="sm-15404764698355776-15" aria-expanded="false"><li><a href="https://docs.opencv.org/3.4.1/globals_eval.html#index_c">c</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_eval_n.html#index_n">n</a></li></ul></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs.html" class="has-submenu" id="sm-15404764698355776-17" aria-haspopup="true" aria-controls="sm-15404764698355776-18" aria-expanded="false"><span class="sub-arrow">+</span>Macros</a><ul id="sm-15404764698355776-18" role="group" aria-hidden="true" aria-labelledby="sm-15404764698355776-17" aria-expanded="false"><li><a href="https://docs.opencv.org/3.4.1/globals_defs.html#index__">_</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_c.html#index_c">c</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_d.html#index_d">d</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_f.html#index_f">f</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_h.html#index_h">h</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_i.html#index_i">i</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_l.html#index_l">l</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_m.html#index_m">m</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_n.html#index_n">n</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_o.html#index_o">o</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_r.html#index_r">r</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_s.html#index_s">s</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_t.html#index_t">t</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_u.html#index_u">u</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_v.html#index_v">v</a></li></ul></li></ul></li></ul></li><li><a href="https://docs.opencv.org/3.4.1/examples.html">Examples</a></li><li><a href="https://docs.opencv.org/3.4.1/javadoc/index.html">Java documentation</a></li><li style="float:right"><div id="MSearchBox" class="MSearchBoxInactive"><span class="left"><img id="MSearchSelect" src="./OpenCV_ Image file reading and writing_files/mag_sel.png" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()" alt=""><input type="text" id="MSearchField" value="Search" accesskey="S" onfocus="searchBox.OnSearchFieldFocus(true)" onblur="searchBox.OnSearchFieldFocus(false)" onkeyup="searchBox.OnSearchFieldChange(event)"></span><span class="right"><a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="./OpenCV_ Image file reading and writing_files/close.png" alt=""></a></span></div></li></ul></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow" onkeydown="return searchBox.OnSearchSelectKey(event)" onmouseout="return searchBox.OnSearchSelectHide()" onmouseover="return searchBox.OnSearchSelectShow()">
+<a class="SelectItem" onclick="searchBox.OnSelectItem(0)" href="javascript:void(0)"><span class="SelectionMark">•</span>All</a><a class="SelectItem" onclick="searchBox.OnSelectItem(1)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" onclick="searchBox.OnSelectItem(2)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" onclick="searchBox.OnSelectItem(3)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" onclick="searchBox.OnSelectItem(4)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" onclick="searchBox.OnSelectItem(5)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" onclick="searchBox.OnSelectItem(6)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" onclick="searchBox.OnSelectItem(7)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" onclick="searchBox.OnSelectItem(8)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" onclick="searchBox.OnSelectItem(9)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Properties</a><a class="SelectItem" onclick="searchBox.OnSelectItem(10)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Friends</a><a class="SelectItem" onclick="searchBox.OnSelectItem(11)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Macros</a><a class="SelectItem" onclick="searchBox.OnSelectItem(12)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Modules</a><a class="SelectItem" onclick="searchBox.OnSelectItem(13)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Pages</a></div>
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe frameborder="0" id="MSearchResults" name="MSearchResults" src="javascript:void(0)" src="./OpenCV_ Image file reading and writing_files/saved_resource.html">
+</iframe>
+</div>
+<div class="header">
+<div class="summary">
+<a href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#groups">Modules</a> |
+<a href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#enum-members">Enumerations</a> |
+<a href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#func-members">Functions</a> </div>
+<div class="headertitle">
+<div class="title">Image file reading and writing</div> </div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tbody><tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="groups"></a>
+Modules</h2></td></tr>
+<tr class="memitem:da/d0a/group__imgcodecs__c"><td align="right" class="memItemLeft" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/da/d0a/group__imgcodecs__c.html">C API</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:d2/d92/group__imgcodecs__ios"><td align="right" class="memItemLeft" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d2/d92/group__imgcodecs__ios.html">iOS glue</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+</tbody></table><table class="memberdecls">
+<tbody><tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:ga61d9b0126a3e57d9277ac48327799c80"><td align="right" class="memItemLeft" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga61d9b0126a3e57d9277ac48327799c80">cv::ImreadModes</a> { <br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga61d9b0126a3e57d9277ac48327799c80aeddd67043ed0df14f9d9a4e66d2b0708">cv::IMREAD_UNCHANGED</a> = -1, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga61d9b0126a3e57d9277ac48327799c80ae29981cfc153d3b0cef5c0daeedd2125">cv::IMREAD_GRAYSCALE</a> = 0, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga61d9b0126a3e57d9277ac48327799c80af660544735200cbe942eea09232eb822">cv::IMREAD_COLOR</a> = 1, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga61d9b0126a3e57d9277ac48327799c80a0b486c93c25e8a0b0712681bb7254c18">cv::IMREAD_ANYDEPTH</a> = 2, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga61d9b0126a3e57d9277ac48327799c80ab6573b69300c092b61800222fe555953">cv::IMREAD_ANYCOLOR</a> = 4, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga61d9b0126a3e57d9277ac48327799c80a1b482916f4ffe34f0b90550f267fd896">cv::IMREAD_LOAD_GDAL</a> = 8, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga61d9b0126a3e57d9277ac48327799c80a64063c4e6a917237bd2daef7aa23dc01">cv::IMREAD_REDUCED_GRAYSCALE_2</a> = 16, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga61d9b0126a3e57d9277ac48327799c80a4d3de7230e2682195e09b00728792b37">cv::IMREAD_REDUCED_COLOR_2</a> = 17, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga61d9b0126a3e57d9277ac48327799c80a7903236181de9ade28ba1438b342e6c8">cv::IMREAD_REDUCED_GRAYSCALE_4</a> = 32, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga61d9b0126a3e57d9277ac48327799c80adf4fbfe43fb7c8c94ca008e7d7d20086">cv::IMREAD_REDUCED_COLOR_4</a> = 33, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga61d9b0126a3e57d9277ac48327799c80a838097893b5d5385d43e6a4470227a33">cv::IMREAD_REDUCED_GRAYSCALE_8</a> = 64, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga61d9b0126a3e57d9277ac48327799c80ac865811dba56b17a8241f9e62c273198">cv::IMREAD_REDUCED_COLOR_8</a> = 65, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga61d9b0126a3e57d9277ac48327799c80a34f91a514cd95127d8ba900840af548e">cv::IMREAD_IGNORE_ORIENTATION</a> = 128
+<br>
+ }</td></tr><tr class="memdesc:ga61d9b0126a3e57d9277ac48327799c80"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Imread flags.  <a href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga61d9b0126a3e57d9277ac48327799c80">More...</a><br></td></tr>
+
+<tr class="separator:ga61d9b0126a3e57d9277ac48327799c80"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ga47d07d14b3c33151daac7fde6f34e897"><td align="right" class="memItemLeft" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga47d07d14b3c33151daac7fde6f34e897">cv::ImwriteEXRTypeFlags</a> { <br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga47d07d14b3c33151daac7fde6f34e897a15ef5fdee6e2a55b4d0a1f9b2874fb96">cv::IMWRITE_EXR_TYPE_HALF</a> = 1, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga47d07d14b3c33151daac7fde6f34e897ad6a009ca0724b2e8bcbe0b60f395f2c7">cv::IMWRITE_EXR_TYPE_FLOAT</a> = 2
+<br>
+ }</td></tr>
+<tr class="separator:ga47d07d14b3c33151daac7fde6f34e897"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ga292d81be8d76901bff7988d18d2b42ac"><td align="right" class="memItemLeft" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga292d81be8d76901bff7988d18d2b42ac">cv::ImwriteFlags</a> { <br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga292d81be8d76901bff7988d18d2b42aca947af22db2cf6f1f482289b0985b09ec">cv::IMWRITE_JPEG_QUALITY</a> = 1, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga292d81be8d76901bff7988d18d2b42aca32ab52a075fc4e2ca23760a80b3fcd12">cv::IMWRITE_JPEG_PROGRESSIVE</a> = 2, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga292d81be8d76901bff7988d18d2b42acae80c3e72393ec86b8ea1db4a2a228b5f">cv::IMWRITE_JPEG_OPTIMIZE</a> = 3, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga292d81be8d76901bff7988d18d2b42aca06f325a56b6b09074d9781de18745560">cv::IMWRITE_JPEG_RST_INTERVAL</a> = 4, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga292d81be8d76901bff7988d18d2b42aca64c65da14d74ab87143d6999c4df12ea">cv::IMWRITE_JPEG_LUMA_QUALITY</a> = 5, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga292d81be8d76901bff7988d18d2b42acaaba13094b3575e78a6002788b0ae7354">cv::IMWRITE_JPEG_CHROMA_QUALITY</a> = 6, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga292d81be8d76901bff7988d18d2b42acad2548321c69ab9c0582fd51e75ace1d0">cv::IMWRITE_PNG_COMPRESSION</a> = 16, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga292d81be8d76901bff7988d18d2b42acaa95faec46150b372c80c7d4bbedbcf8a">cv::IMWRITE_PNG_STRATEGY</a> = 17, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga292d81be8d76901bff7988d18d2b42aca8c609ad94b7bd036ef68c51e7f77915f">cv::IMWRITE_PNG_BILEVEL</a> = 18, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga292d81be8d76901bff7988d18d2b42aca6ad01adc2675d735ec8424e6e7562087">cv::IMWRITE_PXM_BINARY</a> = 32, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga292d81be8d76901bff7988d18d2b42aca4aed00547168d3a1083a2b1241b99102">cv::IMWRITE_EXR_TYPE</a> = (3 &lt;&lt; 4) + 0, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga292d81be8d76901bff7988d18d2b42aca7d3f848cc45d3138de0a2053d213a54a">cv::IMWRITE_WEBP_QUALITY</a> = 64, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga292d81be8d76901bff7988d18d2b42acacc7bb2ed1314ec9278a38d85e83b6623">cv::IMWRITE_PAM_TUPLETYPE</a> = 128
+<br>
+ }</td></tr><tr class="memdesc:ga292d81be8d76901bff7988d18d2b42ac"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Imwrite flags.  <a href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga292d81be8d76901bff7988d18d2b42ac">More...</a><br></td></tr>
+
+<tr class="separator:ga292d81be8d76901bff7988d18d2b42ac"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ga4e6c77a906952525a4d22fb3efea0e01"><td align="right" class="memItemLeft" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga4e6c77a906952525a4d22fb3efea0e01">cv::ImwritePAMFlags</a> { <br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga4e6c77a906952525a4d22fb3efea0e01a05708faa19fda2b0e3e793542fced3c9">cv::IMWRITE_PAM_FORMAT_NULL</a> = 0, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga4e6c77a906952525a4d22fb3efea0e01a32a5eb9e6aa378ef126a6ec29c710d15">cv::IMWRITE_PAM_FORMAT_BLACKANDWHITE</a> = 1, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga4e6c77a906952525a4d22fb3efea0e01a9f2122f919b87bd6f5209ebe3673478d">cv::IMWRITE_PAM_FORMAT_GRAYSCALE</a> = 2, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga4e6c77a906952525a4d22fb3efea0e01a31754d8e503b394996982d8eeb5916b5">cv::IMWRITE_PAM_FORMAT_GRAYSCALE_ALPHA</a> = 3, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga4e6c77a906952525a4d22fb3efea0e01a749f4c5db48aa048ae4dbd8670d7d58d">cv::IMWRITE_PAM_FORMAT_RGB</a> = 4, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga4e6c77a906952525a4d22fb3efea0e01adfdc63fecaa2abcbe1d98b79030c726a">cv::IMWRITE_PAM_FORMAT_RGB_ALPHA</a> = 5
+<br>
+ }</td></tr><tr class="memdesc:ga4e6c77a906952525a4d22fb3efea0e01"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Imwrite PAM specific tupletype flags used to define the 'TUPETYPE' field of a PAM file.  <a href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga4e6c77a906952525a4d22fb3efea0e01">More...</a><br></td></tr>
+
+<tr class="separator:ga4e6c77a906952525a4d22fb3efea0e01"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:gaa60044d347ffd187161b5ec9ea2ef2f9"><td align="right" class="memItemLeft" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gaa60044d347ffd187161b5ec9ea2ef2f9">cv::ImwritePNGFlags</a> { <br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ggaa60044d347ffd187161b5ec9ea2ef2f9a5bb296ccb3fab45a113a1cc28bf43abf">cv::IMWRITE_PNG_STRATEGY_DEFAULT</a> = 0, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ggaa60044d347ffd187161b5ec9ea2ef2f9a3def1a542d499f4f05c19efab9d79292">cv::IMWRITE_PNG_STRATEGY_FILTERED</a> = 1, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ggaa60044d347ffd187161b5ec9ea2ef2f9affed3ef30c9147769361546cf0b5ad5a">cv::IMWRITE_PNG_STRATEGY_HUFFMAN_ONLY</a> = 2, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ggaa60044d347ffd187161b5ec9ea2ef2f9a5d75e74ce7cdaf0139f1d44d23734b43">cv::IMWRITE_PNG_STRATEGY_RLE</a> = 3, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ggaa60044d347ffd187161b5ec9ea2ef2f9a4663acb92a49bb13104a2769cee7d0c8">cv::IMWRITE_PNG_STRATEGY_FIXED</a> = 4
+<br>
+ }</td></tr><tr class="memdesc:gaa60044d347ffd187161b5ec9ea2ef2f9"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Imwrite PNG specific flags used to tune the compression algorithm.  <a href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gaa60044d347ffd187161b5ec9ea2ef2f9">More...</a><br></td></tr>
+
+<tr class="separator:gaa60044d347ffd187161b5ec9ea2ef2f9"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+</tbody></table><table class="memberdecls">
+<tbody><tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:ga26a67788faa58ade337f8d28ba0eb19e"><td align="right" class="memItemLeft" valign="top"><a class="el" href="https://docs.opencv.org/3.4.1/d3/d63/classcv_1_1Mat.html">Mat</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga26a67788faa58ade337f8d28ba0eb19e">cv::imdecode</a> (<a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#gab1371a23c90d5f4725ea98240377d7a1">InputArray</a> buf, int flags)</td></tr>
+<tr class="memdesc:ga26a67788faa58ade337f8d28ba0eb19e"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Reads an image from a buffer in memory.  <a href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga26a67788faa58ade337f8d28ba0eb19e">More...</a><br></td></tr>
+<tr class="separator:ga26a67788faa58ade337f8d28ba0eb19e"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ga5a0acefe5cbe0a81e904e452ec7ca733"><td align="right" class="memItemLeft" valign="top"><a class="el" href="https://docs.opencv.org/3.4.1/d3/d63/classcv_1_1Mat.html">Mat</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga5a0acefe5cbe0a81e904e452ec7ca733">cv::imdecode</a> (<a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#gab1371a23c90d5f4725ea98240377d7a1">InputArray</a> buf, int flags, <a class="el" href="https://docs.opencv.org/3.4.1/d3/d63/classcv_1_1Mat.html">Mat</a> *dst)</td></tr>
+<tr class="separator:ga5a0acefe5cbe0a81e904e452ec7ca733"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ga461f9ac09887e47797a54567df3b8b63"><td align="right" class="memItemLeft" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga461f9ac09887e47797a54567df3b8b63">cv::imencode</a> (const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;ext, <a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#gab1371a23c90d5f4725ea98240377d7a1">InputArray</a> img, std::vector&lt; <a class="el" href="https://docs.opencv.org/3.4.1/d1/d1b/group__core__hal__interface.html#ga65f85814a8290f9797005d3b28e7e5fc">uchar</a> &gt; &amp;buf, const std::vector&lt; int &gt; &amp;params=std::vector&lt; int &gt;())</td></tr>
+<tr class="memdesc:ga461f9ac09887e47797a54567df3b8b63"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Encodes an image into a memory buffer.  <a href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga461f9ac09887e47797a54567df3b8b63">More...</a><br></td></tr>
+<tr class="separator:ga461f9ac09887e47797a54567df3b8b63"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ga288b8b3da0892bd651fce07b3bbd3a56"><td align="right" class="memItemLeft" valign="top"><a class="el" href="https://docs.opencv.org/3.4.1/d3/d63/classcv_1_1Mat.html">Mat</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga288b8b3da0892bd651fce07b3bbd3a56">cv::imread</a> (const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;filename, int flags=<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga61d9b0126a3e57d9277ac48327799c80af660544735200cbe942eea09232eb822">IMREAD_COLOR</a>)</td></tr>
+<tr class="memdesc:ga288b8b3da0892bd651fce07b3bbd3a56"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Loads an image from a file.  <a href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga288b8b3da0892bd651fce07b3bbd3a56">More...</a><br></td></tr>
+<tr class="separator:ga288b8b3da0892bd651fce07b3bbd3a56"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ga4dd47c9ae3d55cc42286cff005825e31"><td align="right" class="memItemLeft" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga4dd47c9ae3d55cc42286cff005825e31">cv::imreadmulti</a> (const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;filename, std::vector&lt; <a class="el" href="https://docs.opencv.org/3.4.1/d3/d63/classcv_1_1Mat.html">Mat</a> &gt; &amp;mats, int flags=<a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga61d9b0126a3e57d9277ac48327799c80ab6573b69300c092b61800222fe555953">IMREAD_ANYCOLOR</a>)</td></tr>
+<tr class="memdesc:ga4dd47c9ae3d55cc42286cff005825e31"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Loads a multi-page image from a file.  <a href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga4dd47c9ae3d55cc42286cff005825e31">More...</a><br></td></tr>
+<tr class="separator:ga4dd47c9ae3d55cc42286cff005825e31"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:gabbc7ef1aa2edfaa87772f1202d67e0ce"><td align="right" class="memItemLeft" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gabbc7ef1aa2edfaa87772f1202d67e0ce">cv::imwrite</a> (const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;filename, <a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#gab1371a23c90d5f4725ea98240377d7a1">InputArray</a> img, const std::vector&lt; int &gt; &amp;params=std::vector&lt; int &gt;())</td></tr>
+<tr class="memdesc:gabbc7ef1aa2edfaa87772f1202d67e0ce"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Saves an image to a specified file.  <a href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gabbc7ef1aa2edfaa87772f1202d67e0ce">More...</a><br></td></tr>
+<tr class="separator:gabbc7ef1aa2edfaa87772f1202d67e0ce"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+</tbody></table>
+<a id="details" name="details"></a><h2 class="groupheader">Detailed Description</h2>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="ga61d9b0126a3e57d9277ac48327799c80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga61d9b0126a3e57d9277ac48327799c80">§&nbsp;</a></span>ImreadModes</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">enum <a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga61d9b0126a3e57d9277ac48327799c80">cv::ImreadModes</a></td>
+</tr>
+</tbody></table>
+</div><div class="memdoc">
+<p>Imread flags. </p>
+<table class="fieldtable">
+<tbody><tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga61d9b0126a3e57d9277ac48327799c80aeddd67043ed0df14f9d9a4e66d2b0708"></a>IMREAD_UNCHANGED&nbsp;<div class="python_language">Python: cv.IMREAD_UNCHANGED</div></td><td class="fielddoc"><p>If set, return the loaded image as is (with alpha channel, otherwise it gets cropped). </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga61d9b0126a3e57d9277ac48327799c80ae29981cfc153d3b0cef5c0daeedd2125"></a>IMREAD_GRAYSCALE&nbsp;<div class="python_language">Python: cv.IMREAD_GRAYSCALE</div></td><td class="fielddoc"><p>If set, always convert image to the single channel grayscale image. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga61d9b0126a3e57d9277ac48327799c80af660544735200cbe942eea09232eb822"></a>IMREAD_COLOR&nbsp;<div class="python_language">Python: cv.IMREAD_COLOR</div></td><td class="fielddoc"><p>If set, always convert image to the 3 channel BGR color image. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga61d9b0126a3e57d9277ac48327799c80a0b486c93c25e8a0b0712681bb7254c18"></a>IMREAD_ANYDEPTH&nbsp;<div class="python_language">Python: cv.IMREAD_ANYDEPTH</div></td><td class="fielddoc"><p>If set, return 16-bit/32-bit image when the input has the corresponding depth, otherwise convert it to 8-bit. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga61d9b0126a3e57d9277ac48327799c80ab6573b69300c092b61800222fe555953"></a>IMREAD_ANYCOLOR&nbsp;<div class="python_language">Python: cv.IMREAD_ANYCOLOR</div></td><td class="fielddoc"><p>If set, the image is read in any possible color format. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga61d9b0126a3e57d9277ac48327799c80a1b482916f4ffe34f0b90550f267fd896"></a>IMREAD_LOAD_GDAL&nbsp;<div class="python_language">Python: cv.IMREAD_LOAD_GDAL</div></td><td class="fielddoc"><p>If set, use the gdal driver for loading the image. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga61d9b0126a3e57d9277ac48327799c80a64063c4e6a917237bd2daef7aa23dc01"></a>IMREAD_REDUCED_GRAYSCALE_2&nbsp;<div class="python_language">Python: cv.IMREAD_REDUCED_GRAYSCALE_2</div></td><td class="fielddoc"><p>If set, always convert image to the single channel grayscale image and the image size reduced 1/2. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga61d9b0126a3e57d9277ac48327799c80a4d3de7230e2682195e09b00728792b37"></a>IMREAD_REDUCED_COLOR_2&nbsp;<div class="python_language">Python: cv.IMREAD_REDUCED_COLOR_2</div></td><td class="fielddoc"><p>If set, always convert image to the 3 channel BGR color image and the image size reduced 1/2. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga61d9b0126a3e57d9277ac48327799c80a7903236181de9ade28ba1438b342e6c8"></a>IMREAD_REDUCED_GRAYSCALE_4&nbsp;<div class="python_language">Python: cv.IMREAD_REDUCED_GRAYSCALE_4</div></td><td class="fielddoc"><p>If set, always convert image to the single channel grayscale image and the image size reduced 1/4. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga61d9b0126a3e57d9277ac48327799c80adf4fbfe43fb7c8c94ca008e7d7d20086"></a>IMREAD_REDUCED_COLOR_4&nbsp;<div class="python_language">Python: cv.IMREAD_REDUCED_COLOR_4</div></td><td class="fielddoc"><p>If set, always convert image to the 3 channel BGR color image and the image size reduced 1/4. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga61d9b0126a3e57d9277ac48327799c80a838097893b5d5385d43e6a4470227a33"></a>IMREAD_REDUCED_GRAYSCALE_8&nbsp;<div class="python_language">Python: cv.IMREAD_REDUCED_GRAYSCALE_8</div></td><td class="fielddoc"><p>If set, always convert image to the single channel grayscale image and the image size reduced 1/8. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga61d9b0126a3e57d9277ac48327799c80ac865811dba56b17a8241f9e62c273198"></a>IMREAD_REDUCED_COLOR_8&nbsp;<div class="python_language">Python: cv.IMREAD_REDUCED_COLOR_8</div></td><td class="fielddoc"><p>If set, always convert image to the 3 channel BGR color image and the image size reduced 1/8. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga61d9b0126a3e57d9277ac48327799c80a34f91a514cd95127d8ba900840af548e"></a>IMREAD_IGNORE_ORIENTATION&nbsp;<div class="python_language">Python: cv.IMREAD_IGNORE_ORIENTATION</div></td><td class="fielddoc"><p>If set, do not rotate the image according to EXIF's orientation flag. </p>
+</td></tr>
+</tbody></table>
+</div>
+</div>
+<a id="ga47d07d14b3c33151daac7fde6f34e897"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga47d07d14b3c33151daac7fde6f34e897">§&nbsp;</a></span>ImwriteEXRTypeFlags</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">enum <a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga47d07d14b3c33151daac7fde6f34e897">cv::ImwriteEXRTypeFlags</a></td>
+</tr>
+</tbody></table>
+</div><div class="memdoc">
+<table class="fieldtable">
+<tbody><tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga47d07d14b3c33151daac7fde6f34e897a15ef5fdee6e2a55b4d0a1f9b2874fb96"></a>IMWRITE_EXR_TYPE_HALF&nbsp;<div class="python_language">Python: cv.IMWRITE_EXR_TYPE_HALF</div></td><td class="fielddoc"><p>store as HALF (FP16) </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga47d07d14b3c33151daac7fde6f34e897ad6a009ca0724b2e8bcbe0b60f395f2c7"></a>IMWRITE_EXR_TYPE_FLOAT&nbsp;<div class="python_language">Python: cv.IMWRITE_EXR_TYPE_FLOAT</div></td><td class="fielddoc"><p>store as FP32 (default) </p>
+</td></tr>
+</tbody></table>
+</div>
+</div>
+<a id="ga292d81be8d76901bff7988d18d2b42ac"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga292d81be8d76901bff7988d18d2b42ac">§&nbsp;</a></span>ImwriteFlags</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">enum <a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga292d81be8d76901bff7988d18d2b42ac">cv::ImwriteFlags</a></td>
+</tr>
+</tbody></table>
+</div><div class="memdoc">
+<p>Imwrite flags. </p>
+<table class="fieldtable">
+<tbody><tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga292d81be8d76901bff7988d18d2b42aca947af22db2cf6f1f482289b0985b09ec"></a>IMWRITE_JPEG_QUALITY&nbsp;<div class="python_language">Python: cv.IMWRITE_JPEG_QUALITY</div></td><td class="fielddoc"><p>For JPEG, it can be a quality from 0 to 100 (the higher is the better). Default value is 95. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga292d81be8d76901bff7988d18d2b42aca32ab52a075fc4e2ca23760a80b3fcd12"></a>IMWRITE_JPEG_PROGRESSIVE&nbsp;<div class="python_language">Python: cv.IMWRITE_JPEG_PROGRESSIVE</div></td><td class="fielddoc"><p>Enable JPEG features, 0 or 1, default is False. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga292d81be8d76901bff7988d18d2b42acae80c3e72393ec86b8ea1db4a2a228b5f"></a>IMWRITE_JPEG_OPTIMIZE&nbsp;<div class="python_language">Python: cv.IMWRITE_JPEG_OPTIMIZE</div></td><td class="fielddoc"><p>Enable JPEG features, 0 or 1, default is False. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga292d81be8d76901bff7988d18d2b42aca06f325a56b6b09074d9781de18745560"></a>IMWRITE_JPEG_RST_INTERVAL&nbsp;<div class="python_language">Python: cv.IMWRITE_JPEG_RST_INTERVAL</div></td><td class="fielddoc"><p>JPEG restart interval, 0 - 65535, default is 0 - no restart. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga292d81be8d76901bff7988d18d2b42aca64c65da14d74ab87143d6999c4df12ea"></a>IMWRITE_JPEG_LUMA_QUALITY&nbsp;<div class="python_language">Python: cv.IMWRITE_JPEG_LUMA_QUALITY</div></td><td class="fielddoc"><p>Separate luma quality level, 0 - 100, default is 0 - don't use. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga292d81be8d76901bff7988d18d2b42acaaba13094b3575e78a6002788b0ae7354"></a>IMWRITE_JPEG_CHROMA_QUALITY&nbsp;<div class="python_language">Python: cv.IMWRITE_JPEG_CHROMA_QUALITY</div></td><td class="fielddoc"><p>Separate chroma quality level, 0 - 100, default is 0 - don't use. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga292d81be8d76901bff7988d18d2b42acad2548321c69ab9c0582fd51e75ace1d0"></a>IMWRITE_PNG_COMPRESSION&nbsp;<div class="python_language">Python: cv.IMWRITE_PNG_COMPRESSION</div></td><td class="fielddoc"><p>For PNG, it can be the compression level from 0 to 9. A higher value means a smaller size and longer compression time. If specified, strategy is changed to IMWRITE_PNG_STRATEGY_DEFAULT (Z_DEFAULT_STRATEGY). Default value is 1 (best speed setting). </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga292d81be8d76901bff7988d18d2b42acaa95faec46150b372c80c7d4bbedbcf8a"></a>IMWRITE_PNG_STRATEGY&nbsp;<div class="python_language">Python: cv.IMWRITE_PNG_STRATEGY</div></td><td class="fielddoc"><p>One of <a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gaa60044d347ffd187161b5ec9ea2ef2f9" title="Imwrite PNG specific flags used to tune the compression algorithm. ">cv::ImwritePNGFlags</a>, default is IMWRITE_PNG_STRATEGY_RLE. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga292d81be8d76901bff7988d18d2b42aca8c609ad94b7bd036ef68c51e7f77915f"></a>IMWRITE_PNG_BILEVEL&nbsp;<div class="python_language">Python: cv.IMWRITE_PNG_BILEVEL</div></td><td class="fielddoc"><p>Binary level PNG, 0 or 1, default is 0. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga292d81be8d76901bff7988d18d2b42aca6ad01adc2675d735ec8424e6e7562087"></a>IMWRITE_PXM_BINARY&nbsp;<div class="python_language">Python: cv.IMWRITE_PXM_BINARY</div></td><td class="fielddoc"><p>For PPM, PGM, or PBM, it can be a binary format flag, 0 or 1. Default value is 1. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga292d81be8d76901bff7988d18d2b42aca4aed00547168d3a1083a2b1241b99102"></a>IMWRITE_EXR_TYPE&nbsp;<div class="python_language">Python: cv.IMWRITE_EXR_TYPE</div></td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="gga292d81be8d76901bff7988d18d2b42aca7d3f848cc45d3138de0a2053d213a54a"></a>IMWRITE_WEBP_QUALITY&nbsp;<div class="python_language">Python: cv.IMWRITE_WEBP_QUALITY</div></td><td class="fielddoc"><p>override EXR storage type (FLOAT (FP32) is default) </p>
+<p>For WEBP, it can be a quality from 1 to 100 (the higher is the better). By default (without any parameter) and for quality above 100 the lossless compression is used. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga292d81be8d76901bff7988d18d2b42acacc7bb2ed1314ec9278a38d85e83b6623"></a>IMWRITE_PAM_TUPLETYPE&nbsp;<div class="python_language">Python: cv.IMWRITE_PAM_TUPLETYPE</div></td><td class="fielddoc"><p>For PAM, sets the TUPLETYPE field to the corresponding string value that is defined for the format. </p>
+</td></tr>
+</tbody></table>
+</div>
+</div>
+<a id="ga4e6c77a906952525a4d22fb3efea0e01"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga4e6c77a906952525a4d22fb3efea0e01">§&nbsp;</a></span>ImwritePAMFlags</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">enum <a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga4e6c77a906952525a4d22fb3efea0e01">cv::ImwritePAMFlags</a></td>
+</tr>
+</tbody></table>
+</div><div class="memdoc">
+<p>Imwrite PAM specific tupletype flags used to define the 'TUPETYPE' field of a PAM file. </p>
+<table class="fieldtable">
+<tbody><tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga4e6c77a906952525a4d22fb3efea0e01a05708faa19fda2b0e3e793542fced3c9"></a>IMWRITE_PAM_FORMAT_NULL&nbsp;<div class="python_language">Python: cv.IMWRITE_PAM_FORMAT_NULL</div></td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="gga4e6c77a906952525a4d22fb3efea0e01a32a5eb9e6aa378ef126a6ec29c710d15"></a>IMWRITE_PAM_FORMAT_BLACKANDWHITE&nbsp;<div class="python_language">Python: cv.IMWRITE_PAM_FORMAT_BLACKANDWHITE</div></td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="gga4e6c77a906952525a4d22fb3efea0e01a9f2122f919b87bd6f5209ebe3673478d"></a>IMWRITE_PAM_FORMAT_GRAYSCALE&nbsp;<div class="python_language">Python: cv.IMWRITE_PAM_FORMAT_GRAYSCALE</div></td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="gga4e6c77a906952525a4d22fb3efea0e01a31754d8e503b394996982d8eeb5916b5"></a>IMWRITE_PAM_FORMAT_GRAYSCALE_ALPHA&nbsp;<div class="python_language">Python: cv.IMWRITE_PAM_FORMAT_GRAYSCALE_ALPHA</div></td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="gga4e6c77a906952525a4d22fb3efea0e01a749f4c5db48aa048ae4dbd8670d7d58d"></a>IMWRITE_PAM_FORMAT_RGB&nbsp;<div class="python_language">Python: cv.IMWRITE_PAM_FORMAT_RGB</div></td><td class="fielddoc"></td></tr>
+<tr><td class="fieldname"><a id="gga4e6c77a906952525a4d22fb3efea0e01adfdc63fecaa2abcbe1d98b79030c726a"></a>IMWRITE_PAM_FORMAT_RGB_ALPHA&nbsp;<div class="python_language">Python: cv.IMWRITE_PAM_FORMAT_RGB_ALPHA</div></td><td class="fielddoc"></td></tr>
+</tbody></table>
+</div>
+</div>
+<a id="gaa60044d347ffd187161b5ec9ea2ef2f9"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gaa60044d347ffd187161b5ec9ea2ef2f9">§&nbsp;</a></span>ImwritePNGFlags</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">enum <a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gaa60044d347ffd187161b5ec9ea2ef2f9">cv::ImwritePNGFlags</a></td>
+</tr>
+</tbody></table>
+</div><div class="memdoc">
+<p>Imwrite PNG specific flags used to tune the compression algorithm. </p>
+<p>These flags will be modify the way of PNG image compression and will be passed to the underlying zlib processing stage.</p>
+<ul>
+<li>The effect of IMWRITE_PNG_STRATEGY_FILTERED is to force more Huffman coding and less string matching; it is somewhat intermediate between IMWRITE_PNG_STRATEGY_DEFAULT and IMWRITE_PNG_STRATEGY_HUFFMAN_ONLY.</li>
+<li>IMWRITE_PNG_STRATEGY_RLE is designed to be almost as fast as IMWRITE_PNG_STRATEGY_HUFFMAN_ONLY, but give better compression for PNG image data.</li>
+<li>The strategy parameter only affects the compression ratio but not the correctness of the compressed output even if it is not set appropriately.</li>
+<li>IMWRITE_PNG_STRATEGY_FIXED prevents the use of dynamic Huffman codes, allowing for a simpler decoder for special applications. </li>
+</ul>
+<table class="fieldtable">
+<tbody><tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggaa60044d347ffd187161b5ec9ea2ef2f9a5bb296ccb3fab45a113a1cc28bf43abf"></a>IMWRITE_PNG_STRATEGY_DEFAULT&nbsp;<div class="python_language">Python: cv.IMWRITE_PNG_STRATEGY_DEFAULT</div></td><td class="fielddoc"><p>Use this value for normal data. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaa60044d347ffd187161b5ec9ea2ef2f9a3def1a542d499f4f05c19efab9d79292"></a>IMWRITE_PNG_STRATEGY_FILTERED&nbsp;<div class="python_language">Python: cv.IMWRITE_PNG_STRATEGY_FILTERED</div></td><td class="fielddoc"><p>Use this value for data produced by a filter (or predictor).Filtered data consists mostly of small values with a somewhat random distribution. In this case, the compression algorithm is tuned to compress them better. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaa60044d347ffd187161b5ec9ea2ef2f9affed3ef30c9147769361546cf0b5ad5a"></a>IMWRITE_PNG_STRATEGY_HUFFMAN_ONLY&nbsp;<div class="python_language">Python: cv.IMWRITE_PNG_STRATEGY_HUFFMAN_ONLY</div></td><td class="fielddoc"><p>Use this value to force Huffman encoding only (no string match). </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaa60044d347ffd187161b5ec9ea2ef2f9a5d75e74ce7cdaf0139f1d44d23734b43"></a>IMWRITE_PNG_STRATEGY_RLE&nbsp;<div class="python_language">Python: cv.IMWRITE_PNG_STRATEGY_RLE</div></td><td class="fielddoc"><p>Use this value to limit match distances to one (run-length encoding). </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaa60044d347ffd187161b5ec9ea2ef2f9a4663acb92a49bb13104a2769cee7d0c8"></a>IMWRITE_PNG_STRATEGY_FIXED&nbsp;<div class="python_language">Python: cv.IMWRITE_PNG_STRATEGY_FIXED</div></td><td class="fielddoc"><p>Using this value prevents the use of dynamic Huffman codes, allowing for a simpler decoder for special applications. </p>
+</td></tr>
+</tbody></table>
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="ga26a67788faa58ade337f8d28ba0eb19e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga26a67788faa58ade337f8d28ba0eb19e">§&nbsp;</a></span>imdecode() <span class="overload">[1/2]</span></h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname"><a class="el" href="https://docs.opencv.org/3.4.1/d3/d63/classcv_1_1Mat.html">Mat</a> cv::imdecode </td>
+<td>(</td>
+<td class="paramtype"><a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#gab1371a23c90d5f4725ea98240377d7a1">InputArray</a>&nbsp;</td>
+<td class="paramname"><em>buf</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>flags</em>&nbsp;</td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td><td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.imdecode(</td><td class="paramname">buf, flags</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Reads an image from a buffer in memory. </p>
+<p>The function imdecode reads an image from the specified buffer in the memory. If the buffer is too short or contains invalid data, the function returns an empty matrix ( <a class="el" href="https://docs.opencv.org/3.4.1/d3/d63/classcv_1_1Mat.html#a4d33bed1c850265370d2af0ff02e1564" title="pointer to the data ">Mat::data</a>==NULL ).</p>
+<p>See <a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga288b8b3da0892bd651fce07b3bbd3a56" title="Loads an image from a file. ">cv::imread</a> for the list of supported formats and flags description.</p>
+<dl class="section note"><dt>Note</dt><dd>In the case of color images, the decoded images will have the channels stored in <b>B G R</b> order. </dd></dl>
+<dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">buf</td><td>Input array or vector of bytes. </td></tr>
+<tr><td class="paramname">flags</td><td>The same flags as in <a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga288b8b3da0892bd651fce07b3bbd3a56" title="Loads an image from a file. ">cv::imread</a>, see <a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga61d9b0126a3e57d9277ac48327799c80" title="Imread flags. ">cv::ImreadModes</a>. </td></tr>
+</tbody></table>
+</dd>
+</dl>
+</div>
+</div>
+<a id="ga5a0acefe5cbe0a81e904e452ec7ca733"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga5a0acefe5cbe0a81e904e452ec7ca733">§&nbsp;</a></span>imdecode() <span class="overload">[2/2]</span></h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname"><a class="el" href="https://docs.opencv.org/3.4.1/d3/d63/classcv_1_1Mat.html">Mat</a> cv::imdecode </td>
+<td>(</td>
+<td class="paramtype"><a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#gab1371a23c90d5f4725ea98240377d7a1">InputArray</a>&nbsp;</td>
+<td class="paramname"><em>buf</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>flags</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype"><a class="el" href="https://docs.opencv.org/3.4.1/d3/d63/classcv_1_1Mat.html">Mat</a> *&nbsp;</td>
+<td class="paramname"><em>dst</em>&nbsp;</td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td><td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.imdecode(</td><td class="paramname">buf, flags</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </p><dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">buf</td><td></td></tr>
+<tr><td class="paramname">flags</td><td></td></tr>
+<tr><td class="paramname">dst</td><td>The optional output placeholder for the decoded matrix. It can save the image reallocations when the function is called repeatedly for images of the same size. </td></tr>
+</tbody></table>
+</dd>
+</dl>
+</div>
+</div>
+<a id="ga461f9ac09887e47797a54567df3b8b63"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga461f9ac09887e47797a54567df3b8b63">§&nbsp;</a></span>imencode()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">bool cv::imencode </td>
+<td>(</td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>ext</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype"><a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#gab1371a23c90d5f4725ea98240377d7a1">InputArray</a>&nbsp;</td>
+<td class="paramname"><em>img</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">std::vector&lt; <a class="el" href="https://docs.opencv.org/3.4.1/d1/d1b/group__core__hal__interface.html#ga65f85814a8290f9797005d3b28e7e5fc">uchar</a> &gt; &amp;&nbsp;</td>
+<td class="paramname"><em>buf</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">const std::vector&lt; int &gt; &amp;&nbsp;</td>
+<td class="paramname"><em>params</em> = <code>std::vector&lt;&nbsp;int&nbsp;&gt;()</code>&nbsp;</td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td><td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>retval, buf</td><td>=</td><td>cv.imencode(</td><td class="paramname">ext, img[, params]</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Encodes an image into a memory buffer. </p>
+<p>The function imencode compresses the image and stores it in the memory buffer that is resized to fit the result. See <a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gabbc7ef1aa2edfaa87772f1202d67e0ce" title="Saves an image to a specified file. ">cv::imwrite</a> for the list of supported formats and flags description.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">ext</td><td>File extension that defines the output format. </td></tr>
+<tr><td class="paramname">img</td><td>Image to be written. </td></tr>
+<tr><td class="paramname">buf</td><td>Output buffer resized to fit the compressed image. </td></tr>
+<tr><td class="paramname">params</td><td>Format-specific parameters. See <a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gabbc7ef1aa2edfaa87772f1202d67e0ce" title="Saves an image to a specified file. ">cv::imwrite</a> and <a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga292d81be8d76901bff7988d18d2b42ac" title="Imwrite flags. ">cv::ImwriteFlags</a>. </td></tr>
+</tbody></table>
+</dd>
+</dl>
+</div>
+</div>
+<a id="ga288b8b3da0892bd651fce07b3bbd3a56"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga288b8b3da0892bd651fce07b3bbd3a56">§&nbsp;</a></span>imread()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname"><a class="el" href="https://docs.opencv.org/3.4.1/d3/d63/classcv_1_1Mat.html">Mat</a> cv::imread </td>
+<td>(</td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>filename</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>flags</em> = <code><a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga61d9b0126a3e57d9277ac48327799c80af660544735200cbe942eea09232eb822">IMREAD_COLOR</a></code>&nbsp;</td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td><td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.imread(</td><td class="paramname">filename[, flags]</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Loads an image from a file. </p>
+<p><a class="anchor" id="imread"></a> The function imread loads an image from the specified file and returns it. If the image cannot be read (because of missing file, improper permissions, unsupported or invalid format), the function returns an empty matrix ( <a class="el" href="https://docs.opencv.org/3.4.1/d3/d63/classcv_1_1Mat.html#a4d33bed1c850265370d2af0ff02e1564" title="pointer to the data ">Mat::data</a>==NULL ).</p>
+<p>Currently, the following file formats are supported:</p>
+<ul>
+<li>Windows bitmaps - *.bmp, *.dib (always supported)</li>
+<li>JPEG files - *.jpeg, *.jpg, *.jpe (see the <em>Notes</em> section)</li>
+<li>JPEG 2000 files - *.jp2 (see the <em>Notes</em> section)</li>
+<li>Portable Network Graphics - *.png (see the <em>Notes</em> section)</li>
+<li>WebP - *.webp (see the <em>Notes</em> section)</li>
+<li>Portable image format - *.pbm, *.pgm, *.ppm *.pxm, *.pnm (always supported)</li>
+<li>Sun rasters - *.sr, *.ras (always supported)</li>
+<li>TIFF files - *.tiff, *.tif (see the <em>Notes</em> section)</li>
+<li>OpenEXR Image files - *.exr (see the <em>Notes</em> section)</li>
+<li>Radiance HDR - *.hdr, *.pic (always supported)</li>
+<li>Raster and Vector geospatial data supported by Gdal (see the <em>Notes</em> section)</li>
+</ul>
+<dl class="section note"><dt>Note</dt><dd></dd></dl>
+<ul>
+<li>The function determines the type of an image by the content, not by the file extension.</li>
+<li>In the case of color images, the decoded images will have the channels stored in <b>B G R</b> order.</li>
+<li>On Microsoft Windows* OS and MacOSX*, the codecs shipped with an OpenCV image (libjpeg, libpng, libtiff, and libjasper) are used by default. So, OpenCV can always read JPEGs, PNGs, and TIFFs. On MacOSX, there is also an option to use native MacOSX image readers. But beware that currently these native image loaders give images with different pixel values because of the color management embedded into MacOSX.</li>
+<li>On Linux*, BSD flavors and other Unix-like open-source operating systems, OpenCV looks for codecs supplied with an OS image. Install the relevant packages (do not forget the development files, for example, "libjpeg-dev", in Debian* and Ubuntu*) to get the codec support or turn on the OPENCV_BUILD_3RDPARTY_LIBS flag in CMake.</li>
+<li>In the case you set <em>WITH_GDAL</em> flag to true in CMake and <a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga61d9b0126a3e57d9277ac48327799c80a1b482916f4ffe34f0b90550f267fd896">IMREAD_LOAD_GDAL</a> to load the image, then <a href="http://www.gdal.org/">GDAL</a> driver will be used in order to decode the image by supporting the following formats: <a href="http://www.gdal.org/formats_list.html">Raster</a>, <a href="http://www.gdal.org/ogr_formats.html">Vector</a>.</li>
+<li>If EXIF information are embedded in the image file, the EXIF orientation will be taken into account and thus the image will be rotated accordingly except if the flag <a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga61d9b0126a3e57d9277ac48327799c80a34f91a514cd95127d8ba900840af548e">IMREAD_IGNORE_ORIENTATION</a> is passed. <dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">filename</td><td>Name of file to be loaded. </td></tr>
+<tr><td class="paramname">flags</td><td>Flag that can take values of <a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga61d9b0126a3e57d9277ac48327799c80" title="Imread flags. ">cv::ImreadModes</a> </td></tr>
+</tbody></table>
+</dd>
+</dl>
+</li>
+</ul>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="https://docs.opencv.org/3.4.1/da/d9c/AddingImagesTrackbar_8cpp-example.html#a3">AddingImagesTrackbar.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/dc/d56/cloning_demo_8cpp-example.html#a1">cloning_demo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d3/d2e/copyMakeBorder_demo_8cpp-example.html#a3">copyMakeBorder_demo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d4/d5e/decompose_homography_8cpp-example.html#a8">decompose_homography.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d2/dcb/demhist_8cpp-example.html#a20">demhist.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d4/d11/distrans_8cpp-example.html#a19">distrans.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d3/d63/edge_8cpp-example.html#a11">edge.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/db/d3a/facedetect_8cpp-example.html#a11">facedetect.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d5/dca/falsecolor_8cpp-example.html#a26">falsecolor.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d5/d26/ffilldemo_8cpp-example.html#a17">ffilldemo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/de/dc7/fitellipse_8cpp-example.html#a38">fitellipse.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d1/d9e/fld_lines_8cpp-example.html#a5">fld_lines.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/de/dd0/grabcut_8cpp-example.html#a40">grabcut.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/de/df6/hog_8cpp-example.html#a16">hog.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/dc/daf/homography_from_camera_displacement_8cpp-example.html#a8">homography_from_camera_displacement.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d7/d5d/houghcircles_8cpp-example.html#a1">houghcircles.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d2/d7b/houghlines_8cpp-example.html#a1">houghlines.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d0/d7f/image_alignment_8cpp-example.html#a21">image_alignment.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d8/dd4/lsd_lines_8cpp-example.html#a5">lsd_lines.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/da/d53/MatchTemplate_Demo_8cpp-example.html#a1">MatchTemplate_Demo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d8/dc0/morphology2_8cpp-example.html#a14">morphology2.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/dc/dfa/Morphology_1_8cpp-example.html#a2">Morphology_1.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d6/d74/npr_demo_8cpp-example.html#a2">npr_demo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d2/dc0/pca_8cpp-example.html#a3">pca.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/db/db0/peopledetect_8cpp-example.html#a29">peopledetect.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d9/d2b/pose_from_homography_8cpp-example.html#a7">pose_from_homography.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d6/d73/Pyramids_8cpp-example.html#a1">Pyramids.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/da/d72/shape_example_8cpp-example.html#a14">shape_example.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d4/dbd/Smoothing_8cpp-example.html#a3">Smoothing.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d4/dba/Sobel_Demo_8cpp-example.html#a6">Sobel_Demo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d5/d77/train_HOG_8cpp-example.html#a20">train_HOG.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d5/dfc/warpPerspective_demo_8cpp-example.html#a6">warpPerspective_demo.cpp</a>, and <a class="el" href="https://docs.opencv.org/3.4.1/d8/da9/watershed_8cpp-example.html#a16">watershed.cpp</a>.</dd>
+</dl>
+</div>
+</div>
+<a id="ga4dd47c9ae3d55cc42286cff005825e31"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga4dd47c9ae3d55cc42286cff005825e31">§&nbsp;</a></span>imreadmulti()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">bool cv::imreadmulti </td>
+<td>(</td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>filename</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">std::vector&lt; <a class="el" href="https://docs.opencv.org/3.4.1/d3/d63/classcv_1_1Mat.html">Mat</a> &gt; &amp;&nbsp;</td>
+<td class="paramname"><em>mats</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>flags</em> = <code><a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga61d9b0126a3e57d9277ac48327799c80ab6573b69300c092b61800222fe555953">IMREAD_ANYCOLOR</a></code>&nbsp;</td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td><td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>retval, mats</td><td>=</td><td>cv.imreadmulti(</td><td class="paramname">filename[, mats[, flags]]</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Loads a multi-page image from a file. </p>
+<p>The function imreadmulti loads a multi-page image from the specified file into a vector of <a class="el" href="https://docs.opencv.org/3.4.1/d3/d63/classcv_1_1Mat.html" title="n-dimensional dense array class ">Mat</a> objects. </p><dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">filename</td><td>Name of file to be loaded. </td></tr>
+<tr><td class="paramname">flags</td><td>Flag that can take values of <a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga61d9b0126a3e57d9277ac48327799c80" title="Imread flags. ">cv::ImreadModes</a>, default with <a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga61d9b0126a3e57d9277ac48327799c80ab6573b69300c092b61800222fe555953" title="If set, the image is read in any possible color format. ">cv::IMREAD_ANYCOLOR</a>. </td></tr>
+<tr><td class="paramname">mats</td><td>A vector of <a class="el" href="https://docs.opencv.org/3.4.1/d3/d63/classcv_1_1Mat.html" title="n-dimensional dense array class ">Mat</a> objects holding each page, if more than one. </td></tr>
+</tbody></table>
+</dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga288b8b3da0892bd651fce07b3bbd3a56" title="Loads an image from a file. ">cv::imread</a> </dd></dl>
+</div>
+</div>
+<a id="gabbc7ef1aa2edfaa87772f1202d67e0ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gabbc7ef1aa2edfaa87772f1202d67e0ce">§&nbsp;</a></span>imwrite()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">bool cv::imwrite </td>
+<td>(</td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>filename</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype"><a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#gab1371a23c90d5f4725ea98240377d7a1">InputArray</a>&nbsp;</td>
+<td class="paramname"><em>img</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">const std::vector&lt; int &gt; &amp;&nbsp;</td>
+<td class="paramname"><em>params</em> = <code>std::vector&lt;&nbsp;int&nbsp;&gt;()</code>&nbsp;</td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td><td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.imwrite(</td><td class="paramname">filename, img[, params]</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Saves an image to a specified file. </p>
+<p>The function imwrite saves the image to the specified file. The image format is chosen based on the filename extension (see <a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga288b8b3da0892bd651fce07b3bbd3a56" title="Loads an image from a file. ">cv::imread</a> for the list of extensions). Only 8-bit (or 16-bit unsigned (CV_16U) in case of PNG, JPEG 2000, and TIFF) single-channel or 3-channel (with 'BGR' channel order) images can be saved using this function. If the format, depth or channel order is different, use <a class="el" href="https://docs.opencv.org/3.4.1/d3/d63/classcv_1_1Mat.html#adf88c60c5b4980e05bb556080916978b" title="Converts an array to another data type with optional scaling. ">Mat::convertTo</a> , and <a class="el" href="https://docs.opencv.org/3.4.1/d7/d1b/group__imgproc__misc.html#ga397ae87e1288a81d2363b61574eb8cab" title="Converts an image from one color space to another. ">cv::cvtColor</a> to convert it before saving. Or, use the universal <a class="el" href="https://docs.opencv.org/3.4.1/da/d56/classcv_1_1FileStorage.html" title="XML/YAML/JSON file storage class that encapsulates all the information necessary for writing or readi...">FileStorage</a> I/O functions to save the image to XML or YAML format.</p>
+<p>It is possible to store PNG images with an alpha channel using this function. To do this, create 8-bit (or 16-bit) 4-channel image BGRA, where the alpha channel goes last. Fully transparent pixels should have alpha set to 0, fully opaque pixels should have alpha set to 255/65535.</p>
+<p>The sample below shows how to create such a BGRA image and store to PNG file. It also demonstrates how to set custom compression parameters : </p><div class="fragment"><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="https://docs.opencv.org/3.4.1/d6/d87/imgcodecs_8hpp.html">opencv2/imgcodecs.hpp</a>&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">using namespace </span><a class="code" href="https://docs.opencv.org/3.4.1/d2/d75/namespacecv.html">cv</a>;</div><div class="line"><span class="keyword">using namespace </span><a class="code" href="https://docs.opencv.org/3.4.1/d8/dcc/namespacestd.html">std</a>;</div><div class="line"></div><div class="line"><span class="keyword">static</span> <span class="keywordtype">void</span> createAlphaMat(<a class="code" href="https://docs.opencv.org/3.4.1/d3/d63/classcv_1_1Mat.html">Mat</a> &amp;mat)</div><div class="line">{</div><div class="line"> <a class="code" href="https://docs.opencv.org/3.4.1/db/de0/group__core__utils.html#ga283a0e0de570061124f3b230bb8c7e7e">CV_Assert</a>(mat.<a class="code" href="https://docs.opencv.org/3.4.1/d3/d63/classcv_1_1Mat.html#aa11336b9ac538e0475d840657ce164be">channels</a>() == 4);</div><div class="line"> <span class="keywordflow">for</span> (<span class="keywordtype">int</span> i = 0; i &lt; mat.<a class="code" href="https://docs.opencv.org/3.4.1/d3/d63/classcv_1_1Mat.html#abed816466c45234254d25bc59c31245e">rows</a>; ++i)</div><div class="line">    {</div><div class="line"> <span class="keywordflow">for</span> (<span class="keywordtype">int</span> j = 0; j &lt; mat.<a class="code" href="https://docs.opencv.org/3.4.1/d3/d63/classcv_1_1Mat.html#aa3e5a47585c9ef6a0842556739155e3e">cols</a>; ++j)</div><div class="line">        {</div><div class="line"> <a class="code" href="https://docs.opencv.org/3.4.1/d6/dcf/classcv_1_1Vec.html">Vec4b</a>&amp; bgra = mat.<a class="code" href="https://docs.opencv.org/3.4.1/d3/d63/classcv_1_1Mat.html#aa5d20fc86d41d59e4d71ae93daee9726">at</a>&lt;<a class="code" href="https://docs.opencv.org/3.4.1/d6/dcf/classcv_1_1Vec.html">Vec4b</a>&gt;(i, j);</div><div class="line">            bgra[0] = UCHAR_MAX; <span class="comment">// Blue</span></div><div class="line">            bgra[1] = <a class="code" href="https://docs.opencv.org/3.4.1/db/de0/group__core__utils.html#gab93126370b85fda2c8bfaf8c811faeaf">saturate_cast</a>&lt;<a class="code" href="https://docs.opencv.org/3.4.1/d1/d1b/group__core__hal__interface.html#ga65f85814a8290f9797005d3b28e7e5fc">uchar</a>&gt;((float (mat.<a class="code" href="https://docs.opencv.org/3.4.1/d3/d63/classcv_1_1Mat.html#aa3e5a47585c9ef6a0842556739155e3e">cols</a> - j)) / ((<span class="keywordtype">float</span>)mat.cols) * UCHAR_MAX); <span class="comment">// Green</span></div><div class="line">            bgra[2] = <a class="code" href="https://docs.opencv.org/3.4.1/db/de0/group__core__utils.html#gab93126370b85fda2c8bfaf8c811faeaf">saturate_cast</a>&lt;<a class="code" href="https://docs.opencv.org/3.4.1/d1/d1b/group__core__hal__interface.html#ga65f85814a8290f9797005d3b28e7e5fc">uchar</a>&gt;((<span class="keywordtype">float</span> (mat.rows - i)) / ((<span class="keywordtype">float</span>)mat.rows) * UCHAR_MAX); <span class="comment">// Red</span></div><div class="line">            bgra[3] = <a class="code" href="https://docs.opencv.org/3.4.1/db/de0/group__core__utils.html#gab93126370b85fda2c8bfaf8c811faeaf">saturate_cast</a>&lt;<a class="code" href="https://docs.opencv.org/3.4.1/d1/d1b/group__core__hal__interface.html#ga65f85814a8290f9797005d3b28e7e5fc">uchar</a>&gt;(0.5 * (bgra[1] + bgra[2])); <span class="comment">// Alpha</span></div><div class="line">        }</div><div class="line">    }</div><div class="line">}</div><div class="line"></div><div class="line"><span class="keywordtype">int</span> main()</div><div class="line">{</div><div class="line"> <span class="comment">// Create mat with alpha channel</span></div><div class="line"> <a class="code" href="https://docs.opencv.org/3.4.1/d3/d63/classcv_1_1Mat.html">Mat</a> mat(480, 640, <a class="code" href="https://docs.opencv.org/3.4.1/d1/d1b/group__core__hal__interface.html#ga4519ad2827f771db8260c61207b782df">CV_8UC4</a>);</div><div class="line">    createAlphaMat(mat);</div><div class="line">    vector&lt;int&gt; compression_params;</div><div class="line">    compression_params.push_back(<a class="code" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gga292d81be8d76901bff7988d18d2b42acad2548321c69ab9c0582fd51e75ace1d0">IMWRITE_PNG_COMPRESSION</a>);</div><div class="line">    compression_params.push_back(9);</div><div class="line"></div><div class="line"> <span class="keywordtype">bool</span> result = <span class="keyword">false</span>;</div><div class="line"> <span class="keywordflow">try</span></div><div class="line">    {</div><div class="line">        result = <a class="code" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#gabbc7ef1aa2edfaa87772f1202d67e0ce">imwrite</a>(<span class="stringliteral">"alpha.png"</span>, mat, compression_params);</div><div class="line">    }</div><div class="line"> <span class="keywordflow">catch</span> (<span class="keyword">const</span> <a class="code" href="https://docs.opencv.org/3.4.1/d1/dee/classcv_1_1Exception.html">cv::Exception</a>&amp; ex)</div><div class="line">    {</div><div class="line">        fprintf(stderr, <span class="stringliteral">"Exception converting image to PNG format: %s\n"</span>, ex.<a class="code" href="https://docs.opencv.org/3.4.1/d1/dee/classcv_1_1Exception.html#ab8d31c05241bb4fdc9dbd135fb8951fd">what</a>());</div><div class="line">    }</div><div class="line"> <span class="keywordflow">if</span> (result)</div><div class="line">        printf(<span class="stringliteral">"Saved PNG file with alpha data.\n"</span>);</div><div class="line"> <span class="keywordflow">else</span></div><div class="line">        printf(<span class="stringliteral">"ERROR: Can't save PNG file.\n"</span>);</div><div class="line"> <span class="keywordflow">return</span> result ? 0 : 1;</div><div class="line">}</div></div><!-- fragment --> <dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">filename</td><td>Name of the file. </td></tr>
+<tr><td class="paramname">img</td><td>Image to be saved. </td></tr>
+<tr><td class="paramname">params</td><td>Format-specific parameters encoded as pairs (paramId_1, paramValue_1, paramId_2, paramValue_2, ... .) see <a class="el" href="https://docs.opencv.org/3.4.1/d4/da8/group__imgcodecs.html#ga292d81be8d76901bff7988d18d2b42ac" title="Imwrite flags. ">cv::ImwriteFlags</a> </td></tr>
+</tbody></table>
+</dd>
+</dl>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="https://docs.opencv.org/3.4.1/dc/d56/cloning_demo_8cpp-example.html#a9">cloning_demo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/de/df6/hog_8cpp-example.html#a40">hog.cpp</a>, and <a class="el" href="https://docs.opencv.org/3.4.1/d0/d7f/image_alignment_8cpp-example.html#a43">image_alignment.cpp</a>.</dd>
+</dl>
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.6-->
+<!-- start footer part -->
+<hr class="footer"><address class="footer"><small>
+Generated on Fri Feb 23 2018 13:10:27 for OpenCV by &nbsp;<a href="http://www.doxygen.org/index.html">
+<img alt="doxygen" class="footer" src="./OpenCV_ Image file reading and writing_files/doxygen.png">
+</a> 1.8.12
+</small></address>
+<script type="text/javascript">
+//<![CDATA[
+addTutorialsButtons();
+//]]>
+</script>
+
+
+<table cellspacing="0" cellpadding="0" class="gstl_50 gssb_c" style="width: 237px; display: none; top: 23px; left: -1px; position: absolute;"><tbody><tr><td class="gssb_f"></td><td class="gssb_e" style="width: 100%;"></td></tr></tbody></table></body></html>

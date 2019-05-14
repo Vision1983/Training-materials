@@ -1,0 +1,830 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0065)https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta content="IE=9" http-equiv="X-UA-Compatible">
+<meta content="Doxygen 1.8.12" name="generator">
+<title>OpenCV: cv::VideoCapture Class Reference</title>
+<link href="https://docs.opencv.org/3.4.1/opencv.ico" rel="shortcut icon" type="image/x-icon">
+<link href="./OpenCV_ cv__VideoCapture Class Reference_files/tabs.css" rel="stylesheet" type="text/css">
+<script async="" src="./OpenCV_ cv__VideoCapture Class Reference_files/async-ads.js.stažený soubor"></script><script type="text/javascript" async="" src="./OpenCV_ cv__VideoCapture Class Reference_files/f.txt"></script><script src="./OpenCV_ cv__VideoCapture Class Reference_files/jquery.js.stažený soubor" type="text/javascript"></script>
+<script src="./OpenCV_ cv__VideoCapture Class Reference_files/dynsections.js.stažený soubor" type="text/javascript"></script>
+<script src="./OpenCV_ cv__VideoCapture Class Reference_files/tutorial-utils.js.stažený soubor" type="text/javascript"></script>
+<link href="./OpenCV_ cv__VideoCapture Class Reference_files/search.css" rel="stylesheet" type="text/css">
+<script src="./OpenCV_ cv__VideoCapture Class Reference_files/searchdata.js.stažený soubor" type="text/javascript"></script>
+<script src="./OpenCV_ cv__VideoCapture Class Reference_files/search.js.stažený soubor" type="text/javascript"></script>
+<script type="text/x-mathjax-config;executed=true">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+//<![CDATA[
+MathJax.Hub.Config(
+{
+  TeX: {
+      Macros: {
+          matTT: [ "\\[ \\left|\\begin{array}{ccc} #1 & #2 & #3\\\\ #4 & #5 & #6\\\\ #7 & #8 & #9 \\end{array}\\right| \\]", 9],
+          fork: ["\\left\\{ \\begin{array}{l l} #1 & \\mbox{#2}\\\\ #3 & \\mbox{#4}\\\\ \\end{array} \\right.", 4],
+          forkthree: ["\\left\\{ \\begin{array}{l l} #1 & \\mbox{#2}\\\\ #3 & \\mbox{#4}\\\\ #5 & \\mbox{#6}\\\\ \\end{array} \\right.", 6],
+          forkfour: ["\\left\\{ \\begin{array}{l l} #1 & \\mbox{#2}\\\\ #3 & \\mbox{#4}\\\\ #5 & \\mbox{#6}\\\\ #7 & \\mbox{#8}\\\\ \\end{array} \\right.", 8],
+          vecthree: ["\\begin{bmatrix} #1\\\\ #2\\\\ #3 \\end{bmatrix}", 3],
+          vecthreethree: ["\\begin{bmatrix} #1 & #2 & #3\\\\ #4 & #5 & #6\\\\ #7 & #8 & #9 \\end{bmatrix}", 9],
+          hdotsfor: ["\\dots", 1],
+          mathbbm: ["\\mathbb{#1}", 1],
+          bordermatrix: ["\\matrix{#1}", 1]
+      }
+  }
+}
+);
+//]]>
+</script><script src="./OpenCV_ cv__VideoCapture Class Reference_files/MathJax.js.stažený soubor" type="text/javascript"></script><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style>
+<link href="./OpenCV_ cv__VideoCapture Class Reference_files/doxygen.css" rel="stylesheet" type="text/css">
+<link href="./OpenCV_ cv__VideoCapture Class Reference_files/stylesheet.css" rel="stylesheet" type="text/css">
+<script src="./OpenCV_ cv__VideoCapture Class Reference_files/jsapi" type="text/javascript"></script><link type="text/css" href="./OpenCV_ cv__VideoCapture Class Reference_files/default+en.css" rel="stylesheet"><link type="text/css" href="./OpenCV_ cv__VideoCapture Class Reference_files/default.css" rel="stylesheet"><script type="text/javascript" src="./OpenCV_ cv__VideoCapture Class Reference_files/default+en.I.js.stažený soubor"></script><style type="text/css">.gsc-control-cse{font-family:arial, sans-serif}.gsc-control-cse .gsc-table-result{font-family:arial, sans-serif}.gsc-control-cse{border-color:#FFFFFF;background-color:#FFFFFF}input.gsc-input,.gsc-input-box,.gsc-input-box-hover,.gsc-input-box-focus{border-color:#D9D9D9}.gsc-search-button-v2,.gsc-search-button-v2:hover,.gsc-search-button-v2:focus{border-color:#666666;background-color:#CECECE;background-image:none;filter:none}.gsc-search-button-v2 svg{fill:#FFFFFF}.gsc-tabHeader.gsc-tabhInactive{border-color:#E9E9E9;background-color:#E9E9E9}.gsc-tabHeader.gsc-tabhActive{border-color:#FF9900;border-bottom-color:#FFFFFF;background-color:#FFFFFF}.gsc-tabsArea{border-color:#FF9900}.gsc-webResult.gsc-result,.gsc-results .gsc-imageResult{border-color:#FFFFFF;background-color:#FFFFFF}.gsc-webResult.gsc-result:hover,.gsc-imageResult:hover{border-color:#FFFFFF;background-color:#FFFFFF}.gs-webResult.gs-result a.gs-title:link,.gs-webResult.gs-result a.gs-title:link b,.gs-imageResult a.gs-title:link,.gs-imageResult a.gs-title:link b{color:#0000CC}.gs-webResult.gs-result a.gs-title:visited,.gs-webResult.gs-result a.gs-title:visited b,.gs-imageResult a.gs-title:visited,.gs-imageResult a.gs-title:visited b{color:#0000CC}.gs-webResult.gs-result a.gs-title:hover,.gs-webResult.gs-result a.gs-title:hover b,.gs-imageResult a.gs-title:hover,.gs-imageResult a.gs-title:hover b{color:#0000CC}.gs-webResult.gs-result a.gs-title:active,.gs-webResult.gs-result a.gs-title:active b,.gs-imageResult a.gs-title:active,.gs-imageResult a.gs-title:active b{color:#0000CC}.gsc-cursor-page{color:#0000CC}a.gsc-trailing-more-results:link{color:#0000CC}.gs-webResult .gs-snippet,.gs-imageResult .gs-snippet,.gs-fileFormatType{color:#000000}.gs-webResult div.gs-visibleUrl,.gs-imageResult div.gs-visibleUrl{color:#008000}.gs-webResult div.gs-visibleUrl-short{color:#008000}.gs-webResult div.gs-visibleUrl-short{display:none}.gs-webResult div.gs-visibleUrl-long{display:block}.gs-promotion div.gs-visibleUrl-short{display:none}.gs-promotion div.gs-visibleUrl-long{display:block}.gsc-cursor-box{border-color:#FFFFFF}.gsc-results .gsc-cursor-box .gsc-cursor-page{border-color:#E9E9E9;background-color:#FFFFFF;color:#0000CC}.gsc-results .gsc-cursor-box .gsc-cursor-current-page{border-color:#FF9900;background-color:#FFFFFF;color:#0000CC}.gsc-webResult.gsc-result.gsc-promotion{border-color:#336699;background-color:#FFFFFF}.gsc-completion-title{color:#0000CC}.gsc-completion-snippet{color:#000000}.gs-promotion a.gs-title:link,.gs-promotion a.gs-title:link *,.gs-promotion .gs-snippet a:link{color:#0000CC}.gs-promotion a.gs-title:visited,.gs-promotion a.gs-title:visited *,.gs-promotion .gs-snippet a:visited{color:#0000CC}.gs-promotion a.gs-title:hover,.gs-promotion a.gs-title:hover *,.gs-promotion .gs-snippet a:hover{color:#0000CC}.gs-promotion a.gs-title:active,.gs-promotion a.gs-title:active *,.gs-promotion .gs-snippet a:active{color:#0000CC}.gs-promotion .gs-snippet,.gs-promotion .gs-title .gs-promotion-title-right,.gs-promotion .gs-title .gs-promotion-title-right *{color:#000000}.gs-promotion .gs-visibleUrl,.gs-promotion .gs-visibleUrl-short{color:#008000}.gcsc-find-more-on-google{color:#0000CC}.gcsc-find-more-on-google-magnifier{fill:#0000CC}</style><style type="text/css">.gscb_a{display:inline-block;font:27px/13px arial,sans-serif}.gsst_a .gscb_a{color:#a1b9ed;cursor:pointer}.gsst_a:hover .gscb_a,.gsst_a:focus .gscb_a{color:#36c}.gsst_a{display:inline-block}.gsst_a{cursor:pointer;padding:0 4px}.gsst_a:hover{text-decoration:none!important}.gsst_b{font-size:16px;padding:0 2px;position:relative;user-select:none;-webkit-user-select:none;white-space:nowrap}.gsst_e{opacity:0.55;}.gsst_a:hover .gsst_e,.gsst_a:focus .gsst_e{opacity:0.72;}.gsst_a:active .gsst_e{opacity:1;}.gsst_f{background:white;text-align:left}.gsst_g{background-color:white;border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-webkit-box-shadow:0 2px 4px rgba(0,0,0,0.2);margin:-1px -3px;padding:0 6px}.gsst_h{background-color:white;height:1px;margin-bottom:-1px;position:relative;top:-1px}.gsib_a{width:100%;padding:4px 6px 0}.gsib_a,.gsib_b{vertical-align:top}.gssb_c{border:0;position:absolute;z-index:989}.gssb_e{border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-webkit-box-shadow:0 2px 4px rgba(0,0,0,0.2);cursor:default}.gssb_f{visibility:hidden;white-space:nowrap}.gssb_k{border:0;display:block;position:absolute;top:0;z-index:988}.gsdd_a{border:none!important}.gsq_a{padding:0}.gsq_a{padding:0}.gscsep_a{display:none}.gssb_a{padding:0 7px}.gssb_a,.gssb_a td{white-space:nowrap;overflow:hidden;line-height:22px}#gssb_b{font-size:11px;color:#36c;text-decoration:none}#gssb_b:hover{font-size:11px;color:#36c;text-decoration:underline}.gssb_g{text-align:center;padding:8px 0 7px;position:relative}.gssb_h{font-size:15px;height:28px;margin:0.2em;-webkit-appearance:button}.gssb_i{background:#eee}.gss_ifl{visibility:hidden;padding-left:5px}.gssb_i .gss_ifl{visibility:visible}a.gssb_j{font-size:13px;color:#36c;text-decoration:none;line-height:100%}a.gssb_j:hover{text-decoration:underline}.gssb_l{height:1px;background-color:#e5e5e5}.gssb_m{color:#000;background:#fff}.gsfe_a{border:1px solid #b9b9b9;border-top-color:#a0a0a0;box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1);-moz-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1);-webkit-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1);}.gsfe_b{border:1px solid #4d90fe;outline:none;box-shadow:inset 0px 1px 2px rgba(0,0,0,0.3);-moz-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.3);-webkit-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.3);}.gssb_a{padding:0 9px}.gsib_a{padding-right:8px;padding-left:8px}.gsst_a{padding-top:5.5px}.gssb_e{border:0}.gssb_l{margin:5px 0}input.gsc-input::-webkit-input-placeholder{font-size:14px}input.gsc-input:-moz-placeholder{font-size:14px}input.gsc-input::-moz-placeholder{font-size:14px}input.gsc-input:-ms-input-placeholder{font-size:14px}input.gsc-input:focus::-webkit-input-placeholder{color:transparent}input.gsc-input:focus:-moz-placeholder{color:transparent}input.gsc-input:focus::-moz-placeholder{color:transparent}input.gsc-input:focus:-ms-input-placeholder{color:transparent}.gssb_c .gsc-completion-container{position:static}.gssb_c{z-index:5000}.gsc-completion-container table{background:transparent;font-size:inherit;font-family:inherit}.gssb_c > tbody > tr,.gssb_c > tbody > tr > td,.gssb_d,.gssb_d > tbody > tr,.gssb_d > tbody > tr > td,.gssb_e,.gssb_e > tbody > tr,.gssb_e > tbody > tr > td{padding:0;margin:0;border:0}.gssb_a table,.gssb_a table tr,.gssb_a table tr td{padding:0;margin:0;border:0}</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style></head>
+<body><div id="MathJax_Message" style="display: none;"></div>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<script>
+  (function() {
+    var cx = '002541620211387084530:kaexgxg7oxu';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<div id="___gcse_0"><div class="gsc-control-cse gsc-control-cse-en"><div class="gsc-control-wrapper-cse" dir="ltr"><form class="gsc-search-box gsc-search-box-tools" accept-charset="utf-8"><table cellspacing="0" cellpadding="0" class="gsc-search-box"><tbody><tr><td class="gsc-input"><div class="gsc-input-box " id="gsc-iw-id1"><table cellspacing="0" cellpadding="0" id="gs_id50" class="gstl_50 " style="width: 100%; padding: 0px;"><tbody><tr><td id="gs_tti50" class="gsib_a"><input autocomplete="off" type="text" size="10" class="gsc-input" name="search" title="search" id="gsc-i-id1" x-webkit-speech="" x-webkit-grammar="builtin:search" lang="en" dir="ltr" spellcheck="false" placeholder="Custom Search" style="width: 100%; padding: 0px; border: none; margin: 0px; height: auto; outline: none; background: url(&quot;https://www.google.com/cse/static/images/1x/googlelogo_lightgrey_46x16dp.png&quot;) left center no-repeat rgb(255, 255, 255); text-indent: 48px;"></td><td class="gsib_b"><div class="gsst_b" id="gs_st50" dir="ltr"><a class="gsst_a" href="javascript:void(0)" style="display: none;"><span class="gscb_a" id="gs_cb50">×</span></a></div></td></tr></tbody></table></div></td><td class="gsc-search-button"><button class="gsc-search-button gsc-search-button-v2"><svg width="13" height="13" viewBox="0 0 13 13"><title>search</title><path d="m4.8495 7.8226c0.82666 0 1.5262-0.29146 2.0985-0.87438 0.57232-0.58292 0.86378-1.2877 0.87438-2.1144 0.010599-0.82666-0.28086-1.5262-0.87438-2.0985-0.59352-0.57232-1.293-0.86378-2.0985-0.87438-0.8055-0.010599-1.5103 0.28086-2.1144 0.87438-0.60414 0.59352-0.8956 1.293-0.87438 2.0985 0.021197 0.8055 0.31266 1.5103 0.87438 2.1144 0.56172 0.60414 1.2665 0.8956 2.1144 0.87438zm4.4695 0.2115 3.681 3.6819-1.259 1.284-3.6817-3.7 0.0019784-0.69479-0.090043-0.098846c-0.87973 0.76087-1.92 1.1413-3.1207 1.1413-1.3553 0-2.5025-0.46363-3.4417-1.3909s-1.4088-2.0686-1.4088-3.4239c0-1.3553 0.4696-2.4966 1.4088-3.4239 0.9392-0.92727 2.0864-1.3969 3.4417-1.4088 1.3553-0.011889 2.4906 0.45771 3.406 1.4088 0.9154 0.95107 1.379 2.0924 1.3909 3.4239 0 1.2126-0.38043 2.2588-1.1413 3.1385l0.098834 0.090049z"></path></svg></button></td><td class="gsc-clear-button"><div class="gsc-clear-button" title="clear results">&nbsp;</div></td></tr></tbody></table></form><div class="gsc-results-wrapper-overlay"><div class="gsc-results-close-btn" tabindex="0"></div><div class="gsc-tabsAreaInvisible"><div class="gsc-tabHeader gsc-inline-block gsc-tabhActive">Custom Search</div><span class="gs-spacer"> </span></div><div class="gsc-tabsAreaInvisible"></div><div class="gsc-above-wrapper-area-invisible"><table cellspacing="0" cellpadding="0" class="gsc-above-wrapper-area-container"><tbody><tr><td class="gsc-result-info-container"><div class="gsc-result-info-invisible"></div></td><td class="gsc-orderby-container"><div class="gsc-orderby-invisible"><div class="gsc-orderby-label gsc-inline-block">Sort by:</div><div class="gsc-option-menu-container gsc-inline-block"><div class="gsc-selected-option-container gsc-inline-block"><div class="gsc-selected-option">Relevance</div><div class="gsc-option-selector"></div></div><div class="gsc-option-menu-invisible"><div class="gsc-option-menu-item gsc-option-menu-item-highlighted"><div class="gsc-option">Relevance</div></div><div class="gsc-option-menu-item"><div class="gsc-option">Date</div></div></div></div></div></td></tr></tbody></table></div><div class="gsc-adBlockInvisible"></div><div class="gsc-wrapper"><div class="gsc-adBlockInvisible"></div><div class="gsc-resultsbox-invisible"><div class="gsc-resultsRoot gsc-tabData gsc-tabdActive"><table cellspacing="0" cellpadding="0" class="gsc-resultsHeader"><tbody><tr><td class="gsc-twiddleRegionCell"><div class="gsc-twiddle"><div class="gsc-title">Web</div></div><div class="gsc-stats"></div><div class="gsc-results-selector gsc-all-results-active"><div class="gsc-result-selector gsc-one-result" title="show one result">&nbsp;</div><div class="gsc-result-selector gsc-more-results" title="show more results">&nbsp;</div><div class="gsc-result-selector gsc-all-results" title="show all results">&nbsp;</div></div></td><td class="gsc-configLabelCell"></td></tr></tbody></table><div><div class="gsc-expansionArea"></div></div></div></div></div></div><div class="gsc-modal-background-image" tabindex="0"></div></div></div></div>
+<script type="text/javascript" src="./OpenCV_ cv__VideoCapture Class Reference_files/version.js.stažený soubor"></script>
+
+<table cellpadding="0" cellspacing="0">
+<tbody>
+<tr style="height: 56px;">
+<td id="projectlogo"><img alt="Logo" src="./OpenCV_ cv__VideoCapture Class Reference_files/opencv-logo-small.png"></td>
+<td style="padding-left: 0.5em;">
+<div id="projectname">OpenCV
+   &nbsp;<span id="projectnumber"><select><option value="4.0.0-pre">4.0.0-pre</option><option value="4.0.0-beta">4.0.0-beta</option><option value="4.0.0-alpha">4.0.0-alpha</option><option value="3.4.3-dev">3.4.3-dev</option><option value="3.4.3">3.4.3</option><option value="3.4.2">3.4.2</option><option value="3.4.1" selected="selected">3.4.1</option><option value="3.4.0">3.4.0</option><option value="3.3.1">3.3.1</option><option value="3.3.0">3.3.0</option><option value="3.2.0">3.2.0</option><option value="3.1.0">3.1.0</option><option value="3.0.0">3.0.0</option></select></span>
+</div>
+<div id="projectbrief">Open Source Computer Vision</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.8.12 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
+</script>
+<script src="./OpenCV_ cv__VideoCapture Class Reference_files/menudata.js.stažený soubor" type="text/javascript"></script>
+<script src="./OpenCV_ cv__VideoCapture Class Reference_files/menu.js.stažený soubor" type="text/javascript"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('../../',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"><ul class="sm sm-dox" id="main-menu" data-smartmenus-id="15404763689251973"><li><a href="https://docs.opencv.org/3.4.1/index.html">Main Page</a></li><li><a href="https://docs.opencv.org/3.4.1/pages.html">Related Pages</a></li><li><a href="https://docs.opencv.org/3.4.1/modules.html">Modules</a></li><li><a href="https://docs.opencv.org/3.4.1/namespaces.html" class="has-submenu" id="sm-15404763689251973-1" aria-haspopup="true" aria-controls="sm-15404763689251973-2" aria-expanded="false"><span class="sub-arrow">+</span>Namespaces</a><ul id="sm-15404763689251973-2" role="group" aria-hidden="true" aria-labelledby="sm-15404763689251973-1" aria-expanded="false"><li><a href="https://docs.opencv.org/3.4.1/namespaces.html">Namespace List</a></li></ul></li><li><a href="https://docs.opencv.org/3.4.1/annotated.html" class="has-submenu" id="sm-15404763689251973-3" aria-haspopup="true" aria-controls="sm-15404763689251973-4" aria-expanded="false"><span class="sub-arrow">+</span>Classes</a><ul id="sm-15404763689251973-4" role="group" aria-hidden="true" aria-labelledby="sm-15404763689251973-3" aria-expanded="false"><li><a href="https://docs.opencv.org/3.4.1/annotated.html">Class List</a></li><li><a href="https://docs.opencv.org/3.4.1/classes.html">Class Index</a></li></ul></li><li><a href="https://docs.opencv.org/3.4.1/files.html" class="has-submenu" id="sm-15404763689251973-5" aria-haspopup="true" aria-controls="sm-15404763689251973-6" aria-expanded="false"><span class="sub-arrow">+</span>Files</a><ul id="sm-15404763689251973-6" role="group" aria-hidden="true" aria-labelledby="sm-15404763689251973-5" aria-expanded="false"><li><a href="https://docs.opencv.org/3.4.1/files.html">Files index</a></li><li><a href="https://docs.opencv.org/3.4.1/globals.html" class="has-submenu" id="sm-15404763689251973-7" aria-haspopup="true" aria-controls="sm-15404763689251973-8" aria-expanded="false"><span class="sub-arrow">+</span>Global objects</a><ul id="sm-15404763689251973-8" role="group" aria-hidden="true" aria-labelledby="sm-15404763689251973-7" aria-expanded="false"><li><a href="https://docs.opencv.org/3.4.1/globals.html" class="has-submenu" id="sm-15404763689251973-9" aria-haspopup="true" aria-controls="sm-15404763689251973-10" aria-expanded="false"><span class="sub-arrow">+</span>All</a><ul id="sm-15404763689251973-10" role="group" aria-hidden="true" aria-labelledby="sm-15404763689251973-9" aria-expanded="false"><li><a href="https://docs.opencv.org/3.4.1/globals.html#index__">_</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_a.html#index_a">a</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_c.html#index_c">c</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_d.html#index_d">d</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_f.html#index_f">f</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_g.html#index_g">g</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_h.html#index_h">h</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_i.html#index_i">i</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_k.html#index_k">k</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_l.html#index_l">l</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_m.html#index_m">m</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_n.html#index_n">n</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_o.html#index_o">o</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_p.html#index_p">p</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_r.html#index_r">r</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_s.html#index_s">s</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_t.html#index_t">t</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_u.html#index_u">u</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_v.html#index_v">v</a></li></ul></li><li><a href="https://docs.opencv.org/3.4.1/globals_func.html" class="has-submenu" id="sm-15404763689251973-11" aria-haspopup="true" aria-controls="sm-15404763689251973-12" aria-expanded="false"><span class="sub-arrow">+</span>Functions</a><ul id="sm-15404763689251973-12" role="group" aria-hidden="true" aria-labelledby="sm-15404763689251973-11" aria-expanded="false"><li><a href="https://docs.opencv.org/3.4.1/globals_func.html#index__">_</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_func_a.html#index_a">a</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_func_c.html#index_c">c</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_func_g.html#index_g">g</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_func_h.html#index_h">h</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_func_m.html#index_m">m</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_func_n.html#index_n">n</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_func_p.html#index_p">p</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_func_t.html#index_t">t</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_func_u.html#index_u">u</a></li></ul></li><li><a href="https://docs.opencv.org/3.4.1/globals_vars.html">Variables</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_type.html" class="has-submenu" id="sm-15404763689251973-13" aria-haspopup="true" aria-controls="sm-15404763689251973-14" aria-expanded="false"><span class="sub-arrow">+</span>Typedefs</a><ul id="sm-15404763689251973-14" role="group" aria-hidden="true" aria-labelledby="sm-15404763689251973-13" aria-expanded="false"><li><a href="https://docs.opencv.org/3.4.1/globals_type.html#index_c">c</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_type.html#index_i">i</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_type.html#index_n">n</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_type.html#index_s">s</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_type.html#index_u">u</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_type.html#index_v">v</a></li></ul></li><li><a href="https://docs.opencv.org/3.4.1/globals_enum.html">Enumerations</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_eval.html" class="has-submenu" id="sm-15404763689251973-15" aria-haspopup="true" aria-controls="sm-15404763689251973-16" aria-expanded="false"><span class="sub-arrow">+</span>Enumerator</a><ul id="sm-15404763689251973-16" role="group" aria-hidden="true" aria-labelledby="sm-15404763689251973-15" aria-expanded="false"><li><a href="https://docs.opencv.org/3.4.1/globals_eval.html#index_c">c</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_eval_n.html#index_n">n</a></li></ul></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs.html" class="has-submenu" id="sm-15404763689251973-17" aria-haspopup="true" aria-controls="sm-15404763689251973-18" aria-expanded="false"><span class="sub-arrow">+</span>Macros</a><ul id="sm-15404763689251973-18" role="group" aria-hidden="true" aria-labelledby="sm-15404763689251973-17" aria-expanded="false"><li><a href="https://docs.opencv.org/3.4.1/globals_defs.html#index__">_</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_c.html#index_c">c</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_d.html#index_d">d</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_f.html#index_f">f</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_h.html#index_h">h</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_i.html#index_i">i</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_l.html#index_l">l</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_m.html#index_m">m</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_n.html#index_n">n</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_o.html#index_o">o</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_r.html#index_r">r</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_s.html#index_s">s</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_t.html#index_t">t</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_u.html#index_u">u</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_v.html#index_v">v</a></li></ul></li></ul></li></ul></li><li><a href="https://docs.opencv.org/3.4.1/examples.html">Examples</a></li><li><a href="https://docs.opencv.org/3.4.1/javadoc/index.html">Java documentation</a></li><li style="float:right"><div id="MSearchBox" class="MSearchBoxInactive"><span class="left"><img id="MSearchSelect" src="./OpenCV_ cv__VideoCapture Class Reference_files/mag_sel.png" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()" alt=""><input type="text" id="MSearchField" value="Search" accesskey="S" onfocus="searchBox.OnSearchFieldFocus(true)" onblur="searchBox.OnSearchFieldFocus(false)" onkeyup="searchBox.OnSearchFieldChange(event)"></span><span class="right"><a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="./OpenCV_ cv__VideoCapture Class Reference_files/close.png" alt=""></a></span></div></li></ul></div>
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow" onkeydown="return searchBox.OnSearchSelectKey(event)" onmouseout="return searchBox.OnSearchSelectHide()" onmouseover="return searchBox.OnSearchSelectShow()">
+<a class="SelectItem" onclick="searchBox.OnSelectItem(0)" href="javascript:void(0)"><span class="SelectionMark">•</span>All</a><a class="SelectItem" onclick="searchBox.OnSelectItem(1)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" onclick="searchBox.OnSelectItem(2)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" onclick="searchBox.OnSelectItem(3)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" onclick="searchBox.OnSelectItem(4)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" onclick="searchBox.OnSelectItem(5)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" onclick="searchBox.OnSelectItem(6)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" onclick="searchBox.OnSelectItem(7)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" onclick="searchBox.OnSelectItem(8)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" onclick="searchBox.OnSelectItem(9)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Properties</a><a class="SelectItem" onclick="searchBox.OnSelectItem(10)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Friends</a><a class="SelectItem" onclick="searchBox.OnSelectItem(11)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Macros</a><a class="SelectItem" onclick="searchBox.OnSelectItem(12)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Modules</a><a class="SelectItem" onclick="searchBox.OnSelectItem(13)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Pages</a></div>
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe frameborder="0" id="MSearchResults" name="MSearchResults" src="javascript:void(0)" src="./OpenCV_ cv__VideoCapture Class Reference_files/saved_resource.html">
+</iframe>
+</div>
+<div class="navpath" id="nav-path">
+<ul>
+<li class="navelem"><a class="el" href="https://docs.opencv.org/3.4.1/d2/d75/namespacecv.html">cv</a></li><li class="navelem"><a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html">VideoCapture</a></li> </ul>
+</div>
+</div><!-- top -->
+<div class="header">
+<div class="summary">
+<a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#pub-methods">Public Member Functions</a> |
+<a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#pro-attribs">Protected Attributes</a> |
+<a href="https://docs.opencv.org/3.4.1/d0/d71/classcv_1_1VideoCapture-members.html">List of all members</a> </div>
+<div class="headertitle">
+<div class="title">cv::VideoCapture Class Reference<div class="ingroups"><a class="el" href="https://docs.opencv.org/3.4.1/dd/de7/group__videoio.html">Video I/O</a></div></div> </div>
+</div><!--header-->
+<div class="contents">
+<p>Class for video capturing from video files, image sequences or cameras.  
+ <a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#details">More...</a></p>
+<p><code>#include "videoio.hpp"</code></p>
+<table class="memberdecls">
+<tbody><tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
+Public Member Functions</h2></td></tr>
+<tr class="memitem:a57c0e81e83e60f36c83027dc2a188e80"><td align="right" class="memItemLeft" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a57c0e81e83e60f36c83027dc2a188e80">VideoCapture</a> ()</td></tr>
+<tr class="memdesc:a57c0e81e83e60f36c83027dc2a188e80"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default constructor.  <a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a57c0e81e83e60f36c83027dc2a188e80">More...</a><br></td></tr>
+<tr class="separator:a57c0e81e83e60f36c83027dc2a188e80"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:a949d90b766ba42a6a93fe23a67785951"><td align="right" class="memItemLeft" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a949d90b766ba42a6a93fe23a67785951">VideoCapture</a> (const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;filename)</td></tr>
+<tr class="memdesc:a949d90b766ba42a6a93fe23a67785951"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Open video file or a capturing device or a IP video stream for video capturing.  <a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a949d90b766ba42a6a93fe23a67785951">More...</a><br></td></tr>
+<tr class="separator:a949d90b766ba42a6a93fe23a67785951"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:a85b55cf6a4a50451367ba96b65218ba1"><td align="right" class="memItemLeft" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a85b55cf6a4a50451367ba96b65218ba1">VideoCapture</a> (const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;filename, int apiPreference)</td></tr>
+<tr class="memdesc:a85b55cf6a4a50451367ba96b65218ba1"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Open video file or a capturing device or a IP video stream for video capturing with API Preference.  <a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a85b55cf6a4a50451367ba96b65218ba1">More...</a><br></td></tr>
+<tr class="separator:a85b55cf6a4a50451367ba96b65218ba1"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:a5d5f5dacb77bbebdcbfb341e3d4355c1"><td align="right" class="memItemLeft" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a5d5f5dacb77bbebdcbfb341e3d4355c1">VideoCapture</a> (int index)</td></tr>
+<tr class="memdesc:a5d5f5dacb77bbebdcbfb341e3d4355c1"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Open a camera for video capturing.  <a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a5d5f5dacb77bbebdcbfb341e3d4355c1">More...</a><br></td></tr>
+<tr class="separator:a5d5f5dacb77bbebdcbfb341e3d4355c1"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ae82ac8efcff2c5c96be47c060754a518"><td align="right" class="memItemLeft" valign="top">virtual&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#ae82ac8efcff2c5c96be47c060754a518">~VideoCapture</a> ()</td></tr>
+<tr class="memdesc:ae82ac8efcff2c5c96be47c060754a518"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Default destructor.  <a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#ae82ac8efcff2c5c96be47c060754a518">More...</a><br></td></tr>
+<tr class="separator:ae82ac8efcff2c5c96be47c060754a518"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:aa6480e6972ef4c00d74814ec841a2939"><td align="right" class="memItemLeft" valign="top">virtual double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#aa6480e6972ef4c00d74814ec841a2939">get</a> (int propId) const</td></tr>
+<tr class="memdesc:aa6480e6972ef4c00d74814ec841a2939"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the specified <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html" title="Class for video capturing from video files, image sequences or cameras. ">VideoCapture</a> property.  <a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#aa6480e6972ef4c00d74814ec841a2939">More...</a><br></td></tr>
+<tr class="separator:aa6480e6972ef4c00d74814ec841a2939"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ae38c2a053d39d6b20c9c649e08ff0146"><td align="right" class="memItemLeft" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#ae38c2a053d39d6b20c9c649e08ff0146">grab</a> ()</td></tr>
+<tr class="memdesc:ae38c2a053d39d6b20c9c649e08ff0146"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Grabs the next frame from video file or capturing device.  <a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#ae38c2a053d39d6b20c9c649e08ff0146">More...</a><br></td></tr>
+<tr class="separator:ae38c2a053d39d6b20c9c649e08ff0146"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:a9d2ca36789e7fcfe7a7be3b328038585"><td align="right" class="memItemLeft" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a9d2ca36789e7fcfe7a7be3b328038585">isOpened</a> () const</td></tr>
+<tr class="memdesc:a9d2ca36789e7fcfe7a7be3b328038585"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns true if video capturing has been initialized already.  <a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a9d2ca36789e7fcfe7a7be3b328038585">More...</a><br></td></tr>
+<tr class="separator:a9d2ca36789e7fcfe7a7be3b328038585"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ab5b7391cd5ec50e7237e575a758f6f05"><td align="right" class="memItemLeft" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#ab5b7391cd5ec50e7237e575a758f6f05">open</a> (const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;filename)</td></tr>
+<tr class="memdesc:ab5b7391cd5ec50e7237e575a758f6f05"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Open video file or a capturing device or a IP video stream for video capturing.  <a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#ab5b7391cd5ec50e7237e575a758f6f05">More...</a><br></td></tr>
+<tr class="separator:ab5b7391cd5ec50e7237e575a758f6f05"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:abd88ea03aad64f7f00f3767e8b8c2034"><td align="right" class="memItemLeft" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#abd88ea03aad64f7f00f3767e8b8c2034">open</a> (int index)</td></tr>
+<tr class="memdesc:abd88ea03aad64f7f00f3767e8b8c2034"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Open a camera for video capturing.  <a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#abd88ea03aad64f7f00f3767e8b8c2034">More...</a><br></td></tr>
+<tr class="separator:abd88ea03aad64f7f00f3767e8b8c2034"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:a128a4457358fb7dccb9a9a686e56e344"><td align="right" class="memItemLeft" valign="top">bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a128a4457358fb7dccb9a9a686e56e344">open</a> (int cameraNum, int apiPreference)</td></tr>
+<tr class="memdesc:a128a4457358fb7dccb9a9a686e56e344"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Open a camera for video capturing.  <a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a128a4457358fb7dccb9a9a686e56e344">More...</a><br></td></tr>
+<tr class="separator:a128a4457358fb7dccb9a9a686e56e344"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:af3b71a7c0c459704ed75568a01290457"><td align="right" class="memItemLeft" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#af3b71a7c0c459704ed75568a01290457">open</a> (const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;filename, int apiPreference)</td></tr>
+<tr class="memdesc:af3b71a7c0c459704ed75568a01290457"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Open video file or a capturing device or a IP video stream for video capturing with API Preference.  <a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#af3b71a7c0c459704ed75568a01290457">More...</a><br></td></tr>
+<tr class="separator:af3b71a7c0c459704ed75568a01290457"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:a199844fb74226a28b3ce3a39d1ff6765"><td align="right" class="memItemLeft" valign="top">virtual <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html">VideoCapture</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a199844fb74226a28b3ce3a39d1ff6765">operator&gt;&gt;</a> (<a class="el" href="https://docs.opencv.org/3.4.1/d3/d63/classcv_1_1Mat.html">Mat</a> &amp;image)</td></tr>
+<tr class="memdesc:a199844fb74226a28b3ce3a39d1ff6765"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Stream operator to read the next video frame.  <a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a199844fb74226a28b3ce3a39d1ff6765">More...</a><br></td></tr>
+<tr class="separator:a199844fb74226a28b3ce3a39d1ff6765"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:a35eb427f16b4ea5c502922aba9da835c"><td align="right" class="memItemLeft" valign="top">virtual <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html">VideoCapture</a> &amp;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a35eb427f16b4ea5c502922aba9da835c">operator&gt;&gt;</a> (<a class="el" href="https://docs.opencv.org/3.4.1/d7/d45/classcv_1_1UMat.html">UMat</a> &amp;image)</td></tr>
+<tr class="separator:a35eb427f16b4ea5c502922aba9da835c"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:a473055e77dd7faa4d26d686226b292c1"><td align="right" class="memItemLeft" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a473055e77dd7faa4d26d686226b292c1">read</a> (<a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#gaad17fda1d0f0d1ee069aebb1df2913c0">OutputArray</a> image)</td></tr>
+<tr class="memdesc:a473055e77dd7faa4d26d686226b292c1"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Grabs, decodes and returns the next video frame.  <a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a473055e77dd7faa4d26d686226b292c1">More...</a><br></td></tr>
+<tr class="separator:a473055e77dd7faa4d26d686226b292c1"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:afb4ab689e553ba2c8f0fec41b9344ae6"><td align="right" class="memItemLeft" valign="top">virtual void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#afb4ab689e553ba2c8f0fec41b9344ae6">release</a> ()</td></tr>
+<tr class="memdesc:afb4ab689e553ba2c8f0fec41b9344ae6"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Closes video file or capturing device.  <a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#afb4ab689e553ba2c8f0fec41b9344ae6">More...</a><br></td></tr>
+<tr class="separator:afb4ab689e553ba2c8f0fec41b9344ae6"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:a9ac7f4b1cdfe624663478568486e6712"><td align="right" class="memItemLeft" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a9ac7f4b1cdfe624663478568486e6712">retrieve</a> (<a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#gaad17fda1d0f0d1ee069aebb1df2913c0">OutputArray</a> image, int flag=0)</td></tr>
+<tr class="memdesc:a9ac7f4b1cdfe624663478568486e6712"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Decodes and returns the grabbed video frame.  <a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a9ac7f4b1cdfe624663478568486e6712">More...</a><br></td></tr>
+<tr class="separator:a9ac7f4b1cdfe624663478568486e6712"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:a8c6d8c2d37505b5ca61ffd4bb54e9a7c"><td align="right" class="memItemLeft" valign="top">virtual bool&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a8c6d8c2d37505b5ca61ffd4bb54e9a7c">set</a> (int propId, double value)</td></tr>
+<tr class="memdesc:a8c6d8c2d37505b5ca61ffd4bb54e9a7c"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets a property in the <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html" title="Class for video capturing from video files, image sequences or cameras. ">VideoCapture</a>.  <a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a8c6d8c2d37505b5ca61ffd4bb54e9a7c">More...</a><br></td></tr>
+<tr class="separator:a8c6d8c2d37505b5ca61ffd4bb54e9a7c"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+</tbody></table><table class="memberdecls">
+<tbody><tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-attribs"></a>
+Protected Attributes</h2></td></tr>
+<tr class="memitem:a8c6d7b52a28206072d540c9567874649"><td align="right" class="memItemLeft" valign="top"><a class="el" href="https://docs.opencv.org/3.4.1/d0/de7/structcv_1_1Ptr.html">Ptr</a>&lt; <a class="el" href="https://docs.opencv.org/3.4.1/dd/d01/group__videoio__c.html#ga394109074fab9bdca2ea45514b1946b7">CvCapture</a> &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a8c6d7b52a28206072d540c9567874649">cap</a></td></tr>
+<tr class="separator:a8c6d7b52a28206072d540c9567874649"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ad20c1542d32a3dfef0a083bede8b956a"><td align="right" class="memItemLeft" valign="top"><a class="el" href="https://docs.opencv.org/3.4.1/d0/de7/structcv_1_1Ptr.html">Ptr</a>&lt; IVideoCapture &gt;&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#ad20c1542d32a3dfef0a083bede8b956a">icap</a></td></tr>
+<tr class="separator:ad20c1542d32a3dfef0a083bede8b956a"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+</tbody></table>
+<a id="details" name="details"></a><h2 class="groupheader">Detailed Description</h2>
+<div class="textblock"><p>Class for video capturing from video files, image sequences or cameras. </p>
+<p>The class provides C++ API for capturing video from cameras or for reading video files and image sequences.</p>
+<p>Here is how the class can be used: </p><div class="fragment"><div class="line"></div><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="https://docs.opencv.org/3.4.1/da/d47/core_8hpp.html">opencv2/core.hpp</a>&gt;</span></div><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="https://docs.opencv.org/3.4.1/dc/d3d/videoio_8hpp.html">opencv2/videoio.hpp</a>&gt;</span></div><div class="line"><span class="preprocessor">#include &lt;<a class="code" href="https://docs.opencv.org/3.4.1/d4/dd5/highgui_8hpp.html">opencv2/highgui.hpp</a>&gt;</span></div><div class="line"><span class="preprocessor">#include &lt;iostream&gt;</span></div><div class="line"><span class="preprocessor">#include &lt;stdio.h&gt;</span></div><div class="line"></div><div class="line"><span class="keyword">using namespace </span><a class="code" href="https://docs.opencv.org/3.4.1/d2/d75/namespacecv.html">cv</a>;</div><div class="line"><span class="keyword">using namespace </span><a class="code" href="https://docs.opencv.org/3.4.1/d8/dcc/namespacestd.html">std</a>;</div><div class="line"></div><div class="line"><span class="keywordtype">int</span> main(<span class="keywordtype">int</span>, <span class="keywordtype">char</span>**)</div><div class="line">{</div><div class="line"> <a class="code" href="https://docs.opencv.org/3.4.1/d3/d63/classcv_1_1Mat.html">Mat</a> frame;</div><div class="line"> <span class="comment">//--- INITIALIZE VIDEOCAPTURE</span></div><div class="line"> <a class="code" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html">VideoCapture</a> <a class="code" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a8c6d7b52a28206072d540c9567874649">cap</a>;</div><div class="line"> <span class="comment">// open the default camera using default API</span></div><div class="line">    cap.<a class="code" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#ab5b7391cd5ec50e7237e575a758f6f05">open</a>(0);</div><div class="line"> <span class="comment">// OR advance usage: select any API backend</span></div><div class="line"> <span class="keywordtype">int</span> deviceID = 0;             <span class="comment">// 0 = open default camera</span></div><div class="line"> <span class="keywordtype">int</span> apiID = <a class="code" href="https://docs.opencv.org/3.4.1/d4/d15/group__videoio__flags__base.html#gga023786be1ee68a9105bf2e48c700294da77ab1fe260fd182f8ec7655fab27a31d">cv::CAP_ANY</a>;      <span class="comment">// 0 = autodetect default API</span></div><div class="line"> <span class="comment">// open selected camera using selected API</span></div><div class="line">    cap.<a class="code" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#ab5b7391cd5ec50e7237e575a758f6f05">open</a>(deviceID + apiID);</div><div class="line"> <span class="comment">// check if we succeeded</span></div><div class="line"> <span class="keywordflow">if</span> (!cap.<a class="code" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a9d2ca36789e7fcfe7a7be3b328038585">isOpened</a>()) {</div><div class="line">        cerr &lt;&lt; <span class="stringliteral">"ERROR! Unable to open camera\n"</span>;</div><div class="line"> <span class="keywordflow">return</span> -1;</div><div class="line">    }</div><div class="line"></div><div class="line"> <span class="comment">//--- GRAB AND WRITE LOOP</span></div><div class="line">    cout &lt;&lt; <span class="stringliteral">"Start grabbing"</span> &lt;&lt; endl</div><div class="line">        &lt;&lt; <span class="stringliteral">"Press any key to terminate"</span> &lt;&lt; endl;</div><div class="line"> <span class="keywordflow">for</span> (;;)</div><div class="line">    {</div><div class="line"> <span class="comment">// wait for a new frame from camera and store it into 'frame'</span></div><div class="line">        cap.<a class="code" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a473055e77dd7faa4d26d686226b292c1">read</a>(frame);</div><div class="line"> <span class="comment">// check if we succeeded</span></div><div class="line"> <span class="keywordflow">if</span> (frame.<a class="code" href="https://docs.opencv.org/3.4.1/d3/d63/classcv_1_1Mat.html#abbec3525a852e77998aba034813fded4">empty</a>()) {</div><div class="line">            cerr &lt;&lt; <span class="stringliteral">"ERROR! blank frame grabbed\n"</span>;</div><div class="line"> <span class="keywordflow">break</span>;</div><div class="line">        }</div><div class="line"> <span class="comment">// show live and wait for a key with timeout long enough to show images</span></div><div class="line"> <a class="code" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga453d42fe4cb60e5723281a89973ee563">imshow</a>(<span class="stringliteral">"Live"</span>, frame);</div><div class="line"> <span class="keywordflow">if</span> (<a class="code" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga5628525ad33f52eab17feebcfba38bd7">waitKey</a>(5) &gt;= 0)</div><div class="line"> <span class="keywordflow">break</span>;</div><div class="line">    }</div><div class="line"> <span class="comment">// the camera will be deinitialized automatically in VideoCapture destructor</span></div><div class="line"> <span class="keywordflow">return</span> 0;</div><div class="line">}</div></div><!-- fragment --><dl class="section note"><dt>Note</dt><dd>In <a class="el" href="https://docs.opencv.org/3.4.1/dd/d01/group__videoio__c.html">C API</a> the black-box structure <code>CvCapture</code> is used instead of VideoCapture. </dd>
+<dd>
+<ul>
+<li>(C++) A basic sample on using the VideoCapture interface can be found at <code>OPENCV_SOURCE_CODE/samples/cpp/videocapture_starter.cpp</code></li>
+<li>(Python) A basic sample on using the VideoCapture interface can be found at <code>OPENCV_SOURCE_CODE/samples/python/video.py</code></li>
+<li>(Python) A multi threaded video processing sample can be found at <code>OPENCV_SOURCE_CODE/samples/python/video_threaded.py</code></li>
+<li>(Python) VideoCapture sample showcasing some features of the Video4Linux2 backend <code>OPENCV_SOURCE_CODE/samples/python/video_v4l2.py</code> </li>
+</ul>
+</dd></dl>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="https://docs.opencv.org/3.4.1/d2/dc1/camshiftdemo_8cpp-example.html#_a17">camshiftdemo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/db/d3a/facedetect_8cpp-example.html#_a3">facedetect.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/de/df6/hog_8cpp-example.html#_a12">hog.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/de/db2/laplace_8cpp-example.html#_a0">laplace.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d2/d0a/lkdemo_8cpp-example.html#_a4">lkdemo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/db/db0/peopledetect_8cpp-example.html#_a24">peopledetect.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/dc/d5e/polar_transforms_8cpp-example.html#_a0">polar_transforms.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/dd/d9d/segment_objects_8cpp-example.html#_a14">segment_objects.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d5/d77/train_HOG_8cpp-example.html#_a42">train_HOG.cpp</a>, and <a class="el" href="https://docs.opencv.org/3.4.1/d5/d57/videowriter_basic_8cpp-example.html#_a1">videowriter_basic.cpp</a>.</dd>
+</dl></div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
+<a id="a57c0e81e83e60f36c83027dc2a188e80"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a57c0e81e83e60f36c83027dc2a188e80">§&nbsp;</a></span>VideoCapture() <span class="overload">[1/4]</span></h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">cv::VideoCapture::VideoCapture </td>
+<td>(</td>
+<td class="paramname"></td><td>)</td>
+<td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>&lt;VideoCapture object&gt;</td><td>=</td><td>cv.VideoCapture(</td><td class="paramname"></td><td>)</td></tr><tr><td style="width: 20px;"></td><td>&lt;VideoCapture object&gt;</td><td>=</td><td>cv.VideoCapture(</td><td class="paramname">filename</td><td>)</td></tr><tr><td style="width: 20px;"></td><td>&lt;VideoCapture object&gt;</td><td>=</td><td>cv.VideoCapture(</td><td class="paramname">filename, apiPreference</td><td>)</td></tr><tr><td style="width: 20px;"></td><td>&lt;VideoCapture object&gt;</td><td>=</td><td>cv.VideoCapture(</td><td class="paramname">index</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Default constructor. </p>
+<dl class="section note"><dt>Note</dt><dd>In <a class="el" href="https://docs.opencv.org/3.4.1/dd/d01/group__videoio__c.html">C API</a>, when you finished working with video, release CvCapture structure with <a class="el" href="https://docs.opencv.org/3.4.1/dd/d01/group__videoio__c.html#ga39dd48dcaee21c7a8df040d47cbc27ee" title="stop capturing/reading and free resources ">cvReleaseCapture()</a>, or use <a class="el" href="https://docs.opencv.org/3.4.1/d0/de7/structcv_1_1Ptr.html" title="Template class for smart pointers with shared ownership. ">Ptr</a>&lt;CvCapture&gt; that calls <a class="el" href="https://docs.opencv.org/3.4.1/dd/d01/group__videoio__c.html#ga39dd48dcaee21c7a8df040d47cbc27ee" title="stop capturing/reading and free resources ">cvReleaseCapture()</a> automatically in the destructor. </dd></dl>
+</div>
+</div>
+<a id="a949d90b766ba42a6a93fe23a67785951"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a949d90b766ba42a6a93fe23a67785951">§&nbsp;</a></span>VideoCapture() <span class="overload">[2/4]</span></h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">cv::VideoCapture::VideoCapture </td>
+<td>(</td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>filename</em></td><td>)</td>
+<td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>&lt;VideoCapture object&gt;</td><td>=</td><td>cv.VideoCapture(</td><td class="paramname"></td><td>)</td></tr><tr><td style="width: 20px;"></td><td>&lt;VideoCapture object&gt;</td><td>=</td><td>cv.VideoCapture(</td><td class="paramname">filename</td><td>)</td></tr><tr><td style="width: 20px;"></td><td>&lt;VideoCapture object&gt;</td><td>=</td><td>cv.VideoCapture(</td><td class="paramname">filename, apiPreference</td><td>)</td></tr><tr><td style="width: 20px;"></td><td>&lt;VideoCapture object&gt;</td><td>=</td><td>cv.VideoCapture(</td><td class="paramname">index</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Open video file or a capturing device or a IP video stream for video capturing. </p>
+<p>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. Same as <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a85b55cf6a4a50451367ba96b65218ba1" title="Open video file or a capturing device or a IP video stream for video capturing with API Preference...">VideoCapture(const String&amp; filename, int apiPreference)</a> but using default Capture API backends </p>
+</div>
+</div>
+<a id="a85b55cf6a4a50451367ba96b65218ba1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a85b55cf6a4a50451367ba96b65218ba1">§&nbsp;</a></span>VideoCapture() <span class="overload">[3/4]</span></h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">cv::VideoCapture::VideoCapture </td>
+<td>(</td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>filename</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>apiPreference</em>&nbsp;</td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td><td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>&lt;VideoCapture object&gt;</td><td>=</td><td>cv.VideoCapture(</td><td class="paramname"></td><td>)</td></tr><tr><td style="width: 20px;"></td><td>&lt;VideoCapture object&gt;</td><td>=</td><td>cv.VideoCapture(</td><td class="paramname">filename</td><td>)</td></tr><tr><td style="width: 20px;"></td><td>&lt;VideoCapture object&gt;</td><td>=</td><td>cv.VideoCapture(</td><td class="paramname">filename, apiPreference</td><td>)</td></tr><tr><td style="width: 20px;"></td><td>&lt;VideoCapture object&gt;</td><td>=</td><td>cv.VideoCapture(</td><td class="paramname">index</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Open video file or a capturing device or a IP video stream for video capturing with API Preference. </p>
+<p>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </p><dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">filename</td><td>it can be:<ul>
+<li>name of video file (eg. <code>video.avi</code>)</li>
+<li>or image sequence (eg. <code>img_%02d.jpg</code>, which will read samples like <code>img_00.jpg, img_01.jpg, img_02.jpg, ...</code>)</li>
+<li>or URL of video stream (eg. <code>protocol://host:port/script_name?script_params|auth</code>). Note that each video stream or IP camera feed has its own URL scheme. Please refer to the documentation of source stream to know the right URL. </li>
+</ul>
+</td></tr>
+<tr><td class="paramname">apiPreference</td><td>preferred Capture API backends to use. Can be used to enforce a specific reader implementation if multiple are available: e.g. <a class="el" href="https://docs.opencv.org/3.4.1/d4/d15/group__videoio__flags__base.html#gga023786be1ee68a9105bf2e48c700294dacf10e9692c4166f74de62b7d00c377d0" title="Open and record video file or stream using the FFMPEG library. ">cv::CAP_FFMPEG</a> or <a class="el" href="https://docs.opencv.org/3.4.1/d4/d15/group__videoio__flags__base.html#gga023786be1ee68a9105bf2e48c700294dabe73da7a65e66cdd47c87733a4ea6ef0" title="OpenCV Image Sequence (e.g. img_%02d.jpg) ">cv::CAP_IMAGES</a> or <a class="el" href="https://docs.opencv.org/3.4.1/d4/d15/group__videoio__flags__base.html#gga023786be1ee68a9105bf2e48c700294dab6ac3effa04f41ed5470375c85a23504" title="DirectShow (via videoInput) ">cv::CAP_DSHOW</a>. </td></tr>
+</tbody></table>
+</dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd>The list of supported API backends <a class="el" href="https://docs.opencv.org/3.4.1/d4/d15/group__videoio__flags__base.html#ga023786be1ee68a9105bf2e48c700294d" title="VideoCapture API backends identifier. ">cv::VideoCaptureAPIs</a> </dd></dl>
+</div>
+</div>
+<a id="a5d5f5dacb77bbebdcbfb341e3d4355c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a5d5f5dacb77bbebdcbfb341e3d4355c1">§&nbsp;</a></span>VideoCapture() <span class="overload">[4/4]</span></h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">cv::VideoCapture::VideoCapture </td>
+<td>(</td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>index</em></td><td>)</td>
+<td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>&lt;VideoCapture object&gt;</td><td>=</td><td>cv.VideoCapture(</td><td class="paramname"></td><td>)</td></tr><tr><td style="width: 20px;"></td><td>&lt;VideoCapture object&gt;</td><td>=</td><td>cv.VideoCapture(</td><td class="paramname">filename</td><td>)</td></tr><tr><td style="width: 20px;"></td><td>&lt;VideoCapture object&gt;</td><td>=</td><td>cv.VideoCapture(</td><td class="paramname">filename, apiPreference</td><td>)</td></tr><tr><td style="width: 20px;"></td><td>&lt;VideoCapture object&gt;</td><td>=</td><td>cv.VideoCapture(</td><td class="paramname">index</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Open a camera for video capturing. </p>
+<p>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </p><dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">index</td><td>camera_id + domain_offset (CAP_*) id of the video capturing device to open. To open default camera using default backend just pass 0. Use a <code>domain_offset</code> to enforce a specific reader implementation if multiple are available like <a class="el" href="https://docs.opencv.org/3.4.1/d4/d15/group__videoio__flags__base.html#gga023786be1ee68a9105bf2e48c700294dacf10e9692c4166f74de62b7d00c377d0" title="Open and record video file or stream using the FFMPEG library. ">cv::CAP_FFMPEG</a> or <a class="el" href="https://docs.opencv.org/3.4.1/d4/d15/group__videoio__flags__base.html#gga023786be1ee68a9105bf2e48c700294dabe73da7a65e66cdd47c87733a4ea6ef0" title="OpenCV Image Sequence (e.g. img_%02d.jpg) ">cv::CAP_IMAGES</a> or <a class="el" href="https://docs.opencv.org/3.4.1/d4/d15/group__videoio__flags__base.html#gga023786be1ee68a9105bf2e48c700294dab6ac3effa04f41ed5470375c85a23504" title="DirectShow (via videoInput) ">cv::CAP_DSHOW</a>. e.g. to open Camera 1 using the MS Media Foundation API use <code>index = 1 + <a class="el" href="https://docs.opencv.org/3.4.1/d4/d15/group__videoio__flags__base.html#gga023786be1ee68a9105bf2e48c700294da278d5ad4907c9c0fe6d1c6104b746019" title="Microsoft Media Foundation (via videoInput) ">cv::CAP_MSMF</a></code></td></tr>
+</tbody></table>
+</dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd>The list of supported API backends <a class="el" href="https://docs.opencv.org/3.4.1/d4/d15/group__videoio__flags__base.html#ga023786be1ee68a9105bf2e48c700294d" title="VideoCapture API backends identifier. ">cv::VideoCaptureAPIs</a> </dd></dl>
+</div>
+</div>
+<a id="ae82ac8efcff2c5c96be47c060754a518"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#ae82ac8efcff2c5c96be47c060754a518">§&nbsp;</a></span>~VideoCapture()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+<tbody><tr>
+<td class="mlabels-left">
+<table class="memname">
+<tbody><tr>
+<td class="memname">virtual cv::VideoCapture::~VideoCapture </td>
+<td>(</td>
+<td class="paramname"></td><td>)</td>
+<td></td>
+</tr>
+</tbody></table>
+</td>
+<td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span> </td>
+</tr>
+</tbody></table>
+</div><div class="memdoc">
+<p>Default destructor. </p>
+<p>The method first calls <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#afb4ab689e553ba2c8f0fec41b9344ae6" title="Closes video file or capturing device. ">VideoCapture::release</a> to close the already opened file or camera. </p>
+</div>
+</div>
+<h2 class="groupheader">Member Function Documentation</h2>
+<a id="aa6480e6972ef4c00d74814ec841a2939"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#aa6480e6972ef4c00d74814ec841a2939">§&nbsp;</a></span>get()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+<tbody><tr>
+<td class="mlabels-left">
+<table class="memname">
+<tbody><tr>
+<td class="memname">virtual double cv::VideoCapture::get </td>
+<td>(</td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>propId</em></td><td>)</td>
+<td> const</td>
+</tr>
+</tbody></table>
+</td>
+<td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span> </td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.VideoCapture.get(</td><td class="paramname">propId</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Returns the specified <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html" title="Class for video capturing from video files, image sequences or cameras. ">VideoCapture</a> property. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">propId</td><td>Property identifier from <a class="el" href="https://docs.opencv.org/3.4.1/d4/d15/group__videoio__flags__base.html#gaeb8dd9c89c10a5c63c139bf7c4f5704d" title="VideoCapture generic properties identifier. ">cv::VideoCaptureProperties</a> (eg. <a class="el" href="https://docs.opencv.org/3.4.1/d4/d15/group__videoio__flags__base.html#ggaeb8dd9c89c10a5c63c139bf7c4f5704da7c2fa550ba270713fca1405397b90ae0" title="Current position of the video file in milliseconds. ">cv::CAP_PROP_POS_MSEC</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d4/d15/group__videoio__flags__base.html#ggaeb8dd9c89c10a5c63c139bf7c4f5704da6223452891755166a4fd5173ea257068" title="0-based index of the frame to be decoded/captured next. ">cv::CAP_PROP_POS_FRAMES</a>, ...) or one from <a class="el" href="https://docs.opencv.org/3.4.1/dc/dfc/group__videoio__flags__others.html">Additional flags for video I/O API backends</a> </td></tr>
+</tbody></table>
+</dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>Value for the specified property. Value 0 is returned when querying a property that is not supported by the backend used by the <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html" title="Class for video capturing from video files, image sequences or cameras. ">VideoCapture</a> instance.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Reading / writing properties involves many layers. Some unexpected result might happens along this chain. <div class="fragment"><div class="line">`<a class="code" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a57c0e81e83e60f36c83027dc2a188e80">VideoCapture</a> -&gt; API <a class="code" href="https://docs.opencv.org/3.4.1/d6/d0f/group__dnn.html#ga186f7d9bfacac8b0ff2e26e2eab02625">Backend</a> -&gt; Operating System -&gt; Device Driver -&gt; Device Hardware`</div></div><!-- fragment --> The returned value might be different from what really used by the device or it could be encoded using device dependent rules (eg. steps or percentage). Effective behaviour depends from device driver and API Backend </dd></dl>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="https://docs.opencv.org/3.4.1/de/db2/laplace_8cpp-example.html#a5">laplace.cpp</a>.</dd>
+</dl>
+</div>
+</div>
+<a id="ae38c2a053d39d6b20c9c649e08ff0146"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#ae38c2a053d39d6b20c9c649e08ff0146">§&nbsp;</a></span>grab()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+<tbody><tr>
+<td class="mlabels-left">
+<table class="memname">
+<tbody><tr>
+<td class="memname">virtual bool cv::VideoCapture::grab </td>
+<td>(</td>
+<td class="paramname"></td><td>)</td>
+<td></td>
+</tr>
+</tbody></table>
+</td>
+<td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span> </td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.VideoCapture.grab(</td><td class="paramname"></td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Grabs the next frame from video file or capturing device. </p>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> (non-zero) in the case of success.</dd></dl>
+<p>The method/function grabs the next frame from video file or camera and returns true (non-zero) in the case of success.</p>
+<p>The primary use of the function is in multi-camera environments, especially when the cameras do not have hardware synchronization. That is, you call <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#ae38c2a053d39d6b20c9c649e08ff0146" title="Grabs the next frame from video file or capturing device. ">VideoCapture::grab()</a> for each camera and after that call the slower method <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a9ac7f4b1cdfe624663478568486e6712" title="Decodes and returns the grabbed video frame. ">VideoCapture::retrieve()</a> to decode and get frame from each camera. This way the overhead on demosaicing or motion jpeg decompression etc. is eliminated and the retrieved frames from different cameras will be closer in time.</p>
+<p>Also, when a connected camera is multi-head (for example, a stereo camera or a Kinect device), the correct way of retrieving data from it is to call <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#ae38c2a053d39d6b20c9c649e08ff0146" title="Grabs the next frame from video file or capturing device. ">VideoCapture::grab()</a> first and then call <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a9ac7f4b1cdfe624663478568486e6712" title="Decodes and returns the grabbed video frame. ">VideoCapture::retrieve()</a> one or more times with different values of the channel parameter.</p>
+<p><a class="el" href="https://docs.opencv.org/3.4.1/d7/d6f/tutorial_kinect_openni.html">Using Kinect and other OpenNI compatible depth sensors</a> </p>
+</div>
+</div>
+<a id="a9d2ca36789e7fcfe7a7be3b328038585"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a9d2ca36789e7fcfe7a7be3b328038585">§&nbsp;</a></span>isOpened()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+<tbody><tr>
+<td class="mlabels-left">
+<table class="memname">
+<tbody><tr>
+<td class="memname">virtual bool cv::VideoCapture::isOpened </td>
+<td>(</td>
+<td class="paramname"></td><td>)</td>
+<td> const</td>
+</tr>
+</tbody></table>
+</td>
+<td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span> </td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.VideoCapture.isOpened(</td><td class="paramname"></td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Returns true if video capturing has been initialized already. </p>
+<p>If the previous call to <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html" title="Class for video capturing from video files, image sequences or cameras. ">VideoCapture</a> constructor or <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#ab5b7391cd5ec50e7237e575a758f6f05" title="Open video file or a capturing device or a IP video stream for video capturing. ">VideoCapture::open()</a> succeeded, the method returns true. </p>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="https://docs.opencv.org/3.4.1/d2/dc1/camshiftdemo_8cpp-example.html#a22">camshiftdemo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/db/d3a/facedetect_8cpp-example.html#a13">facedetect.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/de/df6/hog_8cpp-example.html#a15">hog.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/de/db2/laplace_8cpp-example.html#a4">laplace.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d2/d0a/lkdemo_8cpp-example.html#a12">lkdemo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/db/db0/peopledetect_8cpp-example.html#a28">peopledetect.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/dc/d5e/polar_transforms_8cpp-example.html#a5">polar_transforms.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/dd/d9d/segment_objects_8cpp-example.html#a19">segment_objects.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d5/d77/train_HOG_8cpp-example.html#a47">train_HOG.cpp</a>, and <a class="el" href="https://docs.opencv.org/3.4.1/d5/d57/videowriter_basic_8cpp-example.html#a2">videowriter_basic.cpp</a>.</dd>
+</dl>
+</div>
+</div>
+<a id="ab5b7391cd5ec50e7237e575a758f6f05"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#ab5b7391cd5ec50e7237e575a758f6f05">§&nbsp;</a></span>open() <span class="overload">[1/4]</span></h2>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+<tbody><tr>
+<td class="mlabels-left">
+<table class="memname">
+<tbody><tr>
+<td class="memname">virtual bool cv::VideoCapture::open </td>
+<td>(</td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>filename</em></td><td>)</td>
+<td></td>
+</tr>
+</tbody></table>
+</td>
+<td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span> </td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.VideoCapture.open(</td><td class="paramname">filename</td><td>)</td></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.VideoCapture.open(</td><td class="paramname">index</td><td>)</td></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.VideoCapture.open(</td><td class="paramname">cameraNum, apiPreference</td><td>)</td></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.VideoCapture.open(</td><td class="paramname">filename, apiPreference</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Open video file or a capturing device or a IP video stream for video capturing. </p>
+<p>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</p>
+<p>Parameters are same as the constructor <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a949d90b766ba42a6a93fe23a67785951" title="Open video file or a capturing device or a IP video stream for video capturing. ">VideoCapture(const String&amp; filename)</a> </p><dl class="section return"><dt>Returns</dt><dd><code>true</code> if the file has been successfully opened</dd></dl>
+<p>The method first calls <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#afb4ab689e553ba2c8f0fec41b9344ae6" title="Closes video file or capturing device. ">VideoCapture::release</a> to close the already opened file or camera. </p>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="https://docs.opencv.org/3.4.1/d2/dc1/camshiftdemo_8cpp-example.html#a21">camshiftdemo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/db/d3a/facedetect_8cpp-example.html#a10">facedetect.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/de/df6/hog_8cpp-example.html#a14">hog.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/de/db2/laplace_8cpp-example.html#a3">laplace.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d2/d0a/lkdemo_8cpp-example.html#a11">lkdemo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/db/db0/peopledetect_8cpp-example.html#a27">peopledetect.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/dc/d5e/polar_transforms_8cpp-example.html#a4">polar_transforms.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/dd/d9d/segment_objects_8cpp-example.html#a18">segment_objects.cpp</a>, and <a class="el" href="https://docs.opencv.org/3.4.1/d5/d77/train_HOG_8cpp-example.html#a44">train_HOG.cpp</a>.</dd>
+</dl>
+</div>
+</div>
+<a id="abd88ea03aad64f7f00f3767e8b8c2034"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#abd88ea03aad64f7f00f3767e8b8c2034">§&nbsp;</a></span>open() <span class="overload">[2/4]</span></h2>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+<tbody><tr>
+<td class="mlabels-left">
+<table class="memname">
+<tbody><tr>
+<td class="memname">virtual bool cv::VideoCapture::open </td>
+<td>(</td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>index</em></td><td>)</td>
+<td></td>
+</tr>
+</tbody></table>
+</td>
+<td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span> </td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.VideoCapture.open(</td><td class="paramname">filename</td><td>)</td></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.VideoCapture.open(</td><td class="paramname">index</td><td>)</td></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.VideoCapture.open(</td><td class="paramname">cameraNum, apiPreference</td><td>)</td></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.VideoCapture.open(</td><td class="paramname">filename, apiPreference</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Open a camera for video capturing. </p>
+<p>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</p>
+<p>Parameters are same as the constructor <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a5d5f5dacb77bbebdcbfb341e3d4355c1" title="Open a camera for video capturing. ">VideoCapture(int index)</a> </p><dl class="section return"><dt>Returns</dt><dd><code>true</code> if the camera has been successfully opened.</dd></dl>
+<p>The method first calls <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#afb4ab689e553ba2c8f0fec41b9344ae6" title="Closes video file or capturing device. ">VideoCapture::release</a> to close the already opened file or camera. </p>
+</div>
+</div>
+<a id="a128a4457358fb7dccb9a9a686e56e344"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a128a4457358fb7dccb9a9a686e56e344">§&nbsp;</a></span>open() <span class="overload">[3/4]</span></h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">bool cv::VideoCapture::open </td>
+<td>(</td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>cameraNum</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>apiPreference</em>&nbsp;</td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td><td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.VideoCapture.open(</td><td class="paramname">filename</td><td>)</td></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.VideoCapture.open(</td><td class="paramname">index</td><td>)</td></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.VideoCapture.open(</td><td class="paramname">cameraNum, apiPreference</td><td>)</td></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.VideoCapture.open(</td><td class="paramname">filename, apiPreference</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Open a camera for video capturing. </p>
+<p>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</p>
+<p>Parameters are similar as the constructor <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a5d5f5dacb77bbebdcbfb341e3d4355c1" title="Open a camera for video capturing. ">VideoCapture(int index)</a>,except it takes an additional argument apiPreference. Definitely, is same as <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#abd88ea03aad64f7f00f3767e8b8c2034" title="Open a camera for video capturing. ">open(int index)</a> where <code>index=cameraNum + apiPreference</code> </p><dl class="section return"><dt>Returns</dt><dd><code>true</code> if the camera has been successfully opened. </dd></dl>
+</div>
+</div>
+<a id="af3b71a7c0c459704ed75568a01290457"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#af3b71a7c0c459704ed75568a01290457">§&nbsp;</a></span>open() <span class="overload">[4/4]</span></h2>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+<tbody><tr>
+<td class="mlabels-left">
+<table class="memname">
+<tbody><tr>
+<td class="memname">virtual bool cv::VideoCapture::open </td>
+<td>(</td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>filename</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>apiPreference</em>&nbsp;</td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td><td></td>
+</tr>
+</tbody></table>
+</td>
+<td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span> </td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.VideoCapture.open(</td><td class="paramname">filename</td><td>)</td></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.VideoCapture.open(</td><td class="paramname">index</td><td>)</td></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.VideoCapture.open(</td><td class="paramname">cameraNum, apiPreference</td><td>)</td></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.VideoCapture.open(</td><td class="paramname">filename, apiPreference</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Open video file or a capturing device or a IP video stream for video capturing with API Preference. </p>
+<p>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts.</p>
+<p>Parameters are same as the constructor <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a85b55cf6a4a50451367ba96b65218ba1" title="Open video file or a capturing device or a IP video stream for video capturing with API Preference...">VideoCapture(const String&amp; filename, int apiPreference)</a> </p><dl class="section return"><dt>Returns</dt><dd><code>true</code> if the file has been successfully opened</dd></dl>
+<p>The method first calls <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#afb4ab689e553ba2c8f0fec41b9344ae6" title="Closes video file or capturing device. ">VideoCapture::release</a> to close the already opened file or camera. </p>
+</div>
+</div>
+<a id="a199844fb74226a28b3ce3a39d1ff6765"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a199844fb74226a28b3ce3a39d1ff6765">§&nbsp;</a></span>operator&gt;&gt;() <span class="overload">[1/2]</span></h2>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+<tbody><tr>
+<td class="mlabels-left">
+<table class="memname">
+<tbody><tr>
+<td class="memname">virtual <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html">VideoCapture</a>&amp; cv::VideoCapture::operator&gt;&gt; </td>
+<td>(</td>
+<td class="paramtype"><a class="el" href="https://docs.opencv.org/3.4.1/d3/d63/classcv_1_1Mat.html">Mat</a> &amp;&nbsp;</td>
+<td class="paramname"><em>image</em></td><td>)</td>
+<td></td>
+</tr>
+</tbody></table>
+</td>
+<td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span> </td>
+</tr>
+</tbody></table>
+</div><div class="memdoc">
+<p>Stream operator to read the next video frame. </p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a473055e77dd7faa4d26d686226b292c1" title="Grabs, decodes and returns the next video frame. ">read()</a> </dd></dl>
+</div>
+</div>
+<a id="a35eb427f16b4ea5c502922aba9da835c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a35eb427f16b4ea5c502922aba9da835c">§&nbsp;</a></span>operator&gt;&gt;() <span class="overload">[2/2]</span></h2>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+<tbody><tr>
+<td class="mlabels-left">
+<table class="memname">
+<tbody><tr>
+<td class="memname">virtual <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html">VideoCapture</a>&amp; cv::VideoCapture::operator&gt;&gt; </td>
+<td>(</td>
+<td class="paramtype"><a class="el" href="https://docs.opencv.org/3.4.1/d7/d45/classcv_1_1UMat.html">UMat</a> &amp;&nbsp;</td>
+<td class="paramname"><em>image</em></td><td>)</td>
+<td></td>
+</tr>
+</tbody></table>
+</td>
+<td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span> </td>
+</tr>
+</tbody></table>
+</div><div class="memdoc">
+<p>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </p><dl class="section see"><dt>See also</dt><dd><a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a473055e77dd7faa4d26d686226b292c1" title="Grabs, decodes and returns the next video frame. ">read()</a> </dd></dl>
+</div>
+</div>
+<a id="a473055e77dd7faa4d26d686226b292c1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a473055e77dd7faa4d26d686226b292c1">§&nbsp;</a></span>read()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+<tbody><tr>
+<td class="mlabels-left">
+<table class="memname">
+<tbody><tr>
+<td class="memname">virtual bool cv::VideoCapture::read </td>
+<td>(</td>
+<td class="paramtype"><a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#gaad17fda1d0f0d1ee069aebb1df2913c0">OutputArray</a>&nbsp;</td>
+<td class="paramname"><em>image</em></td><td>)</td>
+<td></td>
+</tr>
+</tbody></table>
+</td>
+<td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span> </td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>retval, image</td><td>=</td><td>cv.VideoCapture.read(</td><td class="paramname">[, image]</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Grabs, decodes and returns the next video frame. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramdir">[out]</td><td class="paramname">image</td><td>the video frame is returned here. If no frames has been grabbed the image will be empty. </td></tr>
+</tbody></table>
+</dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>false</code> if no frames has been grabbed</dd></dl>
+<p>The method/function combines <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#ae38c2a053d39d6b20c9c649e08ff0146" title="Grabs the next frame from video file or capturing device. ">VideoCapture::grab()</a> and <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a9ac7f4b1cdfe624663478568486e6712" title="Decodes and returns the grabbed video frame. ">VideoCapture::retrieve()</a> in one call. This is the most convenient method for reading video files or capturing data from decode and returns the just grabbed frame. If no frames has been grabbed (camera has been disconnected, or there are no more frames in video file), the method returns false and the function returns empty image (with cv::Mat, test it with <a class="el" href="https://docs.opencv.org/3.4.1/d3/d63/classcv_1_1Mat.html#abbec3525a852e77998aba034813fded4" title="Returns true if the array has no elements. ">Mat::empty()</a>).</p>
+<dl class="section note"><dt>Note</dt><dd>In <a class="el" href="https://docs.opencv.org/3.4.1/dd/d01/group__videoio__c.html">C API</a>, functions <a class="el" href="https://docs.opencv.org/3.4.1/dd/d01/group__videoio__c.html#ga15224db88623fc748c4c4fa56c5751db" title="get the frame grabbed with cvGrabFrame(..) ">cvRetrieveFrame()</a> and cv.RetrieveFrame() return image stored inside the video capturing structure. It is not allowed to modify or release the image! You can copy the frame using :ocvcvCloneImage and then do whatever you want with the copy. </dd></dl>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="https://docs.opencv.org/3.4.1/d5/d57/videowriter_basic_8cpp-example.html#a8">videowriter_basic.cpp</a>.</dd>
+</dl>
+</div>
+</div>
+<a id="afb4ab689e553ba2c8f0fec41b9344ae6"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#afb4ab689e553ba2c8f0fec41b9344ae6">§&nbsp;</a></span>release()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+<tbody><tr>
+<td class="mlabels-left">
+<table class="memname">
+<tbody><tr>
+<td class="memname">virtual void cv::VideoCapture::release </td>
+<td>(</td>
+<td class="paramname"></td><td>)</td>
+<td></td>
+</tr>
+</tbody></table>
+</td>
+<td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span> </td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>None</td><td>=</td><td>cv.VideoCapture.release(</td><td class="paramname"></td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Closes video file or capturing device. </p>
+<p>The method is automatically called by subsequent <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#ab5b7391cd5ec50e7237e575a758f6f05" title="Open video file or a capturing device or a IP video stream for video capturing. ">VideoCapture::open</a> and by <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html" title="Class for video capturing from video files, image sequences or cameras. ">VideoCapture</a> destructor.</p>
+<p>The C function also deallocates memory and clears *capture pointer. </p>
+</div>
+</div>
+<a id="a9ac7f4b1cdfe624663478568486e6712"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a9ac7f4b1cdfe624663478568486e6712">§&nbsp;</a></span>retrieve()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+<tbody><tr>
+<td class="mlabels-left">
+<table class="memname">
+<tbody><tr>
+<td class="memname">virtual bool cv::VideoCapture::retrieve </td>
+<td>(</td>
+<td class="paramtype"><a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#gaad17fda1d0f0d1ee069aebb1df2913c0">OutputArray</a>&nbsp;</td>
+<td class="paramname"><em>image</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>flag</em> = <code>0</code>&nbsp;</td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td><td></td>
+</tr>
+</tbody></table>
+</td>
+<td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span> </td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>retval, image</td><td>=</td><td>cv.VideoCapture.retrieve(</td><td class="paramname">[, image[, flag]]</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Decodes and returns the grabbed video frame. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramdir">[out]</td><td class="paramname">image</td><td>the video frame is returned here. If no frames has been grabbed the image will be empty. </td></tr>
+<tr><td class="paramdir"></td><td class="paramname">flag</td><td>it could be a frame index or a driver specific flag </td></tr>
+</tbody></table>
+</dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>false</code> if no frames has been grabbed</dd></dl>
+<p>The method decodes and returns the just grabbed frame. If no frames has been grabbed (camera has been disconnected, or there are no more frames in video file), the method returns false and the function returns an empty image (with cv::Mat, test it with <a class="el" href="https://docs.opencv.org/3.4.1/d3/d63/classcv_1_1Mat.html#abbec3525a852e77998aba034813fded4" title="Returns true if the array has no elements. ">Mat::empty()</a>).</p>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a473055e77dd7faa4d26d686226b292c1" title="Grabs, decodes and returns the next video frame. ">read()</a></dd></dl>
+<dl class="section note"><dt>Note</dt><dd>In <a class="el" href="https://docs.opencv.org/3.4.1/dd/d01/group__videoio__c.html">C API</a>, functions <a class="el" href="https://docs.opencv.org/3.4.1/dd/d01/group__videoio__c.html#ga15224db88623fc748c4c4fa56c5751db" title="get the frame grabbed with cvGrabFrame(..) ">cvRetrieveFrame()</a> and cv.RetrieveFrame() return image stored inside the video capturing structure. It is not allowed to modify or release the image! You can copy the frame using :ocvcvCloneImage and then do whatever you want with the copy. </dd></dl>
+</div>
+</div>
+<a id="a8c6d8c2d37505b5ca61ffd4bb54e9a7c"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a8c6d8c2d37505b5ca61ffd4bb54e9a7c">§&nbsp;</a></span>set()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+<tbody><tr>
+<td class="mlabels-left">
+<table class="memname">
+<tbody><tr>
+<td class="memname">virtual bool cv::VideoCapture::set </td>
+<td>(</td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>propId</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">double&nbsp;</td>
+<td class="paramname"><em>value</em>&nbsp;</td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td><td></td>
+</tr>
+</tbody></table>
+</td>
+<td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">virtual</span></span> </td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.VideoCapture.set(</td><td class="paramname">propId, value</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Sets a property in the <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html" title="Class for video capturing from video files, image sequences or cameras. ">VideoCapture</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">propId</td><td>Property identifier from <a class="el" href="https://docs.opencv.org/3.4.1/d4/d15/group__videoio__flags__base.html#gaeb8dd9c89c10a5c63c139bf7c4f5704d" title="VideoCapture generic properties identifier. ">cv::VideoCaptureProperties</a> (eg. <a class="el" href="https://docs.opencv.org/3.4.1/d4/d15/group__videoio__flags__base.html#ggaeb8dd9c89c10a5c63c139bf7c4f5704da7c2fa550ba270713fca1405397b90ae0" title="Current position of the video file in milliseconds. ">cv::CAP_PROP_POS_MSEC</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d4/d15/group__videoio__flags__base.html#ggaeb8dd9c89c10a5c63c139bf7c4f5704da6223452891755166a4fd5173ea257068" title="0-based index of the frame to be decoded/captured next. ">cv::CAP_PROP_POS_FRAMES</a>, ...) or one from <a class="el" href="https://docs.opencv.org/3.4.1/dc/dfc/group__videoio__flags__others.html">Additional flags for video I/O API backends</a> </td></tr>
+<tr><td class="paramname">value</td><td>Value of the property. </td></tr>
+</tbody></table>
+</dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd><code>true</code> if the property is supported by backend used by the <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html" title="Class for video capturing from video files, image sequences or cameras. ">VideoCapture</a> instance. </dd></dl>
+<dl class="section note"><dt>Note</dt><dd>Even if it returns <code>true</code> this doesn't ensure that the property value has been accepted by the capture device. See note in <a class="el" href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#aa6480e6972ef4c00d74814ec841a2939" title="Returns the specified VideoCapture property. ">VideoCapture::get()</a> </dd></dl>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="https://docs.opencv.org/3.4.1/de/db2/laplace_8cpp-example.html#a12">laplace.cpp</a>.</dd>
+</dl>
+</div>
+</div>
+<h2 class="groupheader">Member Data Documentation</h2>
+<a id="a8c6d7b52a28206072d540c9567874649"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#a8c6d7b52a28206072d540c9567874649">§&nbsp;</a></span>cap</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+<tbody><tr>
+<td class="mlabels-left">
+<table class="memname">
+<tbody><tr>
+<td class="memname"><a class="el" href="https://docs.opencv.org/3.4.1/d0/de7/structcv_1_1Ptr.html">Ptr</a>&lt;<a class="el" href="https://docs.opencv.org/3.4.1/dd/d01/group__videoio__c.html#ga394109074fab9bdca2ea45514b1946b7">CvCapture</a>&gt; cv::VideoCapture::cap</td>
+</tr>
+</tbody></table>
+</td>
+<td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span> </td>
+</tr>
+</tbody></table>
+</div><div class="memdoc">
+</div>
+</div>
+<a id="ad20c1542d32a3dfef0a083bede8b956a"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d8/dfe/classcv_1_1VideoCapture.html#ad20c1542d32a3dfef0a083bede8b956a">§&nbsp;</a></span>icap</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+<tbody><tr>
+<td class="mlabels-left">
+<table class="memname">
+<tbody><tr>
+<td class="memname"><a class="el" href="https://docs.opencv.org/3.4.1/d0/de7/structcv_1_1Ptr.html">Ptr</a>&lt;IVideoCapture&gt; cv::VideoCapture::icap</td>
+</tr>
+</tbody></table>
+</td>
+<td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">protected</span></span> </td>
+</tr>
+</tbody></table>
+</div><div class="memdoc">
+</div>
+</div>
+<hr>The documentation for this class was generated from the following file:<ul>
+<li>videoio/include/opencv2/<a class="el" href="https://docs.opencv.org/3.4.1/dc/d3d/videoio_8hpp.html">videoio.hpp</a></li>
+</ul>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.6-->
+<!-- start footer part -->
+<hr class="footer"><address class="footer"><small>
+Generated on Fri Feb 23 2018 13:10:29 for OpenCV by &nbsp;<a href="http://www.doxygen.org/index.html">
+<img alt="doxygen" class="footer" src="./OpenCV_ cv__VideoCapture Class Reference_files/doxygen.png">
+</a> 1.8.12
+</small></address>
+<script type="text/javascript">
+//<![CDATA[
+addTutorialsButtons();
+//]]>
+</script>
+
+
+<table cellspacing="0" cellpadding="0" class="gstl_50 gssb_c" style="width: 237px; display: none; top: 23px; left: -1px; position: absolute;"><tbody><tr><td class="gssb_f"></td><td class="gssb_e" style="width: 100%;"></td></tr></tbody></table></body></html>

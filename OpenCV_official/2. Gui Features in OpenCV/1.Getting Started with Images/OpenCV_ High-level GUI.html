@@ -1,0 +1,1607 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!-- saved from url=(0091)https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga453d42fe4cb60e5723281a89973ee563 -->
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta content="IE=9" http-equiv="X-UA-Compatible">
+<meta content="Doxygen 1.8.12" name="generator">
+<title>OpenCV: High-level GUI</title>
+<link href="https://docs.opencv.org/3.4.1/opencv.ico" rel="shortcut icon" type="image/x-icon">
+<link href="./OpenCV_ High-level GUI_files/tabs.css" rel="stylesheet" type="text/css">
+<script async="" src="./OpenCV_ High-level GUI_files/async-ads.js.stažený soubor"></script><script type="text/javascript" async="" src="./OpenCV_ High-level GUI_files/f.txt"></script><script src="./OpenCV_ High-level GUI_files/jquery.js.stažený soubor" type="text/javascript"></script>
+<script src="./OpenCV_ High-level GUI_files/dynsections.js.stažený soubor" type="text/javascript"></script>
+<script src="./OpenCV_ High-level GUI_files/tutorial-utils.js.stažený soubor" type="text/javascript"></script>
+<link href="./OpenCV_ High-level GUI_files/search.css" rel="stylesheet" type="text/css">
+<script src="./OpenCV_ High-level GUI_files/searchdata.js.stažený soubor" type="text/javascript"></script>
+<script src="./OpenCV_ High-level GUI_files/search.js.stažený soubor" type="text/javascript"></script>
+<script type="text/x-mathjax-config;executed=true">
+  MathJax.Hub.Config({
+    extensions: ["tex2jax.js", "TeX/AMSmath.js", "TeX/AMSsymbols.js"],
+    jax: ["input/TeX","output/HTML-CSS"],
+});
+//<![CDATA[
+MathJax.Hub.Config(
+{
+  TeX: {
+      Macros: {
+          matTT: [ "\\[ \\left|\\begin{array}{ccc} #1 & #2 & #3\\\\ #4 & #5 & #6\\\\ #7 & #8 & #9 \\end{array}\\right| \\]", 9],
+          fork: ["\\left\\{ \\begin{array}{l l} #1 & \\mbox{#2}\\\\ #3 & \\mbox{#4}\\\\ \\end{array} \\right.", 4],
+          forkthree: ["\\left\\{ \\begin{array}{l l} #1 & \\mbox{#2}\\\\ #3 & \\mbox{#4}\\\\ #5 & \\mbox{#6}\\\\ \\end{array} \\right.", 6],
+          forkfour: ["\\left\\{ \\begin{array}{l l} #1 & \\mbox{#2}\\\\ #3 & \\mbox{#4}\\\\ #5 & \\mbox{#6}\\\\ #7 & \\mbox{#8}\\\\ \\end{array} \\right.", 8],
+          vecthree: ["\\begin{bmatrix} #1\\\\ #2\\\\ #3 \\end{bmatrix}", 3],
+          vecthreethree: ["\\begin{bmatrix} #1 & #2 & #3\\\\ #4 & #5 & #6\\\\ #7 & #8 & #9 \\end{bmatrix}", 9],
+          hdotsfor: ["\\dots", 1],
+          mathbbm: ["\\mathbb{#1}", 1],
+          bordermatrix: ["\\matrix{#1}", 1]
+      }
+  }
+}
+);
+//]]>
+</script><script src="./OpenCV_ High-level GUI_files/MathJax.js.stažený soubor" type="text/javascript"></script><style type="text/css">.MathJax_Preview {color: #888}
+#MathJax_Message {position: fixed; left: 1em; bottom: 1.5em; background-color: #E6E6E6; border: 1px solid #959595; margin: 0px; padding: 2px 8px; z-index: 102; color: black; font-size: 80%; width: auto; white-space: nowrap}
+#MathJax_MSIE_Frame {position: absolute; top: 0; left: 0; width: 0px; z-index: 101; border: 0px; margin: 0px; padding: 0px}
+.MathJax_Error {color: #CC0000; font-style: italic}
+</style>
+<link href="./OpenCV_ High-level GUI_files/doxygen.css" rel="stylesheet" type="text/css">
+<link href="./OpenCV_ High-level GUI_files/stylesheet.css" rel="stylesheet" type="text/css">
+<script src="./OpenCV_ High-level GUI_files/jsapi" type="text/javascript"></script><link type="text/css" href="./OpenCV_ High-level GUI_files/default+en.css" rel="stylesheet"><link type="text/css" href="./OpenCV_ High-level GUI_files/default.css" rel="stylesheet"><script type="text/javascript" src="./OpenCV_ High-level GUI_files/default+en.I.js.stažený soubor"></script><style type="text/css">.MathJax_Hover_Frame {border-radius: .25em; -webkit-border-radius: .25em; -moz-border-radius: .25em; -khtml-border-radius: .25em; box-shadow: 0px 0px 15px #83A; -webkit-box-shadow: 0px 0px 15px #83A; -moz-box-shadow: 0px 0px 15px #83A; -khtml-box-shadow: 0px 0px 15px #83A; border: 1px solid #A6D ! important; display: inline-block; position: absolute}
+.MathJax_Menu_Button .MathJax_Hover_Arrow {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px; -khtml-border-radius: 4px; font-family: 'Courier New',Courier; font-size: 9px; color: #F0F0F0}
+.MathJax_Menu_Button .MathJax_Hover_Arrow span {display: block; background-color: #AAA; border: 1px solid; border-radius: 3px; line-height: 0; padding: 4px}
+.MathJax_Hover_Arrow:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_Hover_Arrow:hover span {background-color: #CCC!important}
+</style><style type="text/css">.gsc-control-cse{font-family:arial, sans-serif}.gsc-control-cse .gsc-table-result{font-family:arial, sans-serif}.gsc-control-cse{border-color:#FFFFFF;background-color:#FFFFFF}input.gsc-input,.gsc-input-box,.gsc-input-box-hover,.gsc-input-box-focus{border-color:#D9D9D9}.gsc-search-button-v2,.gsc-search-button-v2:hover,.gsc-search-button-v2:focus{border-color:#666666;background-color:#CECECE;background-image:none;filter:none}.gsc-search-button-v2 svg{fill:#FFFFFF}.gsc-tabHeader.gsc-tabhInactive{border-color:#E9E9E9;background-color:#E9E9E9}.gsc-tabHeader.gsc-tabhActive{border-color:#FF9900;border-bottom-color:#FFFFFF;background-color:#FFFFFF}.gsc-tabsArea{border-color:#FF9900}.gsc-webResult.gsc-result,.gsc-results .gsc-imageResult{border-color:#FFFFFF;background-color:#FFFFFF}.gsc-webResult.gsc-result:hover,.gsc-imageResult:hover{border-color:#FFFFFF;background-color:#FFFFFF}.gs-webResult.gs-result a.gs-title:link,.gs-webResult.gs-result a.gs-title:link b,.gs-imageResult a.gs-title:link,.gs-imageResult a.gs-title:link b{color:#0000CC}.gs-webResult.gs-result a.gs-title:visited,.gs-webResult.gs-result a.gs-title:visited b,.gs-imageResult a.gs-title:visited,.gs-imageResult a.gs-title:visited b{color:#0000CC}.gs-webResult.gs-result a.gs-title:hover,.gs-webResult.gs-result a.gs-title:hover b,.gs-imageResult a.gs-title:hover,.gs-imageResult a.gs-title:hover b{color:#0000CC}.gs-webResult.gs-result a.gs-title:active,.gs-webResult.gs-result a.gs-title:active b,.gs-imageResult a.gs-title:active,.gs-imageResult a.gs-title:active b{color:#0000CC}.gsc-cursor-page{color:#0000CC}a.gsc-trailing-more-results:link{color:#0000CC}.gs-webResult .gs-snippet,.gs-imageResult .gs-snippet,.gs-fileFormatType{color:#000000}.gs-webResult div.gs-visibleUrl,.gs-imageResult div.gs-visibleUrl{color:#008000}.gs-webResult div.gs-visibleUrl-short{color:#008000}.gs-webResult div.gs-visibleUrl-short{display:none}.gs-webResult div.gs-visibleUrl-long{display:block}.gs-promotion div.gs-visibleUrl-short{display:none}.gs-promotion div.gs-visibleUrl-long{display:block}.gsc-cursor-box{border-color:#FFFFFF}.gsc-results .gsc-cursor-box .gsc-cursor-page{border-color:#E9E9E9;background-color:#FFFFFF;color:#0000CC}.gsc-results .gsc-cursor-box .gsc-cursor-current-page{border-color:#FF9900;background-color:#FFFFFF;color:#0000CC}.gsc-webResult.gsc-result.gsc-promotion{border-color:#336699;background-color:#FFFFFF}.gsc-completion-title{color:#0000CC}.gsc-completion-snippet{color:#000000}.gs-promotion a.gs-title:link,.gs-promotion a.gs-title:link *,.gs-promotion .gs-snippet a:link{color:#0000CC}.gs-promotion a.gs-title:visited,.gs-promotion a.gs-title:visited *,.gs-promotion .gs-snippet a:visited{color:#0000CC}.gs-promotion a.gs-title:hover,.gs-promotion a.gs-title:hover *,.gs-promotion .gs-snippet a:hover{color:#0000CC}.gs-promotion a.gs-title:active,.gs-promotion a.gs-title:active *,.gs-promotion .gs-snippet a:active{color:#0000CC}.gs-promotion .gs-snippet,.gs-promotion .gs-title .gs-promotion-title-right,.gs-promotion .gs-title .gs-promotion-title-right *{color:#000000}.gs-promotion .gs-visibleUrl,.gs-promotion .gs-visibleUrl-short{color:#008000}.gcsc-find-more-on-google{color:#0000CC}.gcsc-find-more-on-google-magnifier{fill:#0000CC}</style><style type="text/css">.gscb_a{display:inline-block;font:27px/13px arial,sans-serif}.gsst_a .gscb_a{color:#a1b9ed;cursor:pointer}.gsst_a:hover .gscb_a,.gsst_a:focus .gscb_a{color:#36c}.gsst_a{display:inline-block}.gsst_a{cursor:pointer;padding:0 4px}.gsst_a:hover{text-decoration:none!important}.gsst_b{font-size:16px;padding:0 2px;position:relative;user-select:none;-webkit-user-select:none;white-space:nowrap}.gsst_e{opacity:0.55;}.gsst_a:hover .gsst_e,.gsst_a:focus .gsst_e{opacity:0.72;}.gsst_a:active .gsst_e{opacity:1;}.gsst_f{background:white;text-align:left}.gsst_g{background-color:white;border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-webkit-box-shadow:0 2px 4px rgba(0,0,0,0.2);margin:-1px -3px;padding:0 6px}.gsst_h{background-color:white;height:1px;margin-bottom:-1px;position:relative;top:-1px}.gsib_a{width:100%;padding:4px 6px 0}.gsib_a,.gsib_b{vertical-align:top}.gssb_c{border:0;position:absolute;z-index:989}.gssb_e{border:1px solid #ccc;border-top-color:#d9d9d9;box-shadow:0 2px 4px rgba(0,0,0,0.2);-webkit-box-shadow:0 2px 4px rgba(0,0,0,0.2);cursor:default}.gssb_f{visibility:hidden;white-space:nowrap}.gssb_k{border:0;display:block;position:absolute;top:0;z-index:988}.gsdd_a{border:none!important}.gsq_a{padding:0}.gsq_a{padding:0}.gscsep_a{display:none}.gssb_a{padding:0 7px}.gssb_a,.gssb_a td{white-space:nowrap;overflow:hidden;line-height:22px}#gssb_b{font-size:11px;color:#36c;text-decoration:none}#gssb_b:hover{font-size:11px;color:#36c;text-decoration:underline}.gssb_g{text-align:center;padding:8px 0 7px;position:relative}.gssb_h{font-size:15px;height:28px;margin:0.2em;-webkit-appearance:button}.gssb_i{background:#eee}.gss_ifl{visibility:hidden;padding-left:5px}.gssb_i .gss_ifl{visibility:visible}a.gssb_j{font-size:13px;color:#36c;text-decoration:none;line-height:100%}a.gssb_j:hover{text-decoration:underline}.gssb_l{height:1px;background-color:#e5e5e5}.gssb_m{color:#000;background:#fff}.gsfe_a{border:1px solid #b9b9b9;border-top-color:#a0a0a0;box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1);-moz-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1);-webkit-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.1);}.gsfe_b{border:1px solid #4d90fe;outline:none;box-shadow:inset 0px 1px 2px rgba(0,0,0,0.3);-moz-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.3);-webkit-box-shadow:inset 0px 1px 2px rgba(0,0,0,0.3);}.gssb_a{padding:0 9px}.gsib_a{padding-right:8px;padding-left:8px}.gsst_a{padding-top:5.5px}.gssb_e{border:0}.gssb_l{margin:5px 0}input.gsc-input::-webkit-input-placeholder{font-size:14px}input.gsc-input:-moz-placeholder{font-size:14px}input.gsc-input::-moz-placeholder{font-size:14px}input.gsc-input:-ms-input-placeholder{font-size:14px}input.gsc-input:focus::-webkit-input-placeholder{color:transparent}input.gsc-input:focus:-moz-placeholder{color:transparent}input.gsc-input:focus::-moz-placeholder{color:transparent}input.gsc-input:focus:-ms-input-placeholder{color:transparent}.gssb_c .gsc-completion-container{position:static}.gssb_c{z-index:5000}.gsc-completion-container table{background:transparent;font-size:inherit;font-family:inherit}.gssb_c > tbody > tr,.gssb_c > tbody > tr > td,.gssb_d,.gssb_d > tbody > tr,.gssb_d > tbody > tr > td,.gssb_e,.gssb_e > tbody > tr,.gssb_e > tbody > tr > td{padding:0;margin:0;border:0}.gssb_a table,.gssb_a table tr,.gssb_a table tr td{padding:0;margin:0;border:0}</style><style type="text/css">.MathJax_Display {text-align: center; margin: 1em 0em; position: relative; display: block!important; text-indent: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; width: 100%}
+.MathJax .merror {background-color: #FFFF88; color: #CC0000; border: 1px solid #CC0000; padding: 1px 3px; font-style: normal; font-size: 90%}
+.MathJax .MJX-monospace {font-family: monospace}
+.MathJax .MJX-sans-serif {font-family: sans-serif}
+#MathJax_Tooltip {background-color: InfoBackground; color: InfoText; border: 1px solid black; box-shadow: 2px 2px 5px #AAAAAA; -webkit-box-shadow: 2px 2px 5px #AAAAAA; -moz-box-shadow: 2px 2px 5px #AAAAAA; -khtml-box-shadow: 2px 2px 5px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true'); padding: 3px 4px; z-index: 401; position: absolute; left: 0; top: 0; width: auto; height: auto; display: none}
+.MathJax {display: inline; font-style: normal; font-weight: normal; line-height: normal; font-size: 100%; font-size-adjust: none; text-indent: 0; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0; min-height: 0; border: 0; padding: 0; margin: 0}
+.MathJax:focus, body :focus .MathJax {display: inline-table}
+.MathJax.MathJax_FullWidth {text-align: center; display: table-cell!important; width: 10000em!important}
+.MathJax img, .MathJax nobr, .MathJax a {border: 0; padding: 0; margin: 0; max-width: none; max-height: none; min-width: 0; min-height: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+img.MathJax_strut {border: 0!important; padding: 0!important; margin: 0!important; vertical-align: 0!important}
+.MathJax span {display: inline; position: static; border: 0; padding: 0; margin: 0; vertical-align: 0; line-height: normal; text-decoration: none}
+.MathJax nobr {white-space: nowrap!important}
+.MathJax img {display: inline!important; float: none!important}
+.MathJax * {transition: none; -webkit-transition: none; -moz-transition: none; -ms-transition: none; -o-transition: none}
+.MathJax_Processing {visibility: hidden; position: fixed; width: 0; height: 0; overflow: hidden}
+.MathJax_Processed {display: none!important}
+.MathJax_ExBox {display: block!important; overflow: hidden; width: 1px; height: 60ex; min-height: 0; max-height: none}
+.MathJax .MathJax_EmBox {display: block!important; overflow: hidden; width: 1px; height: 60em; min-height: 0; max-height: none}
+.MathJax_LineBox {display: table!important}
+.MathJax_LineBox span {display: table-cell!important; width: 10000em!important; min-width: 0; max-width: none; padding: 0; border: 0; margin: 0}
+.MathJax .MathJax_HitBox {cursor: text; background: white; opacity: 0; filter: alpha(opacity=0)}
+.MathJax .MathJax_HitBox * {filter: none; opacity: 1; background: transparent}
+#MathJax_Tooltip * {filter: none; opacity: 1; background: transparent}
+@font-face {font-family: MathJax_Main; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/woff/MathJax_Main-Regular.woff?V=2.7.0') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/otf/MathJax_Main-Regular.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Main-bold; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/woff/MathJax_Main-Bold.woff?V=2.7.0') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/otf/MathJax_Main-Bold.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Main-italic; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/woff/MathJax_Main-Italic.woff?V=2.7.0') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/otf/MathJax_Main-Italic.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Math-italic; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/woff/MathJax_Math-Italic.woff?V=2.7.0') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/otf/MathJax_Math-Italic.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Caligraphic; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/woff/MathJax_Caligraphic-Regular.woff?V=2.7.0') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/otf/MathJax_Caligraphic-Regular.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Size1; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/woff/MathJax_Size1-Regular.woff?V=2.7.0') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/otf/MathJax_Size1-Regular.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Size2; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/woff/MathJax_Size2-Regular.woff?V=2.7.0') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/otf/MathJax_Size2-Regular.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Size3; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/woff/MathJax_Size3-Regular.woff?V=2.7.0') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/otf/MathJax_Size3-Regular.otf?V=2.7.0') format('opentype')}
+@font-face {font-family: MathJax_Size4; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/woff/MathJax_Size4-Regular.woff?V=2.7.0') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/otf/MathJax_Size4-Regular.otf?V=2.7.0') format('opentype')}
+</style><style type="text/css">@font-face {font-family: MathJax_Typewriter; src: url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/woff/MathJax_Typewriter-Regular.woff?V=2.7.0') format('woff'), url('https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/fonts/HTML-CSS/TeX/otf/MathJax_Typewriter-Regular.otf?V=2.7.0') format('opentype')}
+</style><style type="text/css">#MathJax_About {position: fixed; left: 50%; width: auto; text-align: center; border: 3px outset; padding: 1em 2em; background-color: #DDDDDD; color: black; cursor: default; font-family: message-box; font-size: 120%; font-style: normal; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; border-radius: 15px; -webkit-border-radius: 15px; -moz-border-radius: 15px; -khtml-border-radius: 15px; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_About.MathJax_MousePost {outline: none}
+.MathJax_Menu {position: absolute; background-color: white; color: black; width: auto; padding: 2px; border: 1px solid #CCCCCC; margin: 0; cursor: default; font: menu; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; z-index: 201; box-shadow: 0px 10px 20px #808080; -webkit-box-shadow: 0px 10px 20px #808080; -moz-box-shadow: 0px 10px 20px #808080; -khtml-box-shadow: 0px 10px 20px #808080; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+.MathJax_MenuItem {padding: 2px 2em; background: transparent}
+.MathJax_MenuArrow {position: absolute; right: .5em; padding-top: .25em; color: #666666; font-size: .75em}
+.MathJax_MenuActive .MathJax_MenuArrow {color: white}
+.MathJax_MenuArrow.RTL {left: .5em; right: auto}
+.MathJax_MenuCheck {position: absolute; left: .7em}
+.MathJax_MenuCheck.RTL {right: .7em; left: auto}
+.MathJax_MenuRadioCheck {position: absolute; left: 1em}
+.MathJax_MenuRadioCheck.RTL {right: 1em; left: auto}
+.MathJax_MenuLabel {padding: 2px 2em 4px 1.33em; font-style: italic}
+.MathJax_MenuRule {border-top: 1px solid #CCCCCC; margin: 4px 1px 0px}
+.MathJax_MenuDisabled {color: GrayText}
+.MathJax_MenuActive {background-color: Highlight; color: HighlightText}
+.MathJax_MenuDisabled:focus, .MathJax_MenuLabel:focus {background-color: #E8E8E8}
+.MathJax_ContextMenu:focus {outline: none}
+.MathJax_ContextMenu .MathJax_MenuItem:focus {outline: none}
+#MathJax_AboutClose {top: .2em; right: .2em}
+.MathJax_Menu .MathJax_MenuClose {top: -10px; left: -10px}
+.MathJax_MenuClose {position: absolute; cursor: pointer; display: inline-block; border: 2px solid #AAA; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; font-family: 'Courier New',Courier; font-size: 24px; color: #F0F0F0}
+.MathJax_MenuClose span {display: block; background-color: #AAA; border: 1.5px solid; border-radius: 18px; -webkit-border-radius: 18px; -moz-border-radius: 18px; -khtml-border-radius: 18px; line-height: 0; padding: 8px 0 6px}
+.MathJax_MenuClose:hover {color: white!important; border: 2px solid #CCC!important}
+.MathJax_MenuClose:hover span {background-color: #CCC!important}
+.MathJax_MenuClose:hover:focus {outline: none}
+</style><style type="text/css">#MathJax_Zoom {position: absolute; background-color: #F0F0F0; overflow: auto; display: block; z-index: 301; padding: .5em; border: 1px solid black; margin: 0; font-weight: normal; font-style: normal; text-align: left; text-indent: 0; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; -webkit-box-sizing: content-box; -moz-box-sizing: content-box; box-sizing: content-box; box-shadow: 5px 5px 15px #AAAAAA; -webkit-box-shadow: 5px 5px 15px #AAAAAA; -moz-box-shadow: 5px 5px 15px #AAAAAA; -khtml-box-shadow: 5px 5px 15px #AAAAAA; filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=2, OffY=2, Color='gray', Positive='true')}
+#MathJax_ZoomOverlay {position: absolute; left: 0; top: 0; z-index: 300; display: inline-block; width: 100%; height: 100%; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+#MathJax_ZoomFrame {position: relative; display: inline-block; height: 0; width: 0}
+#MathJax_ZoomEventTrap {position: absolute; left: 0; top: 0; z-index: 302; display: inline-block; border: 0; padding: 0; margin: 0; background-color: white; opacity: 0; filter: alpha(opacity=0)}
+</style></head>
+<body><div style="visibility: hidden; overflow: hidden; position: absolute; top: 0px; height: 1px; width: auto; padding: 0px; border: 0px; margin: 0px; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal;"><div id="MathJax_Hidden"></div></div><div id="MathJax_Message" style="display: none;"></div>
+<div id="top"><!-- do not remove this div, it is closed by doxygen! -->
+<div id="titlearea">
+<script>
+  (function() {
+    var cx = '002541620211387084530:kaexgxg7oxu';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = 'https://cse.google.com/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<div id="___gcse_0"><div class="gsc-control-cse gsc-control-cse-en"><div class="gsc-control-wrapper-cse" dir="ltr"><form class="gsc-search-box gsc-search-box-tools" accept-charset="utf-8"><table cellspacing="0" cellpadding="0" class="gsc-search-box"><tbody><tr><td class="gsc-input"><div class="gsc-input-box" id="gsc-iw-id1"><table cellspacing="0" cellpadding="0" id="gs_id50" class="gstl_50 " style="width: 100%; padding: 0px;"><tbody><tr><td id="gs_tti50" class="gsib_a"><input autocomplete="off" type="text" size="10" class="gsc-input" name="search" title="search" id="gsc-i-id1" x-webkit-speech="" x-webkit-grammar="builtin:search" lang="en" dir="ltr" spellcheck="false" placeholder="Custom Search" style="width: 100%; padding: 0px; border: none; margin: 0px; height: auto; outline: none; background: url(&quot;https://www.google.com/cse/static/images/1x/googlelogo_lightgrey_46x16dp.png&quot;) left center no-repeat rgb(255, 255, 255); text-indent: 48px;"></td><td class="gsib_b"><div class="gsst_b" id="gs_st50" dir="ltr"><a class="gsst_a" href="javascript:void(0)" style="display: none;"><span class="gscb_a" id="gs_cb50">×</span></a></div></td></tr></tbody></table></div></td><td class="gsc-search-button"><button class="gsc-search-button gsc-search-button-v2"><svg width="13" height="13" viewBox="0 0 13 13"><title>search</title><path d="m4.8495 7.8226c0.82666 0 1.5262-0.29146 2.0985-0.87438 0.57232-0.58292 0.86378-1.2877 0.87438-2.1144 0.010599-0.82666-0.28086-1.5262-0.87438-2.0985-0.59352-0.57232-1.293-0.86378-2.0985-0.87438-0.8055-0.010599-1.5103 0.28086-2.1144 0.87438-0.60414 0.59352-0.8956 1.293-0.87438 2.0985 0.021197 0.8055 0.31266 1.5103 0.87438 2.1144 0.56172 0.60414 1.2665 0.8956 2.1144 0.87438zm4.4695 0.2115 3.681 3.6819-1.259 1.284-3.6817-3.7 0.0019784-0.69479-0.090043-0.098846c-0.87973 0.76087-1.92 1.1413-3.1207 1.1413-1.3553 0-2.5025-0.46363-3.4417-1.3909s-1.4088-2.0686-1.4088-3.4239c0-1.3553 0.4696-2.4966 1.4088-3.4239 0.9392-0.92727 2.0864-1.3969 3.4417-1.4088 1.3553-0.011889 2.4906 0.45771 3.406 1.4088 0.9154 0.95107 1.379 2.0924 1.3909 3.4239 0 1.2126-0.38043 2.2588-1.1413 3.1385l0.098834 0.090049z"></path></svg></button></td><td class="gsc-clear-button"><div class="gsc-clear-button" title="clear results">&nbsp;</div></td></tr></tbody></table></form><div class="gsc-results-wrapper-overlay"><div class="gsc-results-close-btn" tabindex="0"></div><div class="gsc-tabsAreaInvisible"><div class="gsc-tabHeader gsc-inline-block gsc-tabhActive">Custom Search</div><span class="gs-spacer"> </span></div><div class="gsc-tabsAreaInvisible"></div><div class="gsc-above-wrapper-area-invisible"><table cellspacing="0" cellpadding="0" class="gsc-above-wrapper-area-container"><tbody><tr><td class="gsc-result-info-container"><div class="gsc-result-info-invisible"></div></td><td class="gsc-orderby-container"><div class="gsc-orderby-invisible"><div class="gsc-orderby-label gsc-inline-block">Sort by:</div><div class="gsc-option-menu-container gsc-inline-block"><div class="gsc-selected-option-container gsc-inline-block"><div class="gsc-selected-option">Relevance</div><div class="gsc-option-selector"></div></div><div class="gsc-option-menu-invisible"><div class="gsc-option-menu-item gsc-option-menu-item-highlighted"><div class="gsc-option">Relevance</div></div><div class="gsc-option-menu-item"><div class="gsc-option">Date</div></div></div></div></div></td></tr></tbody></table></div><div class="gsc-adBlockInvisible"></div><div class="gsc-wrapper"><div class="gsc-adBlockInvisible"></div><div class="gsc-resultsbox-invisible"><div class="gsc-resultsRoot gsc-tabData gsc-tabdActive"><table cellspacing="0" cellpadding="0" class="gsc-resultsHeader"><tbody><tr><td class="gsc-twiddleRegionCell"><div class="gsc-twiddle"><div class="gsc-title">Web</div></div><div class="gsc-stats"></div><div class="gsc-results-selector gsc-all-results-active"><div class="gsc-result-selector gsc-one-result" title="show one result">&nbsp;</div><div class="gsc-result-selector gsc-more-results" title="show more results">&nbsp;</div><div class="gsc-result-selector gsc-all-results" title="show all results">&nbsp;</div></div></td><td class="gsc-configLabelCell"></td></tr></tbody></table><div><div class="gsc-expansionArea"></div></div></div></div></div></div><div class="gsc-modal-background-image" tabindex="0"></div></div></div></div>
+<script type="text/javascript" src="./OpenCV_ High-level GUI_files/version.js.stažený soubor"></script>
+
+<table cellpadding="0" cellspacing="0">
+<tbody>
+<tr style="height: 56px;">
+<td id="projectlogo"><img alt="Logo" src="./OpenCV_ High-level GUI_files/opencv-logo-small.png"></td>
+<td style="padding-left: 0.5em;">
+<div id="projectname">OpenCV
+   &nbsp;<span id="projectnumber"><select><option value="4.0.0-pre">4.0.0-pre</option><option value="4.0.0-beta">4.0.0-beta</option><option value="4.0.0-alpha">4.0.0-alpha</option><option value="3.4.3-dev">3.4.3-dev</option><option value="3.4.3">3.4.3</option><option value="3.4.2">3.4.2</option><option value="3.4.1" selected="selected">3.4.1</option><option value="3.4.0">3.4.0</option><option value="3.3.1">3.3.1</option><option value="3.3.0">3.3.0</option><option value="3.2.0">3.2.0</option><option value="3.1.0">3.1.0</option><option value="3.0.0">3.0.0</option></select></span>
+</div>
+<div id="projectbrief">Open Source Computer Vision</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<!-- end header part -->
+<!-- Generated by Doxygen 1.8.12 -->
+<script type="text/javascript">
+var searchBox = new SearchBox("searchBox", "../../search",false,'Search');
+</script>
+<script src="./OpenCV_ High-level GUI_files/menudata.js.stažený soubor" type="text/javascript"></script>
+<script src="./OpenCV_ High-level GUI_files/menu.js.stažený soubor" type="text/javascript"></script>
+<script type="text/javascript">
+$(function() {
+  initMenu('../../',true,false,'search.php','Search');
+  $(document).ready(function() { init_search(); });
+});
+</script>
+<div id="main-nav"><ul class="sm sm-dox" id="main-menu" data-smartmenus-id="15404765215061213"><li><a href="https://docs.opencv.org/3.4.1/index.html">Main Page</a></li><li><a href="https://docs.opencv.org/3.4.1/pages.html">Related Pages</a></li><li><a href="https://docs.opencv.org/3.4.1/modules.html">Modules</a></li><li><a href="https://docs.opencv.org/3.4.1/namespaces.html" class="has-submenu" id="sm-15404765215061213-1" aria-haspopup="true" aria-controls="sm-15404765215061213-2" aria-expanded="false"><span class="sub-arrow">+</span>Namespaces</a><ul id="sm-15404765215061213-2" role="group" aria-hidden="true" aria-labelledby="sm-15404765215061213-1" aria-expanded="false"><li><a href="https://docs.opencv.org/3.4.1/namespaces.html">Namespace List</a></li></ul></li><li><a href="https://docs.opencv.org/3.4.1/annotated.html" class="has-submenu" id="sm-15404765215061213-3" aria-haspopup="true" aria-controls="sm-15404765215061213-4" aria-expanded="false"><span class="sub-arrow">+</span>Classes</a><ul id="sm-15404765215061213-4" role="group" aria-hidden="true" aria-labelledby="sm-15404765215061213-3" aria-expanded="false"><li><a href="https://docs.opencv.org/3.4.1/annotated.html">Class List</a></li><li><a href="https://docs.opencv.org/3.4.1/classes.html">Class Index</a></li></ul></li><li><a href="https://docs.opencv.org/3.4.1/files.html" class="has-submenu" id="sm-15404765215061213-5" aria-haspopup="true" aria-controls="sm-15404765215061213-6" aria-expanded="false"><span class="sub-arrow">+</span>Files</a><ul id="sm-15404765215061213-6" role="group" aria-hidden="true" aria-labelledby="sm-15404765215061213-5" aria-expanded="false"><li><a href="https://docs.opencv.org/3.4.1/files.html">Files index</a></li><li><a href="https://docs.opencv.org/3.4.1/globals.html" class="has-submenu" id="sm-15404765215061213-7" aria-haspopup="true" aria-controls="sm-15404765215061213-8" aria-expanded="false"><span class="sub-arrow">+</span>Global objects</a><ul id="sm-15404765215061213-8" role="group" aria-hidden="true" aria-labelledby="sm-15404765215061213-7" aria-expanded="false"><li><a href="https://docs.opencv.org/3.4.1/globals.html" class="has-submenu" id="sm-15404765215061213-9" aria-haspopup="true" aria-controls="sm-15404765215061213-10" aria-expanded="false"><span class="sub-arrow">+</span>All</a><ul id="sm-15404765215061213-10" role="group" aria-hidden="true" aria-labelledby="sm-15404765215061213-9" aria-expanded="false"><li><a href="https://docs.opencv.org/3.4.1/globals.html#index__">_</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_a.html#index_a">a</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_c.html#index_c">c</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_d.html#index_d">d</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_f.html#index_f">f</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_g.html#index_g">g</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_h.html#index_h">h</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_i.html#index_i">i</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_k.html#index_k">k</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_l.html#index_l">l</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_m.html#index_m">m</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_n.html#index_n">n</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_o.html#index_o">o</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_p.html#index_p">p</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_r.html#index_r">r</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_s.html#index_s">s</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_t.html#index_t">t</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_u.html#index_u">u</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_v.html#index_v">v</a></li></ul></li><li><a href="https://docs.opencv.org/3.4.1/globals_func.html" class="has-submenu" id="sm-15404765215061213-11" aria-haspopup="true" aria-controls="sm-15404765215061213-12" aria-expanded="false"><span class="sub-arrow">+</span>Functions</a><ul id="sm-15404765215061213-12" role="group" aria-hidden="true" aria-labelledby="sm-15404765215061213-11" aria-expanded="false"><li><a href="https://docs.opencv.org/3.4.1/globals_func.html#index__">_</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_func_a.html#index_a">a</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_func_c.html#index_c">c</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_func_g.html#index_g">g</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_func_h.html#index_h">h</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_func_m.html#index_m">m</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_func_n.html#index_n">n</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_func_p.html#index_p">p</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_func_t.html#index_t">t</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_func_u.html#index_u">u</a></li></ul></li><li><a href="https://docs.opencv.org/3.4.1/globals_vars.html">Variables</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_type.html" class="has-submenu" id="sm-15404765215061213-13" aria-haspopup="true" aria-controls="sm-15404765215061213-14" aria-expanded="false"><span class="sub-arrow">+</span>Typedefs</a><ul id="sm-15404765215061213-14" role="group" aria-hidden="true" aria-labelledby="sm-15404765215061213-13" aria-expanded="false"><li><a href="https://docs.opencv.org/3.4.1/globals_type.html#index_c">c</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_type.html#index_i">i</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_type.html#index_n">n</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_type.html#index_s">s</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_type.html#index_u">u</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_type.html#index_v">v</a></li></ul></li><li><a href="https://docs.opencv.org/3.4.1/globals_enum.html">Enumerations</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_eval.html" class="has-submenu" id="sm-15404765215061213-15" aria-haspopup="true" aria-controls="sm-15404765215061213-16" aria-expanded="false"><span class="sub-arrow">+</span>Enumerator</a><ul id="sm-15404765215061213-16" role="group" aria-hidden="true" aria-labelledby="sm-15404765215061213-15" aria-expanded="false"><li><a href="https://docs.opencv.org/3.4.1/globals_eval.html#index_c">c</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_eval_n.html#index_n">n</a></li></ul></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs.html" class="has-submenu" id="sm-15404765215061213-17" aria-haspopup="true" aria-controls="sm-15404765215061213-18" aria-expanded="false"><span class="sub-arrow">+</span>Macros</a><ul id="sm-15404765215061213-18" role="group" aria-hidden="true" aria-labelledby="sm-15404765215061213-17" aria-expanded="false"><li><a href="https://docs.opencv.org/3.4.1/globals_defs.html#index__">_</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_c.html#index_c">c</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_d.html#index_d">d</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_f.html#index_f">f</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_h.html#index_h">h</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_i.html#index_i">i</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_l.html#index_l">l</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_m.html#index_m">m</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_n.html#index_n">n</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_o.html#index_o">o</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_r.html#index_r">r</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_s.html#index_s">s</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_t.html#index_t">t</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_u.html#index_u">u</a></li><li><a href="https://docs.opencv.org/3.4.1/globals_defs_v.html#index_v">v</a></li></ul></li></ul></li></ul></li><li><a href="https://docs.opencv.org/3.4.1/examples.html">Examples</a></li><li><a href="https://docs.opencv.org/3.4.1/javadoc/index.html">Java documentation</a></li><li style="float:right"><div id="MSearchBox" class="MSearchBoxInactive"><span class="left"><img id="MSearchSelect" src="./OpenCV_ High-level GUI_files/mag_sel.png" onmouseover="return searchBox.OnSearchSelectShow()" onmouseout="return searchBox.OnSearchSelectHide()" alt=""><input type="text" id="MSearchField" value="Search" accesskey="S" onfocus="searchBox.OnSearchFieldFocus(true)" onblur="searchBox.OnSearchFieldFocus(false)" onkeyup="searchBox.OnSearchFieldChange(event)"></span><span class="right"><a id="MSearchClose" href="javascript:searchBox.CloseResultsWindow()"><img id="MSearchCloseImg" border="0" src="./OpenCV_ High-level GUI_files/close.png" alt=""></a></span></div></li></ul></div>
+</div><!-- top -->
+<!-- window showing the filter options -->
+<div id="MSearchSelectWindow" onkeydown="return searchBox.OnSearchSelectKey(event)" onmouseout="return searchBox.OnSearchSelectHide()" onmouseover="return searchBox.OnSearchSelectShow()">
+<a class="SelectItem" onclick="searchBox.OnSelectItem(0)" href="javascript:void(0)"><span class="SelectionMark">•</span>All</a><a class="SelectItem" onclick="searchBox.OnSelectItem(1)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Classes</a><a class="SelectItem" onclick="searchBox.OnSelectItem(2)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Namespaces</a><a class="SelectItem" onclick="searchBox.OnSelectItem(3)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Files</a><a class="SelectItem" onclick="searchBox.OnSelectItem(4)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Functions</a><a class="SelectItem" onclick="searchBox.OnSelectItem(5)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Variables</a><a class="SelectItem" onclick="searchBox.OnSelectItem(6)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Typedefs</a><a class="SelectItem" onclick="searchBox.OnSelectItem(7)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Enumerations</a><a class="SelectItem" onclick="searchBox.OnSelectItem(8)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Enumerator</a><a class="SelectItem" onclick="searchBox.OnSelectItem(9)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Properties</a><a class="SelectItem" onclick="searchBox.OnSelectItem(10)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Friends</a><a class="SelectItem" onclick="searchBox.OnSelectItem(11)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Macros</a><a class="SelectItem" onclick="searchBox.OnSelectItem(12)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Modules</a><a class="SelectItem" onclick="searchBox.OnSelectItem(13)" href="javascript:void(0)"><span class="SelectionMark">&nbsp;</span>Pages</a></div>
+<!-- iframe showing the search results (closed by default) -->
+<div id="MSearchResultsWindow">
+<iframe frameborder="0" id="MSearchResults" name="MSearchResults" src="javascript:void(0)" src="./OpenCV_ High-level GUI_files/saved_resource.html">
+</iframe>
+</div>
+<div class="header">
+<div class="summary">
+<a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#groups">Modules</a> |
+<a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#typedef-members">Typedefs</a> |
+<a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#enum-members">Enumerations</a> |
+<a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#func-members">Functions</a> </div>
+<div class="headertitle">
+<div class="title">High-level GUI</div> </div>
+</div><!--header-->
+<div class="contents">
+<table class="memberdecls">
+<tbody><tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="groups"></a>
+Modules</h2></td></tr>
+<tr class="memitem:df/d24/group__highgui__opengl"><td align="right" class="memItemLeft" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/df/d24/group__highgui__opengl.html">OpenGL support</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:dc/d46/group__highgui__qt"><td align="right" class="memItemLeft" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/dc/d46/group__highgui__qt.html">Qt New Functions</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:d6/d2f/group__highgui__winrt"><td align="right" class="memItemLeft" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d6/d2f/group__highgui__winrt.html">WinRT support</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:d0/d28/group__highgui__c"><td align="right" class="memItemLeft" valign="top">&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d0/d28/group__highgui__c.html">C API</a></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+</tbody></table><table class="memberdecls">
+<tbody><tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="typedef-members"></a>
+Typedefs</h2></td></tr>
+<tr class="memitem:ga17ffcbb2343dc06e56f980b8414e3566"><td align="right" class="memItemLeft" valign="top">typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga17ffcbb2343dc06e56f980b8414e3566">cv::ButtonCallback</a>) (int state, void *userdata)</td></tr>
+<tr class="memdesc:ga17ffcbb2343dc06e56f980b8414e3566"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Callback function for a button created by <a class="el" href="https://docs.opencv.org/3.4.1/dc/d46/group__highgui__qt.html#ga938dc3ab0a9f115156439bd380816e2c" title="Attaches a button to the control panel. ">cv::createButton</a>.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga17ffcbb2343dc06e56f980b8414e3566">More...</a><br></td></tr>
+<tr class="separator:ga17ffcbb2343dc06e56f980b8414e3566"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:gab7aed186e151d5222ef97192912127a4"><td align="right" class="memItemLeft" valign="top">typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gab7aed186e151d5222ef97192912127a4">cv::MouseCallback</a>) (int event, int x, int y, int flags, void *userdata)</td></tr>
+<tr class="memdesc:gab7aed186e151d5222ef97192912127a4"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Callback function for mouse events. see <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga89e7806b0a616f6f1d502bd8c183ad3e" title="Sets mouse handler for the specified window. ">cv::setMouseCallback</a>.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gab7aed186e151d5222ef97192912127a4">More...</a><br></td></tr>
+<tr class="separator:gab7aed186e151d5222ef97192912127a4"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ga8bed4feb08f866e81514a31fdacaceee"><td align="right" class="memItemLeft" valign="top">typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga8bed4feb08f866e81514a31fdacaceee">cv::OpenGlDrawCallback</a>) (void *userdata)</td></tr>
+<tr class="memdesc:ga8bed4feb08f866e81514a31fdacaceee"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Callback function defined to be called every frame. See <a class="el" href="https://docs.opencv.org/3.4.1/df/d24/group__highgui__opengl.html#gaf80dcbc168a6ce40f6d1ad9d79a10bb8" title="Sets a callback function to be called to draw on top of displayed image. ">cv::setOpenGlDrawCallback</a>.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga8bed4feb08f866e81514a31fdacaceee">More...</a><br></td></tr>
+<tr class="separator:ga8bed4feb08f866e81514a31fdacaceee"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ga004b512c3d09aa53f20b050b1d01fab1"><td align="right" class="memItemLeft" valign="top">typedef void(*&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga004b512c3d09aa53f20b050b1d01fab1">cv::TrackbarCallback</a>) (int pos, void *userdata)</td></tr>
+<tr class="memdesc:ga004b512c3d09aa53f20b050b1d01fab1"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Callback function for Trackbar see <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gaf78d2155d30b728fc413803745b67a9b" title="Creates a trackbar and attaches it to the specified window. ">cv::createTrackbar</a>.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga004b512c3d09aa53f20b050b1d01fab1">More...</a><br></td></tr>
+<tr class="separator:ga004b512c3d09aa53f20b050b1d01fab1"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+</tbody></table><table class="memberdecls">
+<tbody><tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="enum-members"></a>
+Enumerations</h2></td></tr>
+<tr class="memitem:gaab4dc057947f70058c80626c9f1c25ce"><td align="right" class="memItemLeft" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gaab4dc057947f70058c80626c9f1c25ce">cv::MouseEventFlags</a> { <br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggaab4dc057947f70058c80626c9f1c25cead9b7a4f148eeff7eca24609f7a64adb1">cv::EVENT_FLAG_LBUTTON</a> = 1, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggaab4dc057947f70058c80626c9f1c25cea1bf3e58fcb83ff3e93cdd425299a9ff4">cv::EVENT_FLAG_RBUTTON</a> = 2, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggaab4dc057947f70058c80626c9f1c25cea9879aaef8e0ee2e8b8c9901774bfd594">cv::EVENT_FLAG_MBUTTON</a> = 4, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggaab4dc057947f70058c80626c9f1c25cea5876848aeb4e7cc282d461f94e45a07f">cv::EVENT_FLAG_CTRLKEY</a> = 8, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggaab4dc057947f70058c80626c9f1c25cea61da926b22fd4fd3aa226ef1d2893102">cv::EVENT_FLAG_SHIFTKEY</a> = 16, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggaab4dc057947f70058c80626c9f1c25ceadb29046ba08e95d11696fdfd1ddb61bb">cv::EVENT_FLAG_ALTKEY</a> = 32
+<br>
+ }</td></tr><tr class="memdesc:gaab4dc057947f70058c80626c9f1c25ce"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Mouse Event Flags see <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/d7/dfc/group__highgui.html#gab7aed186e151d5222ef97192912127a4" title="Callback function for mouse events. see cv::setMouseCallback. ">cv::MouseCallback</a>.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gaab4dc057947f70058c80626c9f1c25ce">More...</a><br></td></tr>
+
+<tr class="separator:gaab4dc057947f70058c80626c9f1c25ce"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ga927593befdddc7e7013602bca9b079b0"><td align="right" class="memItemLeft" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga927593befdddc7e7013602bca9b079b0">cv::MouseEventTypes</a> { <br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gga927593befdddc7e7013602bca9b079b0a8f2ec5fd35fe3f4b696518b146dcf675">cv::EVENT_MOUSEMOVE</a> = 0, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gga927593befdddc7e7013602bca9b079b0ad3419100fc2d7688c6dbe3da030fbfd9">cv::EVENT_LBUTTONDOWN</a> = 1, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gga927593befdddc7e7013602bca9b079b0aa3536f83b6f48da5121041f58fc7a683">cv::EVENT_RBUTTONDOWN</a> = 2, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gga927593befdddc7e7013602bca9b079b0a1dd67e6d96873c36dd3a9670e8312a28">cv::EVENT_MBUTTONDOWN</a> = 3, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gga927593befdddc7e7013602bca9b079b0a59cad7ffe959adf2782a110196d47bf6">cv::EVENT_LBUTTONUP</a> = 4, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gga927593befdddc7e7013602bca9b079b0aacdda7d94278928c34b61a7bd8be9f62">cv::EVENT_RBUTTONUP</a> = 5, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gga927593befdddc7e7013602bca9b079b0ab3fce84f2dca833e150779637db7dc1c">cv::EVENT_MBUTTONUP</a> = 6, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gga927593befdddc7e7013602bca9b079b0ad3b2124722127f85f6b335aee8ae5fcc">cv::EVENT_LBUTTONDBLCLK</a> = 7, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gga927593befdddc7e7013602bca9b079b0a32fba0899e8c3664d5252c059ce83d75">cv::EVENT_RBUTTONDBLCLK</a> = 8, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gga927593befdddc7e7013602bca9b079b0afeedd6a768596d14c81bf304760edfe4">cv::EVENT_MBUTTONDBLCLK</a> = 9, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gga927593befdddc7e7013602bca9b079b0a402b86eed36ef6cc00cb7425e817af66">cv::EVENT_MOUSEWHEEL</a> = 10, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gga927593befdddc7e7013602bca9b079b0a8c85fc9f3e42b5f4baab925cc5cce753">cv::EVENT_MOUSEHWHEEL</a> = 11
+<br>
+ }</td></tr><tr class="memdesc:ga927593befdddc7e7013602bca9b079b0"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Mouse Events see <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/d7/dfc/group__highgui.html#gab7aed186e151d5222ef97192912127a4" title="Callback function for mouse events. see cv::setMouseCallback. ">cv::MouseCallback</a>.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga927593befdddc7e7013602bca9b079b0">More...</a><br></td></tr>
+
+<tr class="separator:ga927593befdddc7e7013602bca9b079b0"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:gad15c7adb377e778dc907c0e318be193e"><td align="right" class="memItemLeft" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gad15c7adb377e778dc907c0e318be193e">cv::QtButtonTypes</a> { <br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggad15c7adb377e778dc907c0e318be193ea58964398bbcbd6f8a83e9767ed485880">cv::QT_PUSH_BUTTON</a> = 0, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggad15c7adb377e778dc907c0e318be193ea367844e0e15af159243f30adc65ea0dd">cv::QT_CHECKBOX</a> = 1, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggad15c7adb377e778dc907c0e318be193ea504bd273b06ac6f5eaf4eeb8a9530cd4">cv::QT_RADIOBOX</a> = 2, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggad15c7adb377e778dc907c0e318be193ea6ddf109a47ffadcc3340649b00404ac4">cv::QT_NEW_BUTTONBAR</a> = 1024
+<br>
+ }</td></tr><tr class="memdesc:gad15c7adb377e778dc907c0e318be193e"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Qt "button" type.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gad15c7adb377e778dc907c0e318be193e">More...</a><br></td></tr>
+
+<tr class="separator:gad15c7adb377e778dc907c0e318be193e"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ga985c48f130e04061bd651de78441082e"><td align="right" class="memItemLeft" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga985c48f130e04061bd651de78441082e">cv::QtFontStyles</a> { <br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gga985c48f130e04061bd651de78441082ea72d697afca937b7674103569cc62f6d1">cv::QT_STYLE_NORMAL</a> = 0, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gga985c48f130e04061bd651de78441082eace4118a243c78d3bf9c978f828b0d874">cv::QT_STYLE_ITALIC</a> = 1, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gga985c48f130e04061bd651de78441082ea1e83ccdfd4f4d2060492f5ec6cfd314e">cv::QT_STYLE_OBLIQUE</a> = 2
+<br>
+ }</td></tr><tr class="memdesc:ga985c48f130e04061bd651de78441082e"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Qt font style.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga985c48f130e04061bd651de78441082e">More...</a><br></td></tr>
+
+<tr class="separator:ga985c48f130e04061bd651de78441082e"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:gacd4a7935f4c2b336f8bbde275d952927"><td align="right" class="memItemLeft" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gacd4a7935f4c2b336f8bbde275d952927">cv::QtFontWeights</a> { <br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggacd4a7935f4c2b336f8bbde275d952927a23f8d6b7f141436b1f90db7cf778554c">cv::QT_FONT_LIGHT</a> = 25, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggacd4a7935f4c2b336f8bbde275d952927a541a5375e2348899274ead17e119b00e">cv::QT_FONT_NORMAL</a> = 50, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggacd4a7935f4c2b336f8bbde275d952927a387a6ce819cd7116a70cbfa74cd313fb">cv::QT_FONT_DEMIBOLD</a> = 63, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggacd4a7935f4c2b336f8bbde275d952927abcefd9963f506fea992352b3a4dd1115">cv::QT_FONT_BOLD</a> = 75, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggacd4a7935f4c2b336f8bbde275d952927a8ead405a3c7186427d99c4bd09fb2e7b">cv::QT_FONT_BLACK</a> = 87
+<br>
+ }</td></tr><tr class="memdesc:gacd4a7935f4c2b336f8bbde275d952927"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Qt font weight.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gacd4a7935f4c2b336f8bbde275d952927">More...</a><br></td></tr>
+
+<tr class="separator:gacd4a7935f4c2b336f8bbde275d952927"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:gabf7d2c5625bc59ac130287f925557ac3"><td align="right" class="memItemLeft" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gabf7d2c5625bc59ac130287f925557ac3">cv::WindowFlags</a> { <br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggabf7d2c5625bc59ac130287f925557ac3a29e45c5af696f73ce5e153601e5ca0f1">cv::WINDOW_NORMAL</a> = 0x00000000, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggabf7d2c5625bc59ac130287f925557ac3acf621ace7a54954cbac01df27e47228f">cv::WINDOW_AUTOSIZE</a> = 0x00000001, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggabf7d2c5625bc59ac130287f925557ac3a2ae8fc6bde96d84068eb9b9957458e6f">cv::WINDOW_OPENGL</a> = 0x00001000, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggabf7d2c5625bc59ac130287f925557ac3a78bc64121f612562bbb2fa23d316e84e">cv::WINDOW_FULLSCREEN</a> = 1, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggabf7d2c5625bc59ac130287f925557ac3a221aaba6c23c127325e4df9eb42dab97">cv::WINDOW_FREERATIO</a> = 0x00000100, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggabf7d2c5625bc59ac130287f925557ac3aa6bbb962c222cdf8b8539594a2d0d035">cv::WINDOW_KEEPRATIO</a> = 0x00000000, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggabf7d2c5625bc59ac130287f925557ac3ad96269c7c3d5790ecb8856c5747dd7e5">cv::WINDOW_GUI_EXPANDED</a> =0x00000000, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggabf7d2c5625bc59ac130287f925557ac3a39cee9c8d57caf2368eaf60980dc5d70">cv::WINDOW_GUI_NORMAL</a> = 0x00000010
+<br>
+ }</td></tr><tr class="memdesc:gabf7d2c5625bc59ac130287f925557ac3"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Flags for <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/d7/dfc/group__highgui.html#ga5afdf8410934fd099df85c75b2e0888b" title="Creates a window. ">cv::namedWindow</a>.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gabf7d2c5625bc59ac130287f925557ac3">More...</a><br></td></tr>
+
+<tr class="separator:gabf7d2c5625bc59ac130287f925557ac3"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:gaeedf4023e777f896ba6b9ffb156f57b8"><td align="right" class="memItemLeft" valign="top">enum &nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gaeedf4023e777f896ba6b9ffb156f57b8">cv::WindowPropertyFlags</a> { <br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggaeedf4023e777f896ba6b9ffb156f57b8a3b6a89b0daf2149dab93f9c6ab99fcc8">cv::WND_PROP_FULLSCREEN</a> = 0, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggaeedf4023e777f896ba6b9ffb156f57b8a40b8385d11a44871776eed13da7808a2">cv::WND_PROP_AUTOSIZE</a> = 1, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggaeedf4023e777f896ba6b9ffb156f57b8a635a6ff3b81e4019be4a43b64e7b2bbb">cv::WND_PROP_ASPECT_RATIO</a> = 2, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggaeedf4023e777f896ba6b9ffb156f57b8a360f30201f153e192919289d7c002e04">cv::WND_PROP_OPENGL</a> = 3, 
+<br>
+&nbsp;&nbsp;<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggaeedf4023e777f896ba6b9ffb156f57b8a07598b61a8b3047cb93634130beddf81">cv::WND_PROP_VISIBLE</a> = 4
+<br>
+ }</td></tr><tr class="memdesc:gaeedf4023e777f896ba6b9ffb156f57b8"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Flags for <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/d7/dfc/group__highgui.html#ga66e4a6db4d4e06148bcdfe0d70a5df27" title="Changes parameters of a window dynamically. ">cv::setWindowProperty</a> / <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/d7/dfc/group__highgui.html#gaaf9504b8f9cf19024d9d44a14e461656" title="Provides parameters of a window. ">cv::getWindowProperty</a>.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gaeedf4023e777f896ba6b9ffb156f57b8">More...</a><br></td></tr>
+
+<tr class="separator:gaeedf4023e777f896ba6b9ffb156f57b8"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+</tbody></table><table class="memberdecls">
+<tbody><tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
+Functions</h2></td></tr>
+<tr class="memitem:gaf78d2155d30b728fc413803745b67a9b"><td align="right" class="memItemLeft" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gaf78d2155d30b728fc413803745b67a9b">cv::createTrackbar</a> (const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;trackbarname, const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;winname, int *value, int count, <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga004b512c3d09aa53f20b050b1d01fab1">TrackbarCallback</a> onChange=0, void *userdata=0)</td></tr>
+<tr class="memdesc:gaf78d2155d30b728fc413803745b67a9b"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates a trackbar and attaches it to the specified window.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gaf78d2155d30b728fc413803745b67a9b">More...</a><br></td></tr>
+<tr class="separator:gaf78d2155d30b728fc413803745b67a9b"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ga6b7fc1c1a8960438156912027b38f481"><td align="right" class="memItemLeft" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga6b7fc1c1a8960438156912027b38f481">cv::destroyAllWindows</a> ()</td></tr>
+<tr class="memdesc:ga6b7fc1c1a8960438156912027b38f481"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destroys all of the HighGUI windows.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga6b7fc1c1a8960438156912027b38f481">More...</a><br></td></tr>
+<tr class="separator:ga6b7fc1c1a8960438156912027b38f481"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ga851ccdd6961022d1d5b4c4f255dbab34"><td align="right" class="memItemLeft" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga851ccdd6961022d1d5b4c4f255dbab34">cv::destroyWindow</a> (const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;winname)</td></tr>
+<tr class="memdesc:ga851ccdd6961022d1d5b4c4f255dbab34"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Destroys the specified window.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga851ccdd6961022d1d5b4c4f255dbab34">More...</a><br></td></tr>
+<tr class="separator:ga851ccdd6961022d1d5b4c4f255dbab34"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:gaedb513e6cf8623a976427be947c53c3f"><td align="right" class="memItemLeft" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gaedb513e6cf8623a976427be947c53c3f">cv::getMouseWheelDelta</a> (int flags)</td></tr>
+<tr class="memdesc:gaedb513e6cf8623a976427be947c53c3f"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Gets the mouse-wheel motion delta, when handling mouse-wheel events <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gga927593befdddc7e7013602bca9b079b0a402b86eed36ef6cc00cb7425e817af66" title="positive and negative values mean forward and backward scrolling, respectively. ">cv::EVENT_MOUSEWHEEL</a> and <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gga927593befdddc7e7013602bca9b079b0a8c85fc9f3e42b5f4baab925cc5cce753" title="positive and negative values mean right and left scrolling, respectively. ">cv::EVENT_MOUSEHWHEEL</a>.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gaedb513e6cf8623a976427be947c53c3f">More...</a><br></td></tr>
+<tr class="separator:gaedb513e6cf8623a976427be947c53c3f"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ga122632e9e91b9ec06943472c55d9cda8"><td align="right" class="memItemLeft" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga122632e9e91b9ec06943472c55d9cda8">cv::getTrackbarPos</a> (const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;trackbarname, const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;winname)</td></tr>
+<tr class="memdesc:ga122632e9e91b9ec06943472c55d9cda8"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Returns the trackbar position.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga122632e9e91b9ec06943472c55d9cda8">More...</a><br></td></tr>
+<tr class="separator:ga122632e9e91b9ec06943472c55d9cda8"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ga73b55e9851b5691f6a6a4a4e6c57258e"><td align="right" class="memItemLeft" valign="top"><a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#ga11d95de507098e90bad732b9345402e8">Rect</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga73b55e9851b5691f6a6a4a4e6c57258e">cv::getWindowImageRect</a> (const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;winname)</td></tr>
+<tr class="memdesc:ga73b55e9851b5691f6a6a4a4e6c57258e"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Provides rectangle of image in the window.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga73b55e9851b5691f6a6a4a4e6c57258e">More...</a><br></td></tr>
+<tr class="separator:ga73b55e9851b5691f6a6a4a4e6c57258e"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:gaaf9504b8f9cf19024d9d44a14e461656"><td align="right" class="memItemLeft" valign="top">double&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gaaf9504b8f9cf19024d9d44a14e461656">cv::getWindowProperty</a> (const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;winname, int prop_id)</td></tr>
+<tr class="memdesc:gaaf9504b8f9cf19024d9d44a14e461656"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Provides parameters of a window.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gaaf9504b8f9cf19024d9d44a14e461656">More...</a><br></td></tr>
+<tr class="separator:gaaf9504b8f9cf19024d9d44a14e461656"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ga453d42fe4cb60e5723281a89973ee563"><td align="right" class="memItemLeft" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga453d42fe4cb60e5723281a89973ee563">cv::imshow</a> (const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;winname, <a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#gab1371a23c90d5f4725ea98240377d7a1">InputArray</a> mat)</td></tr>
+<tr class="memdesc:ga453d42fe4cb60e5723281a89973ee563"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Displays an image in the specified window.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga453d42fe4cb60e5723281a89973ee563">More...</a><br></td></tr>
+<tr class="separator:ga453d42fe4cb60e5723281a89973ee563"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ga8d86b207f7211250dbe6e28f76307ffb"><td align="right" class="memItemLeft" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga8d86b207f7211250dbe6e28f76307ffb">cv::moveWindow</a> (const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;winname, int x, int y)</td></tr>
+<tr class="memdesc:ga8d86b207f7211250dbe6e28f76307ffb"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Moves window to the specified position.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga8d86b207f7211250dbe6e28f76307ffb">More...</a><br></td></tr>
+<tr class="separator:ga8d86b207f7211250dbe6e28f76307ffb"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ga5afdf8410934fd099df85c75b2e0888b"><td align="right" class="memItemLeft" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga5afdf8410934fd099df85c75b2e0888b">cv::namedWindow</a> (const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;winname, int flags=<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggabf7d2c5625bc59ac130287f925557ac3acf621ace7a54954cbac01df27e47228f">WINDOW_AUTOSIZE</a>)</td></tr>
+<tr class="memdesc:ga5afdf8410934fd099df85c75b2e0888b"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Creates a window.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga5afdf8410934fd099df85c75b2e0888b">More...</a><br></td></tr>
+<tr class="separator:ga5afdf8410934fd099df85c75b2e0888b"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ga9e80e080f7ef33f897e415358aee7f7e"><td align="right" class="memItemLeft" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga9e80e080f7ef33f897e415358aee7f7e">cv::resizeWindow</a> (const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;winname, int width, int height)</td></tr>
+<tr class="memdesc:ga9e80e080f7ef33f897e415358aee7f7e"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Resizes window to the specified size.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga9e80e080f7ef33f897e415358aee7f7e">More...</a><br></td></tr>
+<tr class="separator:ga9e80e080f7ef33f897e415358aee7f7e"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:gab4e70200bf54be967129cf08ac5e18bc"><td align="right" class="memItemLeft" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gab4e70200bf54be967129cf08ac5e18bc">cv::resizeWindow</a> (const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;winname, const <a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#ga346f563897249351a34549137c8532a0">cv::Size</a> &amp;size)</td></tr>
+<tr class="separator:gab4e70200bf54be967129cf08ac5e18bc"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ga8daf4730d3adf7035b6de9be4c469af5"><td align="right" class="memItemLeft" valign="top"><a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#ga11d95de507098e90bad732b9345402e8">Rect</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga8daf4730d3adf7035b6de9be4c469af5">cv::selectROI</a> (const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;windowName, <a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#gab1371a23c90d5f4725ea98240377d7a1">InputArray</a> img, bool showCrosshair=true, bool fromCenter=false)</td></tr>
+<tr class="memdesc:ga8daf4730d3adf7035b6de9be4c469af5"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Selects ROI on the given image. Function creates a window and allows user to select a ROI using mouse. Controls: use <code>space</code> or <code>enter</code> to finish selection, use key <code>c</code> to cancel selection (function will return the zero <a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#ga11d95de507098e90bad732b9345402e8">cv::Rect</a>).  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga8daf4730d3adf7035b6de9be4c469af5">More...</a><br></td></tr>
+<tr class="separator:ga8daf4730d3adf7035b6de9be4c469af5"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ga2e2256794d0c88f4cfc4fdd7890c9794"><td align="right" class="memItemLeft" valign="top"><a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#ga11d95de507098e90bad732b9345402e8">Rect</a>&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga2e2256794d0c88f4cfc4fdd7890c9794">cv::selectROI</a> (<a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#gab1371a23c90d5f4725ea98240377d7a1">InputArray</a> img, bool showCrosshair=true, bool fromCenter=false)</td></tr>
+<tr class="separator:ga2e2256794d0c88f4cfc4fdd7890c9794"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ga0f11fad74a6432b8055fb21621a0f893"><td align="right" class="memItemLeft" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga0f11fad74a6432b8055fb21621a0f893">cv::selectROIs</a> (const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;windowName, <a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#gab1371a23c90d5f4725ea98240377d7a1">InputArray</a> img, std::vector&lt; <a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#ga11d95de507098e90bad732b9345402e8">Rect</a> &gt; &amp;boundingBoxes, bool showCrosshair=true, bool fromCenter=false)</td></tr>
+<tr class="memdesc:ga0f11fad74a6432b8055fb21621a0f893"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Selects ROIs on the given image. Function creates a window and allows user to select a ROIs using mouse. Controls: use <code>space</code> or <code>enter</code> to finish current selection and start a new one, use <code>esc</code> to terminate multiple ROI selection process.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga0f11fad74a6432b8055fb21621a0f893">More...</a><br></td></tr>
+<tr class="separator:ga0f11fad74a6432b8055fb21621a0f893"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ga89e7806b0a616f6f1d502bd8c183ad3e"><td align="right" class="memItemLeft" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga89e7806b0a616f6f1d502bd8c183ad3e">cv::setMouseCallback</a> (const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;winname, <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gab7aed186e151d5222ef97192912127a4">MouseCallback</a> onMouse, void *userdata=0)</td></tr>
+<tr class="memdesc:ga89e7806b0a616f6f1d502bd8c183ad3e"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets mouse handler for the specified window.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga89e7806b0a616f6f1d502bd8c183ad3e">More...</a><br></td></tr>
+<tr class="separator:ga89e7806b0a616f6f1d502bd8c183ad3e"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ga7e5437ccba37f1154b65210902fc4480"><td align="right" class="memItemLeft" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga7e5437ccba37f1154b65210902fc4480">cv::setTrackbarMax</a> (const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;trackbarname, const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;winname, int maxval)</td></tr>
+<tr class="memdesc:ga7e5437ccba37f1154b65210902fc4480"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the trackbar maximum position.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga7e5437ccba37f1154b65210902fc4480">More...</a><br></td></tr>
+<tr class="separator:ga7e5437ccba37f1154b65210902fc4480"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:gabe26ffe8d2b60cc678895595a581b7aa"><td align="right" class="memItemLeft" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gabe26ffe8d2b60cc678895595a581b7aa">cv::setTrackbarMin</a> (const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;trackbarname, const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;winname, int minval)</td></tr>
+<tr class="memdesc:gabe26ffe8d2b60cc678895595a581b7aa"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the trackbar minimum position.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gabe26ffe8d2b60cc678895595a581b7aa">More...</a><br></td></tr>
+<tr class="separator:gabe26ffe8d2b60cc678895595a581b7aa"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ga67d73c4c9430f13481fd58410d01bd8d"><td align="right" class="memItemLeft" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga67d73c4c9430f13481fd58410d01bd8d">cv::setTrackbarPos</a> (const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;trackbarname, const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;winname, int pos)</td></tr>
+<tr class="memdesc:ga67d73c4c9430f13481fd58410d01bd8d"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Sets the trackbar position.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga67d73c4c9430f13481fd58410d01bd8d">More...</a><br></td></tr>
+<tr class="separator:ga67d73c4c9430f13481fd58410d01bd8d"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ga66e4a6db4d4e06148bcdfe0d70a5df27"><td align="right" class="memItemLeft" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga66e4a6db4d4e06148bcdfe0d70a5df27">cv::setWindowProperty</a> (const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;winname, int prop_id, double prop_value)</td></tr>
+<tr class="memdesc:ga66e4a6db4d4e06148bcdfe0d70a5df27"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Changes parameters of a window dynamically.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga66e4a6db4d4e06148bcdfe0d70a5df27">More...</a><br></td></tr>
+<tr class="separator:ga66e4a6db4d4e06148bcdfe0d70a5df27"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ga56f8849295fd10d0c319724ddb773d96"><td align="right" class="memItemLeft" valign="top">void&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga56f8849295fd10d0c319724ddb773d96">cv::setWindowTitle</a> (const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;winname, const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;title)</td></tr>
+<tr class="memdesc:ga56f8849295fd10d0c319724ddb773d96"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Updates window title.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga56f8849295fd10d0c319724ddb773d96">More...</a><br></td></tr>
+<tr class="separator:ga56f8849295fd10d0c319724ddb773d96"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ga2c6ecef4f85d8e5cbefec39c9e82ece0"><td align="right" class="memItemLeft" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga2c6ecef4f85d8e5cbefec39c9e82ece0">cv::startWindowThread</a> ()</td></tr>
+<tr class="separator:ga2c6ecef4f85d8e5cbefec39c9e82ece0"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:ga5628525ad33f52eab17feebcfba38bd7"><td align="right" class="memItemLeft" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga5628525ad33f52eab17feebcfba38bd7">cv::waitKey</a> (int delay=0)</td></tr>
+<tr class="memdesc:ga5628525ad33f52eab17feebcfba38bd7"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Waits for a pressed key.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga5628525ad33f52eab17feebcfba38bd7">More...</a><br></td></tr>
+<tr class="separator:ga5628525ad33f52eab17feebcfba38bd7"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+<tr class="memitem:gafa15c0501e0ddd90918f17aa071d3dd0"><td align="right" class="memItemLeft" valign="top">int&nbsp;</td><td class="memItemRight" valign="bottom"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gafa15c0501e0ddd90918f17aa071d3dd0">cv::waitKeyEx</a> (int delay=0)</td></tr>
+<tr class="memdesc:gafa15c0501e0ddd90918f17aa071d3dd0"><td class="mdescLeft">&nbsp;</td><td class="mdescRight">Similar to <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga5628525ad33f52eab17feebcfba38bd7" title="Waits for a pressed key. ">waitKey</a>, but returns full key code.  <a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gafa15c0501e0ddd90918f17aa071d3dd0">More...</a><br></td></tr>
+<tr class="separator:gafa15c0501e0ddd90918f17aa071d3dd0"><td class="memSeparator" colspan="2">&nbsp;</td></tr>
+</tbody></table>
+<a id="details" name="details"></a><h2 class="groupheader">Detailed Description</h2>
+<p>While OpenCV was designed for use in full-scale applications and can be used within functionally rich UI frameworks (such as Qt*, WinForms*, or Cocoa*) or without any UI at all, sometimes there it is required to try functionality quickly and visualize the results. This is what the HighGUI module has been designed for.</p>
+<p>It provides easy interface to:</p>
+<ul>
+<li>Create and manipulate windows that can display images and "remember" their content (no need to handle repaint events from OS).</li>
+<li>Add trackbars to the windows, handle simple mouse events as well as keyboard commands. </li>
+</ul>
+<h2 class="groupheader">Typedef Documentation</h2>
+<a id="ga17ffcbb2343dc06e56f980b8414e3566"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga17ffcbb2343dc06e56f980b8414e3566">§&nbsp;</a></span>ButtonCallback</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">typedef void(* cv::ButtonCallback) (int state, void *userdata)</td>
+</tr>
+</tbody></table>
+</div><div class="memdoc">
+<p>Callback function for a button created by <a class="el" href="https://docs.opencv.org/3.4.1/dc/d46/group__highgui__qt.html#ga938dc3ab0a9f115156439bd380816e2c" title="Attaches a button to the control panel. ">cv::createButton</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">state</td><td>current state of the button. It could be -1 for a push button, 0 or 1 for a check/radio box button. </td></tr>
+<tr><td class="paramname">userdata</td><td>The optional parameter. </td></tr>
+</tbody></table>
+</dd>
+</dl>
+</div>
+</div>
+<a id="gab7aed186e151d5222ef97192912127a4"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gab7aed186e151d5222ef97192912127a4">§&nbsp;</a></span>MouseCallback</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">typedef void(* cv::MouseCallback) (int event, int x, int y, int flags, void *userdata)</td>
+</tr>
+</tbody></table>
+</div><div class="memdoc">
+<p>Callback function for mouse events. see <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga89e7806b0a616f6f1d502bd8c183ad3e" title="Sets mouse handler for the specified window. ">cv::setMouseCallback</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">event</td><td>one of the <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga927593befdddc7e7013602bca9b079b0" title="Mouse Events see cv::MouseCallback. ">cv::MouseEventTypes</a> constants. </td></tr>
+<tr><td class="paramname">x</td><td>The x-coordinate of the mouse event. </td></tr>
+<tr><td class="paramname">y</td><td>The y-coordinate of the mouse event. </td></tr>
+<tr><td class="paramname">flags</td><td>one of the <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gaab4dc057947f70058c80626c9f1c25ce" title="Mouse Event Flags see cv::MouseCallback. ">cv::MouseEventFlags</a> constants. </td></tr>
+<tr><td class="paramname">userdata</td><td>The optional parameter. </td></tr>
+</tbody></table>
+</dd>
+</dl>
+</div>
+</div>
+<a id="ga8bed4feb08f866e81514a31fdacaceee"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga8bed4feb08f866e81514a31fdacaceee">§&nbsp;</a></span>OpenGlDrawCallback</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">typedef void(* cv::OpenGlDrawCallback) (void *userdata)</td>
+</tr>
+</tbody></table>
+</div><div class="memdoc">
+<p>Callback function defined to be called every frame. See <a class="el" href="https://docs.opencv.org/3.4.1/df/d24/group__highgui__opengl.html#gaf80dcbc168a6ce40f6d1ad9d79a10bb8" title="Sets a callback function to be called to draw on top of displayed image. ">cv::setOpenGlDrawCallback</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">userdata</td><td>The optional parameter. </td></tr>
+</tbody></table>
+</dd>
+</dl>
+</div>
+</div>
+<a id="ga004b512c3d09aa53f20b050b1d01fab1"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga004b512c3d09aa53f20b050b1d01fab1">§&nbsp;</a></span>TrackbarCallback</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">typedef void(* cv::TrackbarCallback) (int pos, void *userdata)</td>
+</tr>
+</tbody></table>
+</div><div class="memdoc">
+<p>Callback function for Trackbar see <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gaf78d2155d30b728fc413803745b67a9b" title="Creates a trackbar and attaches it to the specified window. ">cv::createTrackbar</a>. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">pos</td><td>current position of the specified trackbar. </td></tr>
+<tr><td class="paramname">userdata</td><td>The optional parameter. </td></tr>
+</tbody></table>
+</dd>
+</dl>
+</div>
+</div>
+<h2 class="groupheader">Enumeration Type Documentation</h2>
+<a id="gaab4dc057947f70058c80626c9f1c25ce"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gaab4dc057947f70058c80626c9f1c25ce">§&nbsp;</a></span>MouseEventFlags</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">enum <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gaab4dc057947f70058c80626c9f1c25ce">cv::MouseEventFlags</a></td>
+</tr>
+</tbody></table>
+</div><div class="memdoc">
+<p>Mouse Event Flags see <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gab7aed186e151d5222ef97192912127a4" title="Callback function for mouse events. see cv::setMouseCallback. ">cv::MouseCallback</a>. </p>
+<table class="fieldtable">
+<tbody><tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggaab4dc057947f70058c80626c9f1c25cead9b7a4f148eeff7eca24609f7a64adb1"></a>EVENT_FLAG_LBUTTON&nbsp;<div class="python_language">Python: cv.EVENT_FLAG_LBUTTON</div></td><td class="fielddoc"><p>indicates that the left mouse button is down. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaab4dc057947f70058c80626c9f1c25cea1bf3e58fcb83ff3e93cdd425299a9ff4"></a>EVENT_FLAG_RBUTTON&nbsp;<div class="python_language">Python: cv.EVENT_FLAG_RBUTTON</div></td><td class="fielddoc"><p>indicates that the right mouse button is down. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaab4dc057947f70058c80626c9f1c25cea9879aaef8e0ee2e8b8c9901774bfd594"></a>EVENT_FLAG_MBUTTON&nbsp;<div class="python_language">Python: cv.EVENT_FLAG_MBUTTON</div></td><td class="fielddoc"><p>indicates that the middle mouse button is down. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaab4dc057947f70058c80626c9f1c25cea5876848aeb4e7cc282d461f94e45a07f"></a>EVENT_FLAG_CTRLKEY&nbsp;<div class="python_language">Python: cv.EVENT_FLAG_CTRLKEY</div></td><td class="fielddoc"><p>indicates that CTRL Key is pressed. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaab4dc057947f70058c80626c9f1c25cea61da926b22fd4fd3aa226ef1d2893102"></a>EVENT_FLAG_SHIFTKEY&nbsp;<div class="python_language">Python: cv.EVENT_FLAG_SHIFTKEY</div></td><td class="fielddoc"><p>indicates that SHIFT Key is pressed. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaab4dc057947f70058c80626c9f1c25ceadb29046ba08e95d11696fdfd1ddb61bb"></a>EVENT_FLAG_ALTKEY&nbsp;<div class="python_language">Python: cv.EVENT_FLAG_ALTKEY</div></td><td class="fielddoc"><p>indicates that ALT Key is pressed. </p>
+</td></tr>
+</tbody></table>
+</div>
+</div>
+<a id="ga927593befdddc7e7013602bca9b079b0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga927593befdddc7e7013602bca9b079b0">§&nbsp;</a></span>MouseEventTypes</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">enum <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga927593befdddc7e7013602bca9b079b0">cv::MouseEventTypes</a></td>
+</tr>
+</tbody></table>
+</div><div class="memdoc">
+<p>Mouse Events see <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gab7aed186e151d5222ef97192912127a4" title="Callback function for mouse events. see cv::setMouseCallback. ">cv::MouseCallback</a>. </p>
+<table class="fieldtable">
+<tbody><tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga927593befdddc7e7013602bca9b079b0a8f2ec5fd35fe3f4b696518b146dcf675"></a>EVENT_MOUSEMOVE&nbsp;<div class="python_language">Python: cv.EVENT_MOUSEMOVE</div></td><td class="fielddoc"><p>indicates that the mouse pointer has moved over the window. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga927593befdddc7e7013602bca9b079b0ad3419100fc2d7688c6dbe3da030fbfd9"></a>EVENT_LBUTTONDOWN&nbsp;<div class="python_language">Python: cv.EVENT_LBUTTONDOWN</div></td><td class="fielddoc"><p>indicates that the left mouse button is pressed. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga927593befdddc7e7013602bca9b079b0aa3536f83b6f48da5121041f58fc7a683"></a>EVENT_RBUTTONDOWN&nbsp;<div class="python_language">Python: cv.EVENT_RBUTTONDOWN</div></td><td class="fielddoc"><p>indicates that the right mouse button is pressed. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga927593befdddc7e7013602bca9b079b0a1dd67e6d96873c36dd3a9670e8312a28"></a>EVENT_MBUTTONDOWN&nbsp;<div class="python_language">Python: cv.EVENT_MBUTTONDOWN</div></td><td class="fielddoc"><p>indicates that the middle mouse button is pressed. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga927593befdddc7e7013602bca9b079b0a59cad7ffe959adf2782a110196d47bf6"></a>EVENT_LBUTTONUP&nbsp;<div class="python_language">Python: cv.EVENT_LBUTTONUP</div></td><td class="fielddoc"><p>indicates that left mouse button is released. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga927593befdddc7e7013602bca9b079b0aacdda7d94278928c34b61a7bd8be9f62"></a>EVENT_RBUTTONUP&nbsp;<div class="python_language">Python: cv.EVENT_RBUTTONUP</div></td><td class="fielddoc"><p>indicates that right mouse button is released. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga927593befdddc7e7013602bca9b079b0ab3fce84f2dca833e150779637db7dc1c"></a>EVENT_MBUTTONUP&nbsp;<div class="python_language">Python: cv.EVENT_MBUTTONUP</div></td><td class="fielddoc"><p>indicates that middle mouse button is released. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga927593befdddc7e7013602bca9b079b0ad3b2124722127f85f6b335aee8ae5fcc"></a>EVENT_LBUTTONDBLCLK&nbsp;<div class="python_language">Python: cv.EVENT_LBUTTONDBLCLK</div></td><td class="fielddoc"><p>indicates that left mouse button is double clicked. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga927593befdddc7e7013602bca9b079b0a32fba0899e8c3664d5252c059ce83d75"></a>EVENT_RBUTTONDBLCLK&nbsp;<div class="python_language">Python: cv.EVENT_RBUTTONDBLCLK</div></td><td class="fielddoc"><p>indicates that right mouse button is double clicked. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga927593befdddc7e7013602bca9b079b0afeedd6a768596d14c81bf304760edfe4"></a>EVENT_MBUTTONDBLCLK&nbsp;<div class="python_language">Python: cv.EVENT_MBUTTONDBLCLK</div></td><td class="fielddoc"><p>indicates that middle mouse button is double clicked. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga927593befdddc7e7013602bca9b079b0a402b86eed36ef6cc00cb7425e817af66"></a>EVENT_MOUSEWHEEL&nbsp;<div class="python_language">Python: cv.EVENT_MOUSEWHEEL</div></td><td class="fielddoc"><p>positive and negative values mean forward and backward scrolling, respectively. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga927593befdddc7e7013602bca9b079b0a8c85fc9f3e42b5f4baab925cc5cce753"></a>EVENT_MOUSEHWHEEL&nbsp;<div class="python_language">Python: cv.EVENT_MOUSEHWHEEL</div></td><td class="fielddoc"><p>positive and negative values mean right and left scrolling, respectively. </p>
+</td></tr>
+</tbody></table>
+</div>
+</div>
+<a id="gad15c7adb377e778dc907c0e318be193e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gad15c7adb377e778dc907c0e318be193e">§&nbsp;</a></span>QtButtonTypes</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">enum <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gad15c7adb377e778dc907c0e318be193e">cv::QtButtonTypes</a></td>
+</tr>
+</tbody></table>
+</div><div class="memdoc">
+<p>Qt "button" type. </p>
+<table class="fieldtable">
+<tbody><tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggad15c7adb377e778dc907c0e318be193ea58964398bbcbd6f8a83e9767ed485880"></a>QT_PUSH_BUTTON&nbsp;<div class="python_language">Python: cv.QT_PUSH_BUTTON</div></td><td class="fielddoc"><p>Push button. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggad15c7adb377e778dc907c0e318be193ea367844e0e15af159243f30adc65ea0dd"></a>QT_CHECKBOX&nbsp;<div class="python_language">Python: cv.QT_CHECKBOX</div></td><td class="fielddoc"><p>Checkbox button. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggad15c7adb377e778dc907c0e318be193ea504bd273b06ac6f5eaf4eeb8a9530cd4"></a>QT_RADIOBOX&nbsp;<div class="python_language">Python: cv.QT_RADIOBOX</div></td><td class="fielddoc"><p>Radiobox button. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggad15c7adb377e778dc907c0e318be193ea6ddf109a47ffadcc3340649b00404ac4"></a>QT_NEW_BUTTONBAR&nbsp;<div class="python_language">Python: cv.QT_NEW_BUTTONBAR</div></td><td class="fielddoc"><p>Button should create a new buttonbar. </p>
+</td></tr>
+</tbody></table>
+</div>
+</div>
+<a id="ga985c48f130e04061bd651de78441082e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga985c48f130e04061bd651de78441082e">§&nbsp;</a></span>QtFontStyles</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">enum <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga985c48f130e04061bd651de78441082e">cv::QtFontStyles</a></td>
+</tr>
+</tbody></table>
+</div><div class="memdoc">
+<p>Qt font style. </p>
+<table class="fieldtable">
+<tbody><tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="gga985c48f130e04061bd651de78441082ea72d697afca937b7674103569cc62f6d1"></a>QT_STYLE_NORMAL&nbsp;<div class="python_language">Python: cv.QT_STYLE_NORMAL</div></td><td class="fielddoc"><p>Normal font. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga985c48f130e04061bd651de78441082eace4118a243c78d3bf9c978f828b0d874"></a>QT_STYLE_ITALIC&nbsp;<div class="python_language">Python: cv.QT_STYLE_ITALIC</div></td><td class="fielddoc"><p>Italic font. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="gga985c48f130e04061bd651de78441082ea1e83ccdfd4f4d2060492f5ec6cfd314e"></a>QT_STYLE_OBLIQUE&nbsp;<div class="python_language">Python: cv.QT_STYLE_OBLIQUE</div></td><td class="fielddoc"><p>Oblique font. </p>
+</td></tr>
+</tbody></table>
+</div>
+</div>
+<a id="gacd4a7935f4c2b336f8bbde275d952927"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gacd4a7935f4c2b336f8bbde275d952927">§&nbsp;</a></span>QtFontWeights</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">enum <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gacd4a7935f4c2b336f8bbde275d952927">cv::QtFontWeights</a></td>
+</tr>
+</tbody></table>
+</div><div class="memdoc">
+<p>Qt font weight. </p>
+<table class="fieldtable">
+<tbody><tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggacd4a7935f4c2b336f8bbde275d952927a23f8d6b7f141436b1f90db7cf778554c"></a>QT_FONT_LIGHT&nbsp;<div class="python_language">Python: cv.QT_FONT_LIGHT</div></td><td class="fielddoc"><p>Weight of 25. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggacd4a7935f4c2b336f8bbde275d952927a541a5375e2348899274ead17e119b00e"></a>QT_FONT_NORMAL&nbsp;<div class="python_language">Python: cv.QT_FONT_NORMAL</div></td><td class="fielddoc"><p>Weight of 50. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggacd4a7935f4c2b336f8bbde275d952927a387a6ce819cd7116a70cbfa74cd313fb"></a>QT_FONT_DEMIBOLD&nbsp;<div class="python_language">Python: cv.QT_FONT_DEMIBOLD</div></td><td class="fielddoc"><p>Weight of 63. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggacd4a7935f4c2b336f8bbde275d952927abcefd9963f506fea992352b3a4dd1115"></a>QT_FONT_BOLD&nbsp;<div class="python_language">Python: cv.QT_FONT_BOLD</div></td><td class="fielddoc"><p>Weight of 75. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggacd4a7935f4c2b336f8bbde275d952927a8ead405a3c7186427d99c4bd09fb2e7b"></a>QT_FONT_BLACK&nbsp;<div class="python_language">Python: cv.QT_FONT_BLACK</div></td><td class="fielddoc"><p>Weight of 87. </p>
+</td></tr>
+</tbody></table>
+</div>
+</div>
+<a id="gabf7d2c5625bc59ac130287f925557ac3"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gabf7d2c5625bc59ac130287f925557ac3">§&nbsp;</a></span>WindowFlags</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">enum <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gabf7d2c5625bc59ac130287f925557ac3">cv::WindowFlags</a></td>
+</tr>
+</tbody></table>
+</div><div class="memdoc">
+<p>Flags for <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga5afdf8410934fd099df85c75b2e0888b" title="Creates a window. ">cv::namedWindow</a>. </p>
+<table class="fieldtable">
+<tbody><tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggabf7d2c5625bc59ac130287f925557ac3a29e45c5af696f73ce5e153601e5ca0f1"></a>WINDOW_NORMAL&nbsp;<div class="python_language">Python: cv.WINDOW_NORMAL</div></td><td class="fielddoc"><p>the user can resize the window (no constraint) / also use to switch a fullscreen window to a normal size. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggabf7d2c5625bc59ac130287f925557ac3acf621ace7a54954cbac01df27e47228f"></a>WINDOW_AUTOSIZE&nbsp;<div class="python_language">Python: cv.WINDOW_AUTOSIZE</div></td><td class="fielddoc"><p>the user cannot resize the window, the size is constrainted by the image displayed. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggabf7d2c5625bc59ac130287f925557ac3a2ae8fc6bde96d84068eb9b9957458e6f"></a>WINDOW_OPENGL&nbsp;<div class="python_language">Python: cv.WINDOW_OPENGL</div></td><td class="fielddoc"><p>window with opengl support. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggabf7d2c5625bc59ac130287f925557ac3a78bc64121f612562bbb2fa23d316e84e"></a>WINDOW_FULLSCREEN&nbsp;<div class="python_language">Python: cv.WINDOW_FULLSCREEN</div></td><td class="fielddoc"><p>change the window to fullscreen. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggabf7d2c5625bc59ac130287f925557ac3a221aaba6c23c127325e4df9eb42dab97"></a>WINDOW_FREERATIO&nbsp;<div class="python_language">Python: cv.WINDOW_FREERATIO</div></td><td class="fielddoc"><p>the image expends as much as it can (no ratio constraint). </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggabf7d2c5625bc59ac130287f925557ac3aa6bbb962c222cdf8b8539594a2d0d035"></a>WINDOW_KEEPRATIO&nbsp;<div class="python_language">Python: cv.WINDOW_KEEPRATIO</div></td><td class="fielddoc"><p>the ratio of the image is respected. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggabf7d2c5625bc59ac130287f925557ac3ad96269c7c3d5790ecb8856c5747dd7e5"></a>WINDOW_GUI_EXPANDED&nbsp;<div class="python_language">Python: cv.WINDOW_GUI_EXPANDED</div></td><td class="fielddoc"><p>status bar and tool bar </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggabf7d2c5625bc59ac130287f925557ac3a39cee9c8d57caf2368eaf60980dc5d70"></a>WINDOW_GUI_NORMAL&nbsp;<div class="python_language">Python: cv.WINDOW_GUI_NORMAL</div></td><td class="fielddoc"><p>old fashious way </p>
+</td></tr>
+</tbody></table>
+</div>
+</div>
+<a id="gaeedf4023e777f896ba6b9ffb156f57b8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gaeedf4023e777f896ba6b9ffb156f57b8">§&nbsp;</a></span>WindowPropertyFlags</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">enum <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gaeedf4023e777f896ba6b9ffb156f57b8">cv::WindowPropertyFlags</a></td>
+</tr>
+</tbody></table>
+</div><div class="memdoc">
+<p>Flags for <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga66e4a6db4d4e06148bcdfe0d70a5df27" title="Changes parameters of a window dynamically. ">cv::setWindowProperty</a> / <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gaaf9504b8f9cf19024d9d44a14e461656" title="Provides parameters of a window. ">cv::getWindowProperty</a>. </p>
+<table class="fieldtable">
+<tbody><tr><th colspan="2">Enumerator</th></tr><tr><td class="fieldname"><a id="ggaeedf4023e777f896ba6b9ffb156f57b8a3b6a89b0daf2149dab93f9c6ab99fcc8"></a>WND_PROP_FULLSCREEN&nbsp;<div class="python_language">Python: cv.WND_PROP_FULLSCREEN</div></td><td class="fielddoc"><p>fullscreen property (can be WINDOW_NORMAL or WINDOW_FULLSCREEN). </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaeedf4023e777f896ba6b9ffb156f57b8a40b8385d11a44871776eed13da7808a2"></a>WND_PROP_AUTOSIZE&nbsp;<div class="python_language">Python: cv.WND_PROP_AUTOSIZE</div></td><td class="fielddoc"><p>autosize property (can be WINDOW_NORMAL or WINDOW_AUTOSIZE). </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaeedf4023e777f896ba6b9ffb156f57b8a635a6ff3b81e4019be4a43b64e7b2bbb"></a>WND_PROP_ASPECT_RATIO&nbsp;<div class="python_language">Python: cv.WND_PROP_ASPECT_RATIO</div></td><td class="fielddoc"><p>window's aspect ration (can be set to WINDOW_FREERATIO or WINDOW_KEEPRATIO). </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaeedf4023e777f896ba6b9ffb156f57b8a360f30201f153e192919289d7c002e04"></a>WND_PROP_OPENGL&nbsp;<div class="python_language">Python: cv.WND_PROP_OPENGL</div></td><td class="fielddoc"><p>opengl support. </p>
+</td></tr>
+<tr><td class="fieldname"><a id="ggaeedf4023e777f896ba6b9ffb156f57b8a07598b61a8b3047cb93634130beddf81"></a>WND_PROP_VISIBLE&nbsp;<div class="python_language">Python: cv.WND_PROP_VISIBLE</div></td><td class="fielddoc"><p>checks whether the window exists and is visible </p>
+</td></tr>
+</tbody></table>
+</div>
+</div>
+<h2 class="groupheader">Function Documentation</h2>
+<a id="gaf78d2155d30b728fc413803745b67a9b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gaf78d2155d30b728fc413803745b67a9b">§&nbsp;</a></span>createTrackbar()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">int cv::createTrackbar </td>
+<td>(</td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>trackbarname</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>winname</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">int *&nbsp;</td>
+<td class="paramname"><em>value</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>count</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga004b512c3d09aa53f20b050b1d01fab1">TrackbarCallback</a>&nbsp;</td>
+<td class="paramname"><em>onChange</em> = <code>0</code>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">void *&nbsp;</td>
+<td class="paramname"><em>userdata</em> = <code>0</code>&nbsp;</td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td><td></td>
+</tr>
+</tbody></table>
+</div><div class="memdoc">
+<p>Creates a trackbar and attaches it to the specified window. </p>
+<p>The function createTrackbar creates a trackbar (a slider or range control) with the specified name and range, assigns a variable value to be a position synchronized with the trackbar and specifies the callback function onChange to be called on the trackbar position change. The created trackbar is displayed in the specified window winname.</p>
+<dl class="section note"><dt>Note</dt><dd></dd></dl>
+<p>[<b>Qt Backend Only</b>] winname can be empty (or NULL) if the trackbar should be attached to the control panel.</p>
+<p>Clicking the label of each trackbar enables editing the trackbar values manually.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">trackbarname</td><td>Name of the created trackbar. </td></tr>
+<tr><td class="paramname">winname</td><td>Name of the window that will be used as a parent of the created trackbar. </td></tr>
+<tr><td class="paramname">value</td><td>Optional pointer to an integer variable whose value reflects the position of the slider. Upon creation, the slider position is defined by this variable. </td></tr>
+<tr><td class="paramname">count</td><td>Maximal position of the slider. The minimal position is always 0. </td></tr>
+<tr><td class="paramname">onChange</td><td>Pointer to the function to be called every time the slider changes position. This function should be prototyped as void Foo(int,void*); , where the first parameter is the trackbar position and the second parameter is the user data (see the next parameter). If the callback is the NULL pointer, no callbacks are called, but only value is updated. </td></tr>
+<tr><td class="paramname">userdata</td><td>User data that is passed as is to the callback. It can be used to handle trackbar events without using global variables. </td></tr>
+</tbody></table>
+</dd>
+</dl>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="https://docs.opencv.org/3.4.1/da/d9c/AddingImagesTrackbar_8cpp-example.html#a7">AddingImagesTrackbar.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d2/dc1/camshiftdemo_8cpp-example.html#a26">camshiftdemo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d0/d2a/contours2_8cpp-example.html#a25">contours2.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d2/dcb/demhist_8cpp-example.html#a22">demhist.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d4/d11/distrans_8cpp-example.html#a21">distrans.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d3/d63/edge_8cpp-example.html#a17">edge.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d5/dca/falsecolor_8cpp-example.html#a29">falsecolor.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d5/d26/ffilldemo_8cpp-example.html#a23">ffilldemo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/de/dc7/fitellipse_8cpp-example.html#a42">fitellipse.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/de/db2/laplace_8cpp-example.html#a15">laplace.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/da/d53/MatchTemplate_Demo_8cpp-example.html#a6">MatchTemplate_Demo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d8/dc0/morphology2_8cpp-example.html#a17">morphology2.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/dc/dfa/Morphology_1_8cpp-example.html#a10">Morphology_1.cpp</a>, and <a class="el" href="https://docs.opencv.org/3.4.1/d2/dc0/pca_8cpp-example.html#a28">pca.cpp</a>.</dd>
+</dl>
+</div>
+</div>
+<a id="ga6b7fc1c1a8960438156912027b38f481"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga6b7fc1c1a8960438156912027b38f481">§&nbsp;</a></span>destroyAllWindows()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">void cv::destroyAllWindows </td>
+<td>(</td>
+<td class="paramname"></td><td>)</td>
+<td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>None</td><td>=</td><td>cv.destroyAllWindows(</td><td class="paramname"></td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Destroys all of the HighGUI windows. </p>
+<p>The function destroyAllWindows destroys all of the opened HighGUI windows. </p>
+</div>
+</div>
+<a id="ga851ccdd6961022d1d5b4c4f255dbab34"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga851ccdd6961022d1d5b4c4f255dbab34">§&nbsp;</a></span>destroyWindow()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">void cv::destroyWindow </td>
+<td>(</td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>winname</em></td><td>)</td>
+<td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>None</td><td>=</td><td>cv.destroyWindow(</td><td class="paramname">winname</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Destroys the specified window. </p>
+<p>The function destroyWindow destroys the window with the given name.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">winname</td><td>Name of the window to be destroyed. </td></tr>
+</tbody></table>
+</dd>
+</dl>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="https://docs.opencv.org/3.4.1/d2/dc1/camshiftdemo_8cpp-example.html#a64">camshiftdemo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d5/d26/ffilldemo_8cpp-example.html#a27">ffilldemo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/de/dd0/grabcut_8cpp-example.html#a45">grabcut.cpp</a>, and <a class="el" href="https://docs.opencv.org/3.4.1/da/d72/shape_example_8cpp-example.html#a23">shape_example.cpp</a>.</dd>
+</dl>
+</div>
+</div>
+<a id="gaedb513e6cf8623a976427be947c53c3f"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gaedb513e6cf8623a976427be947c53c3f">§&nbsp;</a></span>getMouseWheelDelta()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">int cv::getMouseWheelDelta </td>
+<td>(</td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>flags</em></td><td>)</td>
+<td></td>
+</tr>
+</tbody></table>
+</div><div class="memdoc">
+<p>Gets the mouse-wheel motion delta, when handling mouse-wheel events <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gga927593befdddc7e7013602bca9b079b0a402b86eed36ef6cc00cb7425e817af66" title="positive and negative values mean forward and backward scrolling, respectively. ">cv::EVENT_MOUSEWHEEL</a> and <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gga927593befdddc7e7013602bca9b079b0a8c85fc9f3e42b5f4baab925cc5cce753" title="positive and negative values mean right and left scrolling, respectively. ">cv::EVENT_MOUSEHWHEEL</a>. </p>
+<p>For regular mice with a scroll-wheel, delta will be a multiple of 120. The value 120 corresponds to a one notch rotation of the wheel or the threshold for action to be taken and one such action should occur for each delta. Some high-precision mice with higher-resolution freely-rotating wheels may generate smaller values.</p>
+<p>For <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gga927593befdddc7e7013602bca9b079b0a402b86eed36ef6cc00cb7425e817af66" title="positive and negative values mean forward and backward scrolling, respectively. ">cv::EVENT_MOUSEWHEEL</a> positive and negative values mean forward and backward scrolling, respectively. For <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gga927593befdddc7e7013602bca9b079b0a8c85fc9f3e42b5f4baab925cc5cce753" title="positive and negative values mean right and left scrolling, respectively. ">cv::EVENT_MOUSEHWHEEL</a>, where available, positive and negative values mean right and left scrolling, respectively.</p>
+<p>With the C API, the macro <a class="el" href="https://docs.opencv.org/3.4.1/d0/d28/group__highgui__c.html#ga86da5e22891f7dd6cb00ba1718f54fbb">CV_GET_WHEEL_DELTA(flags)</a> can be used alternatively.</p>
+<dl class="section note"><dt>Note</dt><dd></dd></dl>
+<p>Mouse-wheel events are currently supported only on Windows.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">flags</td><td>The mouse callback flags parameter. </td></tr>
+</tbody></table>
+</dd>
+</dl>
+</div>
+</div>
+<a id="ga122632e9e91b9ec06943472c55d9cda8"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga122632e9e91b9ec06943472c55d9cda8">§&nbsp;</a></span>getTrackbarPos()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">int cv::getTrackbarPos </td>
+<td>(</td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>trackbarname</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>winname</em>&nbsp;</td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td><td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.getTrackbarPos(</td><td class="paramname">trackbarname, winname</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Returns the trackbar position. </p>
+<p>The function returns the current position of the specified trackbar.</p>
+<dl class="section note"><dt>Note</dt><dd></dd></dl>
+<p>[<b>Qt Backend Only</b>] winname can be empty (or NULL) if the trackbar is attached to the control panel.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">trackbarname</td><td>Name of the trackbar. </td></tr>
+<tr><td class="paramname">winname</td><td>Name of the window that is the parent of the trackbar. </td></tr>
+</tbody></table>
+</dd>
+</dl>
+</div>
+</div>
+<a id="ga73b55e9851b5691f6a6a4a4e6c57258e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga73b55e9851b5691f6a6a4a4e6c57258e">§&nbsp;</a></span>getWindowImageRect()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname"><a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#ga11d95de507098e90bad732b9345402e8">Rect</a> cv::getWindowImageRect </td>
+<td>(</td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>winname</em></td><td>)</td>
+<td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.getWindowImageRect(</td><td class="paramname">winname</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Provides rectangle of image in the window. </p>
+<p>The function getWindowImageRect returns the client screen coordinates, width and height of the image rendering area.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">winname</td><td>Name of the window.</td></tr>
+</tbody></table>
+</dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga9e80e080f7ef33f897e415358aee7f7e" title="Resizes window to the specified size. ">resizeWindow</a> <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga8d86b207f7211250dbe6e28f76307ffb" title="Moves window to the specified position. ">moveWindow</a> </dd></dl>
+</div>
+</div>
+<a id="gaaf9504b8f9cf19024d9d44a14e461656"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gaaf9504b8f9cf19024d9d44a14e461656">§&nbsp;</a></span>getWindowProperty()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">double cv::getWindowProperty </td>
+<td>(</td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>winname</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>prop_id</em>&nbsp;</td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td><td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.getWindowProperty(</td><td class="paramname">winname, prop_id</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Provides parameters of a window. </p>
+<p>The function getWindowProperty returns properties of a window.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">winname</td><td>Name of the window. </td></tr>
+<tr><td class="paramname">prop_id</td><td>Window property to retrieve. The following operation flags are available: (<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gaeedf4023e777f896ba6b9ffb156f57b8" title="Flags for cv::setWindowProperty / cv::getWindowProperty. ">cv::WindowPropertyFlags</a>)</td></tr>
+</tbody></table>
+</dd>
+</dl>
+<dl class="section see"><dt>See also</dt><dd><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga66e4a6db4d4e06148bcdfe0d70a5df27" title="Changes parameters of a window dynamically. ">setWindowProperty</a> </dd></dl>
+</div>
+</div>
+<a id="ga453d42fe4cb60e5723281a89973ee563"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga453d42fe4cb60e5723281a89973ee563">§&nbsp;</a></span>imshow()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">void cv::imshow </td>
+<td>(</td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>winname</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype"><a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#gab1371a23c90d5f4725ea98240377d7a1">InputArray</a>&nbsp;</td>
+<td class="paramname"><em>mat</em>&nbsp;</td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td><td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>None</td><td>=</td><td>cv.imshow(</td><td class="paramname">winname, mat</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Displays an image in the specified window. </p>
+<p>The function imshow displays an image in the specified window. If the window was created with the <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggabf7d2c5625bc59ac130287f925557ac3acf621ace7a54954cbac01df27e47228f" title="the user cannot resize the window, the size is constrainted by the image displayed. ">cv::WINDOW_AUTOSIZE</a> flag, the image is shown with its original size, however it is still limited by the screen resolution. Otherwise, the image is scaled to fit the window. The function may scale the image, depending on its depth:</p>
+<ul>
+<li>If the image is 8-bit unsigned, it is displayed as is.</li>
+<li>If the image is 16-bit unsigned or 32-bit integer, the pixels are divided by 256. That is, the value range [0,255*256] is mapped to [0,255].</li>
+<li>If the image is 32-bit or 64-bit floating-point, the pixel values are multiplied by 255. That is, the value range [0,1] is mapped to [0,255].</li>
+</ul>
+<p>If window was created with OpenGL support, <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga453d42fe4cb60e5723281a89973ee563" title="Displays an image in the specified window. ">cv::imshow</a> also support <a class="el" href="https://docs.opencv.org/3.4.1/d3/d68/classcv_1_1ogl_1_1Buffer.html" title="Smart pointer for OpenGL buffer object with reference counting. ">ogl::Buffer</a> , <a class="el" href="https://docs.opencv.org/3.4.1/d5/ddf/classcv_1_1ogl_1_1Texture2D.html" title="Smart pointer for OpenGL 2D texture memory with reference counting. ">ogl::Texture2D</a> and <a class="el" href="https://docs.opencv.org/3.4.1/d0/d60/classcv_1_1cuda_1_1GpuMat.html" title="Base storage class for GPU memory with reference counting. ">cuda::GpuMat</a> as input.</p>
+<p>If the window was not created before this function, it is assumed creating a window with <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggabf7d2c5625bc59ac130287f925557ac3acf621ace7a54954cbac01df27e47228f" title="the user cannot resize the window, the size is constrainted by the image displayed. ">cv::WINDOW_AUTOSIZE</a>.</p>
+<p>If you need to show an image that is bigger than the screen resolution, you will need to call namedWindow("", WINDOW_NORMAL) before the imshow.</p>
+<dl class="section note"><dt>Note</dt><dd>This function should be followed by <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga5628525ad33f52eab17feebcfba38bd7" title="Waits for a pressed key. ">cv::waitKey</a> function which displays the image for specified milliseconds. Otherwise, it won't display the image. For example, <b>waitKey(0)</b> will display the window infinitely until any keypress (it is suitable for image display). <b>waitKey(25)</b> will display a frame for 25 ms, after which display will be automatically closed. (If you put it in a loop to read videos, it will display the video frame-by-frame)</dd>
+<dd>
+</dd></dl>
+<p>[<b>Windows Backend Only</b>] Pressing Ctrl+C will copy the image to the clipboard.</p>
+<p>[<b>Windows Backend Only</b>] Pressing Ctrl+S will show a dialog to save the image.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">winname</td><td>Name of the window. </td></tr>
+<tr><td class="paramname">mat</td><td>Image to be shown. </td></tr>
+</tbody></table>
+</dd>
+</dl>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="https://docs.opencv.org/3.4.1/da/d9c/AddingImagesTrackbar_8cpp-example.html#a2">AddingImagesTrackbar.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d2/dc1/camshiftdemo_8cpp-example.html#a62">camshiftdemo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/dc/d56/cloning_demo_8cpp-example.html#a8">cloning_demo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d0/d2a/contours2_8cpp-example.html#a7">contours2.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d0/d7a/convexhull_8cpp-example.html#a19">convexhull.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d3/d2e/copyMakeBorder_demo_8cpp-example.html#a12">copyMakeBorder_demo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d2/dcb/demhist_8cpp-example.html#a3">demhist.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d4/d11/distrans_8cpp-example.html#a15">distrans.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/dc/d88/Drawing_1_8cpp-example.html#a9">Drawing_1.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/df/daf/Drawing_2_8cpp-example.html#a5">Drawing_2.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d3/d63/edge_8cpp-example.html#a6">edge.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/db/d3a/facedetect_8cpp-example.html#a44">facedetect.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d5/dca/falsecolor_8cpp-example.html#a10">falsecolor.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d5/d26/ffilldemo_8cpp-example.html#a12">ffilldemo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/de/dc7/fitellipse_8cpp-example.html#a39">fitellipse.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d1/d9e/fld_lines_8cpp-example.html#a15">fld_lines.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/de/dd0/grabcut_8cpp-example.html#a22">grabcut.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/de/df6/hog_8cpp-example.html#a39">hog.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/dc/daf/homography_from_camera_displacement_8cpp-example.html#a15">homography_from_camera_displacement.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d7/d5d/houghcircles_8cpp-example.html#a16">houghcircles.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d2/d7b/houghlines_8cpp-example.html#a25">houghlines.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d0/d7f/image_alignment_8cpp-example.html#a49">image_alignment.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d1/da2/kalman_8cpp-example.html#a30">kalman.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/de/d63/kmeans_8cpp-example.html#a28">kmeans.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/de/db2/laplace_8cpp-example.html#a24">laplace.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d2/d0a/lkdemo_8cpp-example.html#a28">lkdemo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d8/dd4/lsd_lines_8cpp-example.html#a7">lsd_lines.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/da/d53/MatchTemplate_Demo_8cpp-example.html#a26">MatchTemplate_Demo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d4/d32/minarea_8cpp-example.html#a24">minarea.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d8/dc0/morphology2_8cpp-example.html#a8">morphology2.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/dc/dfa/Morphology_1_8cpp-example.html#a19">Morphology_1.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d6/d74/npr_demo_8cpp-example.html#a8">npr_demo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d2/dc0/pca_8cpp-example.html#a16">pca.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/db/db0/peopledetect_8cpp-example.html#a32">peopledetect.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/dc/d5e/polar_transforms_8cpp-example.html#a15">polar_transforms.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d9/d2b/pose_from_homography_8cpp-example.html#a11">pose_from_homography.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d6/d73/Pyramids_8cpp-example.html#a3">Pyramids.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/dd/d9d/segment_objects_8cpp-example.html#a25">segment_objects.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/da/d72/shape_example_8cpp-example.html#a18">shape_example.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d4/dbd/Smoothing_8cpp-example.html#a20">Smoothing.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d4/dba/Sobel_Demo_8cpp-example.html#a18">Sobel_Demo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d5/d77/train_HOG_8cpp-example.html#a22">train_HOG.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d5/d57/videowriter_basic_8cpp-example.html#a10">videowriter_basic.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d5/dfc/warpPerspective_demo_8cpp-example.html#a20">warpPerspective_demo.cpp</a>, and <a class="el" href="https://docs.opencv.org/3.4.1/d8/da9/watershed_8cpp-example.html#a12">watershed.cpp</a>.</dd>
+</dl>
+</div>
+</div>
+<a id="ga8d86b207f7211250dbe6e28f76307ffb"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga8d86b207f7211250dbe6e28f76307ffb">§&nbsp;</a></span>moveWindow()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">void cv::moveWindow </td>
+<td>(</td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>winname</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>x</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>y</em>&nbsp;</td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td><td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>None</td><td>=</td><td>cv.moveWindow(</td><td class="paramname">winname, x, y</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Moves window to the specified position. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">winname</td><td>Name of the window. </td></tr>
+<tr><td class="paramname">x</td><td>The new x-coordinate of the window. </td></tr>
+<tr><td class="paramname">y</td><td>The new y-coordinate of the window. </td></tr>
+</tbody></table>
+</dd>
+</dl>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="https://docs.opencv.org/3.4.1/dc/d88/Drawing_1_8cpp-example.html#a10">Drawing_1.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d0/d7f/image_alignment_8cpp-example.html#a46">image_alignment.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/dc/dfa/Morphology_1_8cpp-example.html#a8">Morphology_1.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/dc/d5e/polar_transforms_8cpp-example.html#a8">polar_transforms.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/da/d72/shape_example_8cpp-example.html#a19">shape_example.cpp</a>, and <a class="el" href="https://docs.opencv.org/3.4.1/d5/dfc/warpPerspective_demo_8cpp-example.html#a12">warpPerspective_demo.cpp</a>.</dd>
+</dl>
+</div>
+</div>
+<a id="ga5afdf8410934fd099df85c75b2e0888b"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga5afdf8410934fd099df85c75b2e0888b">§&nbsp;</a></span>namedWindow()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">void cv::namedWindow </td>
+<td>(</td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>winname</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>flags</em> = <code><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggabf7d2c5625bc59ac130287f925557ac3acf621ace7a54954cbac01df27e47228f">WINDOW_AUTOSIZE</a></code>&nbsp;</td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td><td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>None</td><td>=</td><td>cv.namedWindow(</td><td class="paramname">winname[, flags]</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Creates a window. </p>
+<p>The function namedWindow creates a window that can be used as a placeholder for images and trackbars. Created windows are referred to by their names.</p>
+<p>If a window with the same name already exists, the function does nothing.</p>
+<p>You can call <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga851ccdd6961022d1d5b4c4f255dbab34" title="Destroys the specified window. ">cv::destroyWindow</a> or <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga6b7fc1c1a8960438156912027b38f481" title="Destroys all of the HighGUI windows. ">cv::destroyAllWindows</a> to close the window and de-allocate any associated memory usage. For a simple program, you do not really have to call these functions because all the resources and windows of the application are closed automatically by the operating system upon exit.</p>
+<dl class="section note"><dt>Note</dt><dd></dd></dl>
+<p>Qt backend supports additional flags:</p><ul>
+<li><b>WINDOW_NORMAL or WINDOW_AUTOSIZE:</b> WINDOW_NORMAL enables you to resize the window, whereas WINDOW_AUTOSIZE adjusts automatically the window size to fit the displayed image (see imshow ), and you cannot change the window size manually.</li>
+<li><b>WINDOW_FREERATIO or WINDOW_KEEPRATIO:</b> WINDOW_FREERATIO adjusts the image with no respect to its ratio, whereas WINDOW_KEEPRATIO keeps the image ratio.</li>
+<li><b>WINDOW_GUI_NORMAL or WINDOW_GUI_EXPANDED:</b> WINDOW_GUI_NORMAL is the old way to draw the window without statusbar and toolbar, whereas WINDOW_GUI_EXPANDED is a new enhanced GUI. By default, flags == WINDOW_AUTOSIZE | WINDOW_KEEPRATIO | WINDOW_GUI_EXPANDED</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">winname</td><td>Name of the window in the window caption that may be used as a window identifier. </td></tr>
+<tr><td class="paramname">flags</td><td>Flags of the window. The supported flags are: (<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gabf7d2c5625bc59ac130287f925557ac3" title="Flags for cv::namedWindow. ">cv::WindowFlags</a>) </td></tr>
+</tbody></table>
+</dd>
+</dl>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="https://docs.opencv.org/3.4.1/da/d9c/AddingImagesTrackbar_8cpp-example.html#a5">AddingImagesTrackbar.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d2/dc1/camshiftdemo_8cpp-example.html#a24">camshiftdemo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d0/d2a/contours2_8cpp-example.html#a20">contours2.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d3/d2e/copyMakeBorder_demo_8cpp-example.html#a6">copyMakeBorder_demo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d2/dcb/demhist_8cpp-example.html#a21">demhist.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d4/d11/distrans_8cpp-example.html#a20">distrans.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d3/d63/edge_8cpp-example.html#a16">edge.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d5/dca/falsecolor_8cpp-example.html#a28">falsecolor.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d5/d26/ffilldemo_8cpp-example.html#a22">ffilldemo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/de/dc7/fitellipse_8cpp-example.html#a40">fitellipse.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/de/dd0/grabcut_8cpp-example.html#a41">grabcut.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d0/d7f/image_alignment_8cpp-example.html#a44">image_alignment.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/de/db2/laplace_8cpp-example.html#a14">laplace.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d2/d0a/lkdemo_8cpp-example.html#a13">lkdemo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/da/d53/MatchTemplate_Demo_8cpp-example.html#a4">MatchTemplate_Demo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d8/dc0/morphology2_8cpp-example.html#a16">morphology2.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/dc/dfa/Morphology_1_8cpp-example.html#a6">Morphology_1.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d2/dc0/pca_8cpp-example.html#a26">pca.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/db/db0/peopledetect_8cpp-example.html#a22">peopledetect.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/dc/d5e/polar_transforms_8cpp-example.html#a6">polar_transforms.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/dd/d9d/segment_objects_8cpp-example.html#a20">segment_objects.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d4/dbd/Smoothing_8cpp-example.html#a1">Smoothing.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d5/d77/train_HOG_8cpp-example.html#a45">train_HOG.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d5/dfc/warpPerspective_demo_8cpp-example.html#a9">warpPerspective_demo.cpp</a>, and <a class="el" href="https://docs.opencv.org/3.4.1/d8/da9/watershed_8cpp-example.html#a17">watershed.cpp</a>.</dd>
+</dl>
+</div>
+</div>
+<a id="ga9e80e080f7ef33f897e415358aee7f7e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga9e80e080f7ef33f897e415358aee7f7e">§&nbsp;</a></span>resizeWindow() <span class="overload">[1/2]</span></h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">void cv::resizeWindow </td>
+<td>(</td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>winname</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>width</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>height</em>&nbsp;</td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td><td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>None</td><td>=</td><td>cv.resizeWindow(</td><td class="paramname">winname, width, height</td><td>)</td></tr><tr><td style="width: 20px;"></td><td>None</td><td>=</td><td>cv.resizeWindow(</td><td class="paramname">winname, size</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Resizes window to the specified size. </p>
+<dl class="section note"><dt>Note</dt><dd></dd></dl>
+<ul>
+<li>The specified window size is for the image area. Toolbars are not counted.</li>
+<li>Only windows created without <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ggabf7d2c5625bc59ac130287f925557ac3acf621ace7a54954cbac01df27e47228f" title="the user cannot resize the window, the size is constrainted by the image displayed. ">cv::WINDOW_AUTOSIZE</a> flag can be resized.</li>
+</ul>
+<dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">winname</td><td>Window name. </td></tr>
+<tr><td class="paramname">width</td><td>The new window width. </td></tr>
+<tr><td class="paramname">height</td><td>The new window height. </td></tr>
+</tbody></table>
+</dd>
+</dl>
+</div>
+</div>
+<a id="gab4e70200bf54be967129cf08ac5e18bc"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gab4e70200bf54be967129cf08ac5e18bc">§&nbsp;</a></span>resizeWindow() <span class="overload">[2/2]</span></h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">void cv::resizeWindow </td>
+<td>(</td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>winname</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#ga346f563897249351a34549137c8532a0">cv::Size</a> &amp;&nbsp;</td>
+<td class="paramname"><em>size</em>&nbsp;</td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td><td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>None</td><td>=</td><td>cv.resizeWindow(</td><td class="paramname">winname, width, height</td><td>)</td></tr><tr><td style="width: 20px;"></td><td>None</td><td>=</td><td>cv.resizeWindow(</td><td class="paramname">winname, size</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </p><dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">winname</td><td>Window name. </td></tr>
+<tr><td class="paramname">size</td><td>The new window size. </td></tr>
+</tbody></table>
+</dd>
+</dl>
+</div>
+</div>
+<a id="ga8daf4730d3adf7035b6de9be4c469af5"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga8daf4730d3adf7035b6de9be4c469af5">§&nbsp;</a></span>selectROI() <span class="overload">[1/2]</span></h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname"><a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#ga11d95de507098e90bad732b9345402e8">Rect</a> cv::selectROI </td>
+<td>(</td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>windowName</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype"><a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#gab1371a23c90d5f4725ea98240377d7a1">InputArray</a>&nbsp;</td>
+<td class="paramname"><em>img</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">bool&nbsp;</td>
+<td class="paramname"><em>showCrosshair</em> = <code>true</code>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">bool&nbsp;</td>
+<td class="paramname"><em>fromCenter</em> = <code>false</code>&nbsp;</td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td><td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.selectROI(</td><td class="paramname">windowName, img[, showCrosshair[, fromCenter]]</td><td>)</td></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.selectROI(</td><td class="paramname">img[, showCrosshair[, fromCenter]]</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Selects ROI on the given image. Function creates a window and allows user to select a ROI using mouse. Controls: use <code>space</code> or <code>enter</code> to finish selection, use key <code>c</code> to cancel selection (function will return the zero <a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#ga11d95de507098e90bad732b9345402e8">cv::Rect</a>). </p>
+<dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">windowName</td><td>name of the window where selection process will be shown. </td></tr>
+<tr><td class="paramname">img</td><td>image to select a ROI. </td></tr>
+<tr><td class="paramname">showCrosshair</td><td>if true crosshair of selection rectangle will be shown. </td></tr>
+<tr><td class="paramname">fromCenter</td><td>if true center of selection will match initial mouse position. In opposite case a corner of selection rectangle will correspont to the initial mouse position. </td></tr>
+</tbody></table>
+</dd>
+</dl>
+<dl class="section return"><dt>Returns</dt><dd>selected ROI or empty rect if selection canceled.</dd></dl>
+<dl class="section note"><dt>Note</dt><dd>The function sets it's own mouse callback for specified window using <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga89e7806b0a616f6f1d502bd8c183ad3e" title="Sets mouse handler for the specified window. ">cv::setMouseCallback</a>(windowName, ...). After finish of work an empty callback will be set for the used window. </dd></dl>
+</div>
+</div>
+<a id="ga2e2256794d0c88f4cfc4fdd7890c9794"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga2e2256794d0c88f4cfc4fdd7890c9794">§&nbsp;</a></span>selectROI() <span class="overload">[2/2]</span></h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname"><a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#ga11d95de507098e90bad732b9345402e8">Rect</a> cv::selectROI </td>
+<td>(</td>
+<td class="paramtype"><a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#gab1371a23c90d5f4725ea98240377d7a1">InputArray</a>&nbsp;</td>
+<td class="paramname"><em>img</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">bool&nbsp;</td>
+<td class="paramname"><em>showCrosshair</em> = <code>true</code>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">bool&nbsp;</td>
+<td class="paramname"><em>fromCenter</em> = <code>false</code>&nbsp;</td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td><td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.selectROI(</td><td class="paramname">windowName, img[, showCrosshair[, fromCenter]]</td><td>)</td></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.selectROI(</td><td class="paramname">img[, showCrosshair[, fromCenter]]</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>This is an overloaded member function, provided for convenience. It differs from the above function only in what argument(s) it accepts. </p>
+</div>
+</div>
+<a id="ga0f11fad74a6432b8055fb21621a0f893"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga0f11fad74a6432b8055fb21621a0f893">§&nbsp;</a></span>selectROIs()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">void cv::selectROIs </td>
+<td>(</td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>windowName</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype"><a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#gab1371a23c90d5f4725ea98240377d7a1">InputArray</a>&nbsp;</td>
+<td class="paramname"><em>img</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">std::vector&lt; <a class="el" href="https://docs.opencv.org/3.4.1/dc/d84/group__core__basic.html#ga11d95de507098e90bad732b9345402e8">Rect</a> &gt; &amp;&nbsp;</td>
+<td class="paramname"><em>boundingBoxes</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">bool&nbsp;</td>
+<td class="paramname"><em>showCrosshair</em> = <code>true</code>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">bool&nbsp;</td>
+<td class="paramname"><em>fromCenter</em> = <code>false</code>&nbsp;</td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td><td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>boundingBoxes</td><td>=</td><td>cv.selectROIs(</td><td class="paramname">windowName, img[, showCrosshair[, fromCenter]]</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Selects ROIs on the given image. Function creates a window and allows user to select a ROIs using mouse. Controls: use <code>space</code> or <code>enter</code> to finish current selection and start a new one, use <code>esc</code> to terminate multiple ROI selection process. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">windowName</td><td>name of the window where selection process will be shown. </td></tr>
+<tr><td class="paramname">img</td><td>image to select a ROI. </td></tr>
+<tr><td class="paramname">boundingBoxes</td><td>selected ROIs. </td></tr>
+<tr><td class="paramname">showCrosshair</td><td>if true crosshair of selection rectangle will be shown. </td></tr>
+<tr><td class="paramname">fromCenter</td><td>if true center of selection will match initial mouse position. In opposite case a corner of selection rectangle will correspont to the initial mouse position.</td></tr>
+</tbody></table>
+</dd>
+</dl>
+<dl class="section note"><dt>Note</dt><dd>The function sets it's own mouse callback for specified window using <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga89e7806b0a616f6f1d502bd8c183ad3e" title="Sets mouse handler for the specified window. ">cv::setMouseCallback</a>(windowName, ...). After finish of work an empty callback will be set for the used window. </dd></dl>
+</div>
+</div>
+<a id="ga89e7806b0a616f6f1d502bd8c183ad3e"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga89e7806b0a616f6f1d502bd8c183ad3e">§&nbsp;</a></span>setMouseCallback()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">void cv::setMouseCallback </td>
+<td>(</td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>winname</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype"><a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gab7aed186e151d5222ef97192912127a4">MouseCallback</a>&nbsp;</td>
+<td class="paramname"><em>onMouse</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">void *&nbsp;</td>
+<td class="paramname"><em>userdata</em> = <code>0</code>&nbsp;</td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td><td></td>
+</tr>
+</tbody></table>
+</div><div class="memdoc">
+<p>Sets mouse handler for the specified window. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">winname</td><td>Name of the window. </td></tr>
+<tr><td class="paramname">onMouse</td><td>Mouse callback. See OpenCV samples, such as <a href="https://github.com/opencv/opencv/tree/master/samples/cpp/ffilldemo.cpp">https://github.com/opencv/opencv/tree/master/samples/cpp/ffilldemo.cpp</a>, on how to specify and use the callback. </td></tr>
+<tr><td class="paramname">userdata</td><td>The optional parameter passed to the callback. </td></tr>
+</tbody></table>
+</dd>
+</dl>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="https://docs.opencv.org/3.4.1/d2/dc1/camshiftdemo_8cpp-example.html#a25">camshiftdemo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d5/d26/ffilldemo_8cpp-example.html#a24">ffilldemo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/de/dd0/grabcut_8cpp-example.html#a43">grabcut.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d2/d0a/lkdemo_8cpp-example.html#a14">lkdemo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d5/dfc/warpPerspective_demo_8cpp-example.html#a13">warpPerspective_demo.cpp</a>, and <a class="el" href="https://docs.opencv.org/3.4.1/d8/da9/watershed_8cpp-example.html#a21">watershed.cpp</a>.</dd>
+</dl>
+</div>
+</div>
+<a id="ga7e5437ccba37f1154b65210902fc4480"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga7e5437ccba37f1154b65210902fc4480">§&nbsp;</a></span>setTrackbarMax()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">void cv::setTrackbarMax </td>
+<td>(</td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>trackbarname</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>winname</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>maxval</em>&nbsp;</td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td><td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>None</td><td>=</td><td>cv.setTrackbarMax(</td><td class="paramname">trackbarname, winname, maxval</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Sets the trackbar maximum position. </p>
+<p>The function sets the maximum position of the specified trackbar in the specified window.</p>
+<dl class="section note"><dt>Note</dt><dd></dd></dl>
+<p>[<b>Qt Backend Only</b>] winname can be empty (or NULL) if the trackbar is attached to the control panel.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">trackbarname</td><td>Name of the trackbar. </td></tr>
+<tr><td class="paramname">winname</td><td>Name of the window that is the parent of trackbar. </td></tr>
+<tr><td class="paramname">maxval</td><td>New maximum position. </td></tr>
+</tbody></table>
+</dd>
+</dl>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="https://docs.opencv.org/3.4.1/d5/dca/falsecolor_8cpp-example.html#a32">falsecolor.cpp</a>.</dd>
+</dl>
+</div>
+</div>
+<a id="gabe26ffe8d2b60cc678895595a581b7aa"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gabe26ffe8d2b60cc678895595a581b7aa">§&nbsp;</a></span>setTrackbarMin()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">void cv::setTrackbarMin </td>
+<td>(</td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>trackbarname</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>winname</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>minval</em>&nbsp;</td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td><td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>None</td><td>=</td><td>cv.setTrackbarMin(</td><td class="paramname">trackbarname, winname, minval</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Sets the trackbar minimum position. </p>
+<p>The function sets the minimum position of the specified trackbar in the specified window.</p>
+<dl class="section note"><dt>Note</dt><dd></dd></dl>
+<p>[<b>Qt Backend Only</b>] winname can be empty (or NULL) if the trackbar is attached to the control panel.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">trackbarname</td><td>Name of the trackbar. </td></tr>
+<tr><td class="paramname">winname</td><td>Name of the window that is the parent of trackbar. </td></tr>
+<tr><td class="paramname">minval</td><td>New minimum position. </td></tr>
+</tbody></table>
+</dd>
+</dl>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="https://docs.opencv.org/3.4.1/d5/dca/falsecolor_8cpp-example.html#a30">falsecolor.cpp</a>.</dd>
+</dl>
+</div>
+</div>
+<a id="ga67d73c4c9430f13481fd58410d01bd8d"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga67d73c4c9430f13481fd58410d01bd8d">§&nbsp;</a></span>setTrackbarPos()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">void cv::setTrackbarPos </td>
+<td>(</td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>trackbarname</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>winname</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>pos</em>&nbsp;</td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td><td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>None</td><td>=</td><td>cv.setTrackbarPos(</td><td class="paramname">trackbarname, winname, pos</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Sets the trackbar position. </p>
+<p>The function sets the position of the specified trackbar in the specified window.</p>
+<dl class="section note"><dt>Note</dt><dd></dd></dl>
+<p>[<b>Qt Backend Only</b>] winname can be empty (or NULL) if the trackbar is attached to the control panel.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">trackbarname</td><td>Name of the trackbar. </td></tr>
+<tr><td class="paramname">winname</td><td>Name of the window that is the parent of trackbar. </td></tr>
+<tr><td class="paramname">pos</td><td>New position. </td></tr>
+</tbody></table>
+</dd>
+</dl>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="https://docs.opencv.org/3.4.1/d5/dca/falsecolor_8cpp-example.html#a33">falsecolor.cpp</a>.</dd>
+</dl>
+</div>
+</div>
+<a id="ga66e4a6db4d4e06148bcdfe0d70a5df27"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga66e4a6db4d4e06148bcdfe0d70a5df27">§&nbsp;</a></span>setWindowProperty()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">void cv::setWindowProperty </td>
+<td>(</td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>winname</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>prop_id</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">double&nbsp;</td>
+<td class="paramname"><em>prop_value</em>&nbsp;</td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td><td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>None</td><td>=</td><td>cv.setWindowProperty(</td><td class="paramname">winname, prop_id, prop_value</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Changes parameters of a window dynamically. </p>
+<p>The function setWindowProperty enables changing properties of a window.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">winname</td><td>Name of the window. </td></tr>
+<tr><td class="paramname">prop_id</td><td>Window property to edit. The supported operation flags are: (<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gaeedf4023e777f896ba6b9ffb156f57b8" title="Flags for cv::setWindowProperty / cv::getWindowProperty. ">cv::WindowPropertyFlags</a>) </td></tr>
+<tr><td class="paramname">prop_value</td><td>New value of the window property. The supported flags are: (<a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gabf7d2c5625bc59ac130287f925557ac3" title="Flags for cv::namedWindow. ">cv::WindowFlags</a>) </td></tr>
+</tbody></table>
+</dd>
+</dl>
+</div>
+</div>
+<a id="ga56f8849295fd10d0c319724ddb773d96"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga56f8849295fd10d0c319724ddb773d96">§&nbsp;</a></span>setWindowTitle()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">void cv::setWindowTitle </td>
+<td>(</td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>winname</em>, </td>
+</tr>
+<tr>
+<td class="paramkey"></td>
+<td></td>
+<td class="paramtype">const <a class="el" href="https://docs.opencv.org/3.4.1/d1/d8f/classcv_1_1String.html">String</a> &amp;&nbsp;</td>
+<td class="paramname"><em>title</em>&nbsp;</td>
+</tr>
+<tr>
+<td></td>
+<td>)</td>
+<td></td><td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>None</td><td>=</td><td>cv.setWindowTitle(</td><td class="paramname">winname, title</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Updates window title. </p>
+<dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">winname</td><td>Name of the window. </td></tr>
+<tr><td class="paramname">title</td><td>New title. </td></tr>
+</tbody></table>
+</dd>
+</dl>
+</div>
+</div>
+<a id="ga2c6ecef4f85d8e5cbefec39c9e82ece0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga2c6ecef4f85d8e5cbefec39c9e82ece0">§&nbsp;</a></span>startWindowThread()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">int cv::startWindowThread </td>
+<td>(</td>
+<td class="paramname"></td><td>)</td>
+<td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.startWindowThread(</td><td class="paramname"></td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+</div>
+</div>
+<a id="ga5628525ad33f52eab17feebcfba38bd7"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga5628525ad33f52eab17feebcfba38bd7">§&nbsp;</a></span>waitKey()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">int cv::waitKey </td>
+<td>(</td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>delay</em> = <code>0</code></td><td>)</td>
+<td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.waitKey(</td><td class="paramname">[, delay]</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Waits for a pressed key. </p>
+<p>The function waitKey waits for a key event infinitely (when <span class="MathJax_Preview" style="display: none;"></span><span class="MathJax" id="MathJax-Element-1-Frame" tabindex="0" style=""><nobr><span class="math" id="MathJax-Span-1" style="width: 5.479em; display: inline-block;"><span style="display: inline-block; position: relative; width: 4.527em; height: 0px; font-size: 120%;"><span style="position: absolute; clip: rect(1.372em, 1004.47em, 2.622em, -999.997em); top: -2.199em; left: 0em;"><span class="mrow" id="MathJax-Span-2"><span class="texatom" id="MathJax-Span-3"><span class="mrow" id="MathJax-Span-4"><span class="mtext" id="MathJax-Span-5" style="font-family: MathJax_Typewriter;">delay</span></span></span><span class="mo" id="MathJax-Span-6" style="font-family: MathJax_Main; padding-left: 0.301em;">≤</span><span class="mn" id="MathJax-Span-7" style="font-family: MathJax_Main; padding-left: 0.301em;">0</span></span><span style="display: inline-block; width: 0px; height: 2.205em;"></span></span></span><span style="display: inline-block; overflow: hidden; vertical-align: -0.354em; border-left: 0px solid; width: 0px; height: 1.218em;"></span></span></nobr></span><script type="math/tex" id="MathJax-Element-1">\texttt{delay}\leq 0</script> ) or for delay milliseconds, when it is positive. Since the OS has a minimum time between switching threads, the function will not wait exactly delay ms, it will wait at least delay ms, depending on what else is running on your computer at that time. It returns the code of the pressed key or -1 if no key was pressed before the specified time had elapsed.</p>
+<dl class="section note"><dt>Note</dt><dd></dd></dl>
+<p>This function is the only method in HighGUI that can fetch and handle events, so it needs to be called periodically for normal event processing unless HighGUI is used within an environment that takes care of event processing.</p>
+<dl class="section note"><dt>Note</dt><dd></dd></dl>
+<p>The function only works if there is at least one HighGUI window created and the window is active. If there are several HighGUI windows, any of them can be active.</p>
+<dl class="params"><dt>Parameters</dt><dd>
+<table class="params">
+<tbody><tr><td class="paramname">delay</td><td>Delay in milliseconds. 0 is the special value that means "forever". </td></tr>
+</tbody></table>
+</dd>
+</dl>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="https://docs.opencv.org/3.4.1/da/d9c/AddingImagesTrackbar_8cpp-example.html#a8">AddingImagesTrackbar.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d2/dc1/camshiftdemo_8cpp-example.html#a63">camshiftdemo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/dc/d56/cloning_demo_8cpp-example.html#a14">cloning_demo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d0/d2a/contours2_8cpp-example.html#a26">contours2.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d0/d7a/convexhull_8cpp-example.html#a20">convexhull.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d3/d2e/copyMakeBorder_demo_8cpp-example.html#a13">copyMakeBorder_demo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d2/dcb/demhist_8cpp-example.html#a23">demhist.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d4/d11/distrans_8cpp-example.html#a22">distrans.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/dc/d88/Drawing_1_8cpp-example.html#a11">Drawing_1.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/df/daf/Drawing_2_8cpp-example.html#a6">Drawing_2.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d3/d63/edge_8cpp-example.html#a18">edge.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/db/d3a/facedetect_8cpp-example.html#a15">facedetect.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d5/dca/falsecolor_8cpp-example.html#a34">falsecolor.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d5/d26/ffilldemo_8cpp-example.html#a25">ffilldemo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/de/dc7/fitellipse_8cpp-example.html#a43">fitellipse.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d1/d9e/fld_lines_8cpp-example.html#a17">fld_lines.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/de/dd0/grabcut_8cpp-example.html#a44">grabcut.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/de/df6/hog_8cpp-example.html#a48">hog.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/dc/daf/homography_from_camera_displacement_8cpp-example.html#a26">homography_from_camera_displacement.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d7/d5d/houghcircles_8cpp-example.html#a17">houghcircles.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d2/d7b/houghlines_8cpp-example.html#a26">houghlines.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d0/d7f/image_alignment_8cpp-example.html#a50">image_alignment.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d1/da2/kalman_8cpp-example.html#a31">kalman.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/de/d63/kmeans_8cpp-example.html#a29">kmeans.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/de/db2/laplace_8cpp-example.html#a25">laplace.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d2/d0a/lkdemo_8cpp-example.html#a29">lkdemo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d8/dd4/lsd_lines_8cpp-example.html#a18">lsd_lines.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/da/d53/MatchTemplate_Demo_8cpp-example.html#a7">MatchTemplate_Demo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d4/d32/minarea_8cpp-example.html#a25">minarea.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d8/dc0/morphology2_8cpp-example.html#a18">morphology2.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/dc/dfa/Morphology_1_8cpp-example.html#a11">Morphology_1.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d6/d74/npr_demo_8cpp-example.html#a12">npr_demo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d2/dc0/pca_8cpp-example.html#a29">pca.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/db/db0/peopledetect_8cpp-example.html#a33">peopledetect.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/dc/d5e/polar_transforms_8cpp-example.html#a16">polar_transforms.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d9/d2b/pose_from_homography_8cpp-example.html#a26">pose_from_homography.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d6/d73/Pyramids_8cpp-example.html#a4">Pyramids.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/dd/d9d/segment_objects_8cpp-example.html#a26">segment_objects.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/da/d72/shape_example_8cpp-example.html#a20">shape_example.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d4/dbd/Smoothing_8cpp-example.html#a21">Smoothing.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d4/dba/Sobel_Demo_8cpp-example.html#a19">Sobel_Demo.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d5/d77/train_HOG_8cpp-example.html#a23">train_HOG.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d5/d57/videowriter_basic_8cpp-example.html#a11">videowriter_basic.cpp</a>, <a class="el" href="https://docs.opencv.org/3.4.1/d5/dfc/warpPerspective_demo_8cpp-example.html#a27">warpPerspective_demo.cpp</a>, and <a class="el" href="https://docs.opencv.org/3.4.1/d8/da9/watershed_8cpp-example.html#a22">watershed.cpp</a>.</dd>
+</dl>
+</div>
+</div>
+<a id="gafa15c0501e0ddd90918f17aa071d3dd0"></a>
+<h2 class="memtitle"><span class="permalink"><a href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#gafa15c0501e0ddd90918f17aa071d3dd0">§&nbsp;</a></span>waitKeyEx()</h2>
+<div class="memitem">
+<div class="memproto">
+<table class="memname">
+<tbody><tr>
+<td class="memname">int cv::waitKeyEx </td>
+<td>(</td>
+<td class="paramtype">int&nbsp;</td>
+<td class="paramname"><em>delay</em> = <code>0</code></td><td>)</td>
+<td></td>
+</tr>
+</tbody></table><table class="python_language"><tbody><tr><th colspan="999" style="text-align:left">Python:</th></tr><tr><td style="width: 20px;"></td><td>retval</td><td>=</td><td>cv.waitKeyEx(</td><td class="paramname">[, delay]</td><td>)</td></tr></tbody></table>
+</div><div class="memdoc">
+<p>Similar to <a class="el" href="https://docs.opencv.org/3.4.1/d7/dfc/group__highgui.html#ga5628525ad33f52eab17feebcfba38bd7" title="Waits for a pressed key. ">waitKey</a>, but returns full key code. </p>
+<dl class="section note"><dt>Note</dt><dd></dd></dl>
+<p>Key code is implementation specific and depends on used backend: QT/GTK/Win32/etc </p>
+</div>
+</div>
+</div><!-- contents -->
+<!-- HTML footer for doxygen 1.8.6-->
+<!-- start footer part -->
+<hr class="footer"><address class="footer"><small>
+Generated on Fri Feb 23 2018 13:10:27 for OpenCV by &nbsp;<a href="http://www.doxygen.org/index.html">
+<img alt="doxygen" class="footer" src="./OpenCV_ High-level GUI_files/doxygen.png">
+</a> 1.8.12
+</small></address>
+<script type="text/javascript">
+//<![CDATA[
+addTutorialsButtons();
+//]]>
+</script>
+
+
+<div style="position: absolute; width: 0px; height: 0px; overflow: hidden; padding: 0px; border: 0px; margin: 0px;"><div id="MathJax_Font_Test" style="position: absolute; visibility: hidden; top: 0px; left: 0px; width: auto; padding: 0px; border: 0px; margin: 0px; white-space: nowrap; text-align: left; text-indent: 0px; text-transform: none; line-height: normal; letter-spacing: normal; word-spacing: normal; font-size: 40px; font-weight: normal; font-style: normal; font-family: MathJax_Main, sans-serif;"></div></div><table cellspacing="0" cellpadding="0" class="gstl_50 gssb_c" style="width: 237px; display: none; top: 23px; left: -1px; position: absolute;"><tbody><tr><td class="gssb_f"></td><td class="gssb_e" style="width: 100%;"></td></tr></tbody></table></body></html>
